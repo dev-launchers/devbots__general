@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Health : MonoBehaviour
+public class HealthSlider : MonoBehaviour
 {
+
+    [SerializeField] private Health hp = default(Health);
+
     Rigidbody2D rb;
 
     public Slider healthSlider;
@@ -26,17 +29,12 @@ public class Health : MonoBehaviour
         
     }
     public void Update() {
-     if (healthSlider.value <= 0.0f) {
+        healthSlider.value = hp.HP;
+        if (healthSlider.value <= 0.0f) { //Can just be in TakeDamage?
             //Reset
             Scene scene = SceneManager.GetActiveScene(); 
             SceneManager.LoadScene(scene.name);
         }
     }
-
-    public void TakeDamage(float damage) {
-        Debug.Log(damage);
-        healthSlider.value = healthSlider.value - damage;
-    }
-
 
 }

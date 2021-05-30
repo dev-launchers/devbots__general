@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb = default(Rigidbody2D);
     [SerializeField] private Transform attackPos = default(Transform);
     [SerializeField] private LayerMask opponent = default(LayerMask);
     [SerializeField] private float range = default(float);
     [SerializeField] private float damage = default(float);
+    [SerializeField] private float knockback = default(float);
     //Should depend on specific attack part
-    
-    private float attacksize = 5.0f;
-
 
     public void AttackStep(float enemyPos) {
     //Called each turn, checks for collision and calls its TakeDamage
 
         Collider2D collision = Physics2D.OverlapCircle(attackPos.position, range, opponent);
+        //OverlapBox for rectangular hitbox
+
         if (collision != null) {
             collision.GetComponent<Health>().TakeDamage(damage);
+            collision.GetComponent<Move>().TakeKnockback(enemyPos, knockback);
         }
     }
 
