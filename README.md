@@ -5,4 +5,6 @@
 
 ![Gameplay Concept](https://github.com/dev-launchers/blockchain__general/blob/main/art/DevBotProto.png "Gameplay Concept")
 
+![Components Concept](https://github.com/dev-launchers/blockchain__general/blob/main/art/ComponentPrototypes.png "Components Concept")
+
 All code created by any party for this project falls under the license above.
