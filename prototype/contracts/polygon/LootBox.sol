@@ -13,7 +13,7 @@ import "./BotHull.sol";
 import "./BotPart.sol";
 import "./BotInstructionToken.sol";
 
-contract DevLaunchersToken is AccessControl, IERC777Recipient {
+contract LootBox is AccessControl, IERC777Recipient {
 
   bytes32 public constant ADMIN_ROLE = keccak256("ADMIN");
 
@@ -66,12 +66,14 @@ contract DevLaunchersToken is AccessControl, IERC777Recipient {
     }
 
     function _openLootBox(address receiver, uint8 boxID, uint256 seed) private returns (uint256[]) {
+      uint256[] items = new uint256[];
       for(uint item = 0; item < amountItemsPerBox[boxID]; item++){
         seed = _pseudoRand(seed, 21);
         uint i = 0;
         while(probabilityDistribution[boxID][i] < seed){
           i++;
         }
+
         if(i<32){
           //Mint Instruction Token
           address instructionTokenContract = BotHull(botHullContract).instructionsContracts[i];
@@ -111,8 +113,10 @@ contract DevLaunchersToken is AccessControl, IERC777Recipient {
       require(lootBoxPrices[boxID] == amount);
       require(amountItemsPerBox[boxID] != 0);
 
+      DevLaunchersToken(devsTokenContract).burn(amount, "");
+
       // SEED Mechanism needs to be changed ASAP
-      _openLootBox(boxID, 542168123);
+      _openLootBox(from, boxID, 542168123);
     }
 
 }

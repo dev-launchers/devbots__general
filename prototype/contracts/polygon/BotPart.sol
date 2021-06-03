@@ -14,7 +14,7 @@ contract BotPart is ERC721URIStorage, AccessControl {
 
   Counters.Counter private _tokenIds;
 
-  mapping(uint256 => uint32) tokenPartType; // Lowest PartType starts at = 0x00001000 = 4096
+  mapping(uint256 => uint32) tokenPartType; // Lowest PartType starts at = 0x00000020 = 32
   mapping(uint256 => uint256[]) tokenStats;
 
 
