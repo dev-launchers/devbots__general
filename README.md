@@ -1,5 +1,7 @@
 # blockchain__general
-### Creating value using blockchain
+### Learn, Play, Earn
+
+![Logo](https://github.com/dev-launchers/blockchain__general/blob/main/art/DevBotsLogo.png "Logo")
 
 [Design Document](https://docs.google.com/document/d/1tsXx9D7I1wqGmEUUq0oJGUZ--iy6KbLGce7hpL9jQK8/edit?usp=sharing)
 
