@@ -9,13 +9,12 @@ contract DevLaunchersToken is ERC777, AccessControl {
   bytes32 public constant MINTER_ROLE = keccak256("MINTER");
   bytes32 public constant ADMIN_ROLE = keccak256("ADMIN");
 
-  constructor(address minter, address[] memory defaultOperators)
-    ERC777("DEVS", "DEVS", defaultOperators)
+  constructor(address[] memory _defaultOperators)
+    ERC777("DEVS", "DEVS", _defaultOperators)
     {
       _setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
       _setRoleAdmin(ADMIN_ROLE, ADMIN_ROLE);
       _setupRole(ADMIN_ROLE, msg.sender);
-      _setupRole(MINTER_ROLE, minter);
     }
 
     function mint(address receiver, uint256 amount, bytes calldata userData, bytes calldata operatorData) public onlyRole(MINTER_ROLE) {
