@@ -7,14 +7,19 @@ import "@openzeppelin/contracts/token/ERC777/ERC777.sol";
 import "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol";
 import "@openzeppelin/contracts/utils/introspection/IERC1820Registry.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
-import "bytes/BytesLib.sol";
+import "solidity-bytes-utils/contracts/BytesLib.sol";
 import "./DevLaunchersToken.sol";
 import "./BotHull.sol";
 import "./BotPart.sol";
 import "./BotInstructionToken.sol";
+import "@openzeppelin/contracts/utils/math/SafeCast.sol";
 
 contract LootBox is AccessControl, IERC777Recipient {
 
+  IERC1820Registry private constant _ERC1820_REGISTRY = IERC1820Registry(0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24);
+
+  bytes32 public constant ERC777_INTERFACE = keccak256("ERC777Token");
+  bytes32 public constant ERC721_INTERFACE = keccak256("ERC721Token");
   bytes32 public constant ADMIN_ROLE = keccak256("ADMIN");
 
   address public devsTokenContract;
@@ -27,7 +32,7 @@ contract LootBox is AccessControl, IERC777Recipient {
 
   constructor(address _devsTokenContract, address _botHullContract, address _botPartContract)
     {
-      IERC1820Registry(0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24).setInterfaceImplementer(address(this), type(IERC777Recipient).interfaceId, address(this));
+      _ERC1820_REGISTRY.setInterfaceImplementer(address(this), 0xac7fbab5f54a3ca8194167523c6753bfeb96a445279294b6125b68cce2177054, address(this));
 
       devsTokenContract = _devsTokenContract;
       botHullContract = _botHullContract;
@@ -38,22 +43,25 @@ contract LootBox is AccessControl, IERC777Recipient {
     }
 
     function setDevsTokenContract(address _devsTokenContract) public onlyRole(ADMIN_ROLE) {
-      require(ERC165Checker.supportsInterface(_devsTokenContract, type(IERC777).interfaceId));
+      address implementer = _ERC1820_REGISTRY.getInterfaceImplementer(_devsTokenContract, ERC777_INTERFACE);
+      require(implementer != address(0));
       devsTokenContract = _devsTokenContract;
     }
 
     function setBotHullContract(address _botHullContract) public onlyRole(ADMIN_ROLE) {
-      require(ERC165Checker.supportsInterface(_botHullContract, type(IERC777).interfaceId));
+      address implementer = _ERC1820_REGISTRY.getInterfaceImplementer(_botHullContract, ERC777_INTERFACE);
+      require(implementer != address(0));
       botHullContract = _botHullContract;
     }
 
     function setBotPartContract(address _botPartContract) public onlyRole(ADMIN_ROLE) {
-      require(ERC165Checker.supportsInterface(_botPartContract, type(IERC721).interfaceId));
+      address implementer = _ERC1820_REGISTRY.getInterfaceImplementer(_botPartContract, ERC721_INTERFACE);
+      require(implementer != address(0));
       botPartContract = _botPartContract;
     }
 
     // Seed is used here as INSECURE randomized number, needs to be replaced either by operator provided random or Chainlink Random
-    function openLootBox(uint8 boxID, uint16 seed) public returns (uint256[]) {
+    function openLootBox(uint8 boxID, uint16 seed) public returns (uint256[] memory) {
       require(lootBoxPrices[boxID] != 0);
       require(amountItemsPerBox[boxID] != 0);
 
@@ -65,8 +73,8 @@ contract LootBox is AccessControl, IERC777Recipient {
       return _openLootBox(msg.sender, boxID, seed);
     }
 
-    function _openLootBox(address receiver, uint8 boxID, uint256 seed) private returns (uint256[]) {
-      uint256[] items = new uint256[];
+    function _openLootBox(address receiver, uint8 boxID, uint256 seed) private returns (uint256[] memory) {
+      uint256[] memory items = new uint256[](0);
       for(uint item = 0; item < amountItemsPerBox[boxID]; item++){
         seed = _pseudoRand(seed, 21);
         uint i = 0;
@@ -76,34 +84,35 @@ contract LootBox is AccessControl, IERC777Recipient {
 
         if(i<32){
           //Mint Instruction Token
-          address instructionTokenContract = BotHull(botHullContract).instructionsContracts[i];
+          address instructionTokenContract = BotHull(botHullContract).getInstructionContract(SafeCast.toUint8(i % 2**8));
           require(instructionTokenContract != address(0));
           BotInstructionToken(instructionTokenContract).mint(receiver, 1 * 10**18, "", "");
         }else{
-          BotPart(botPartContract).mintItem(receiver, i, _generateStats(_pseudoRand(seed, item)), "testURI");
+          BotPart(botPartContract).mintItem(receiver, SafeCast.toUint32(i % 2**32), _generateStats(_pseudoRand(seed, SafeCast.toUint16(item))), "testURI");
         }
       }
+      return items;
     }
 
-    function _generateStats(uint256 seed) private returns (uint256[]) {
-      uint256[] stats = new uint256[](3);
+    function _generateStats(uint256 seed) private pure returns (uint256[] memory) {
+      uint256[] memory stats = new uint256[](3);
       for(uint8 i = 0; i < 3; i++){
         stats[i] = _pseudoRand(seed, i);
       }
       return stats;
     }
 
-    function _pseudoRand(uint256 seed, uint16 id) private returns (uint256){
+    function _pseudoRand(uint256 seed, uint16 id) private pure returns (uint256){
       return uint256(keccak256(abi.encodePacked(seed, id)));
     }
 
     function tokensReceived(
         address operator,
         address from,
-        address to,
+        address,
         uint256 amount,
         bytes calldata userData,
-        bytes calldata operatorData
+        bytes calldata
     ) external override {
       require(msg.sender == devsTokenContract);
       require(operator == address(0) || userData.length == 1);

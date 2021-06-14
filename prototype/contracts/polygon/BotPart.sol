@@ -18,11 +18,10 @@ contract BotPart is ERC721URIStorage, AccessControl {
   mapping(uint256 => uint256[]) tokenStats;
 
 
-  constructor(address minter) ERC721("BotPart", "BP") {
+  constructor() ERC721("BotPart", "BP") {
     _setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
     _setRoleAdmin(ADMIN_ROLE, ADMIN_ROLE);
     _setupRole(ADMIN_ROLE, msg.sender);
-    _setupRole(MINTER_ROLE, minter);
   }
 
   function mintItem(address player, uint32 _tokenPartType, uint256[] calldata _tokenStats, string memory tokenURI) public onlyRole(MINTER_ROLE) returns (uint256) {

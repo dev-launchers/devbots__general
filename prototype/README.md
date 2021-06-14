@@ -1,3 +1,25 @@
+# Current Deployments (non-working):
+BotPart:
+
+https://ropsten.etherscan.io/address/0x8B81f67840D3e2c24cdD718E0f83d881497Ea786#contracts
+
+BotHull:
+
+https://ropsten.etherscan.io/address/0x05F49D24b2DE0AC02c282b0255b83CC52EccE334#contracts
+
+LootBox:
+
+https://ropsten.etherscan.io/address/0xeA9df75592D051a52139F7E1E64fa1d5E59ccF63#contracts
+
+DevLaunchersToken:
+
+https://ropsten.etherscan.io/address/0x3CCD073B46CC6d5088Af922F796Bc553EDa10320#contracts
+
+BotInstructionToken (one single Token rn):
+
+https://ropsten.etherscan.io/address/0x16B1DDce5a3F5E2Dbc6b368b4f8e5F68b866D0D2#contracts
+
+
 # Polygon Box
 
 - [Requirements](#requirements)

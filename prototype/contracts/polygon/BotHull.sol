@@ -9,14 +9,17 @@ import "@openzeppelin/contracts/token/ERC777/IERC777Recipient.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 import "@openzeppelin/contracts/utils/introspection/IERC1820Registry.sol";
-import "bytes/BytesLib.sol";
+import "solidity-bytes-utils/contracts/BytesLib.sol";
 import "./BotPart.sol";
 
 contract BotHull is ERC721, IERC721Receiver, IERC777Recipient, AccessControl {
   using Counters for Counters.Counter;
 
+  IERC1820Registry private constant _ERC1820_REGISTRY = IERC1820Registry(0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24);
+
   address private botPartContract;
 
+  bytes32 public constant ERC777_INTERFACE = keccak256("ERC777Token");
   bytes32 public constant MINTER_ROLE = keccak256("MINTER");
   bytes32 public constant ADMIN_ROLE = keccak256("ADMIN");
 
@@ -31,18 +34,22 @@ contract BotHull is ERC721, IERC721Receiver, IERC777Recipient, AccessControl {
   mapping(uint256 => uint8[]) public instructionSlots;
   mapping(uint256 => uint16[]) public instructionData;
 
-  constructor(address minter, address _botPartContract) ERC721("BotHull", "BH") {
-    IERC1820Registry(0x1820a4B7618BdE71Dce8cdc73aAB6C95905faD24).setInterfaceImplementer(address(this), type(IERC777Recipient).interfaceId, address(this));
+  constructor(address _botPartContract) ERC721("BotHull", "BH") {
+    _ERC1820_REGISTRY.setInterfaceImplementer(address(this), 0xac7fbab5f54a3ca8194167523c6753bfeb96a445279294b6125b68cce2177054, address(this));
 
     botPartContract = _botPartContract;
     _setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
     _setRoleAdmin(ADMIN_ROLE, ADMIN_ROLE);
     _setupRole(ADMIN_ROLE, msg.sender);
-    _setupRole(MINTER_ROLE, minter);
+  }
+
+  function getInstructionContract(uint8 id) public view returns (address) {
+    return instructionsContracts[id];
   }
 
   function registerInstruction(uint8 id, address instructionContract) public onlyRole(ADMIN_ROLE) {
-    require(ERC165Checker.supportsInterface(instructionContract, type(IERC777).interfaceId));
+    address implementer = _ERC1820_REGISTRY.getInterfaceImplementer(instructionContract, ERC777_INTERFACE);
+    require(implementer != address(0));
     require(id <= amountInstructions);
     require(id < 32);
     instructionsContracts[id] = instructionContract;
@@ -177,12 +184,12 @@ contract BotHull is ERC721, IERC721Receiver, IERC777Recipient, AccessControl {
 
   function tokensReceived(
       address operator,
-      address from,
-      address to,
-      uint256 amount,
-      bytes calldata userData,
-      bytes calldata operatorData
-  ) external override {
+      address,
+      address,
+      uint256,
+      bytes calldata,
+      bytes calldata
+  ) external view override {
     require(operator == address(this));
   }
 
