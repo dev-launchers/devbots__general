@@ -11,8 +11,10 @@ public class AutoUpdate : MonoBehaviour
 
     private Move playerMovement;
     private Attack playerAttack;
+    private UpdateSprite playerSprite;
     private Move opponentMovement;
     private Attack opponentAttack;
+    private UpdateSprite opponentSprite;
 
     private const float TURN_TIME = 2.0f;
     private float timer = TURN_TIME;
@@ -24,8 +26,10 @@ public class AutoUpdate : MonoBehaviour
     {
         playerMovement = player.GetComponent<Move>();
         playerAttack = player.GetComponent<Attack>();
+        playerSprite = player.GetComponent<UpdateSprite>();
         opponentMovement = opponent.GetComponent<Move>();
         opponentAttack = opponent.GetComponent<Attack>();
+        opponentSprite = player.GetComponent<UpdateSprite>();
 
         //GameObject.FindGameObjectWithTag("Player") If objects need to be instantiated later and can't be assigned in menu
     }
@@ -44,7 +48,6 @@ public class AutoUpdate : MonoBehaviour
             //Find if enemy to the left or right
             if (player.transform.position.x - opponent.transform.position.x > 0) {
                 relativeOpponentPos = -1.0f;
-                //Sprite flips go here
             }
             else {
                 relativeOpponentPos = 1.0f;
@@ -59,6 +62,9 @@ public class AutoUpdate : MonoBehaviour
             playerAttack.AttackStep(relativeOpponentPos);
             opponentAttack.AttackStep(-relativeOpponentPos);
 
+            //Update Sprites
+            playerSprite.FlipSprite(relativeOpponentPos);
+            opponentSprite.FlipSprite(relativeOpponentPos);
         }
 
     }
