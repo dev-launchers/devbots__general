@@ -6,35 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class HealthSlider : MonoBehaviour
 {
+    private IEnumerator coroutine;
 
     [SerializeField] private Health hp = default(Health);
 
-    Rigidbody2D rb;
-
     public Slider healthSlider;
-
-    private float knockBack;
-
     private Scene scene;
 
-    Animator animator;
-
     void Start()
-    {
-        animator = GetComponent<Animator>();
+    {     
         scene = SceneManager.GetActiveScene();
-        rb = GetComponent<Rigidbody2D>();
-        animator.enabled = false;
-        healthSlider.value = 1.0f;
-        
     }
     public void Update() {
         healthSlider.value = hp.HP;
-        if (healthSlider.value <= 0.0f) { //Can just be in TakeDamage?
-            //Reset
-            Scene scene = SceneManager.GetActiveScene(); 
-            SceneManager.LoadScene(scene.name);
-        }
+    }
+
+    IEnumerator Death(float Death)
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(scene.name);
+
+
+        yield break;
     }
 
 }

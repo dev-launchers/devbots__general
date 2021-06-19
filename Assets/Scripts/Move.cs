@@ -8,13 +8,20 @@ public class Move : MonoBehaviour
     [SerializeField] private float movespeed = default(float);
     [SerializeField] private float jumpSize = default(float);
 
+    private AudioManager audioManager;
+
+    public void Start() {
+        //Grab values from parts
+        audioManager = FindObjectOfType<AudioManager>();
+    }
+
     public void MoveStep(float enemyPos) {
         //Should depend on specific movement part
         rb.velocity = new Vector2(enemyPos * movespeed, jumpSize);
+        audioManager.Play("Move");
     }
 
     public void TakeKnockback(float enemyPos, float knockback) {
-        //Should depend on specific movement part
         rb.velocity = new Vector2(enemyPos * knockback, knockback);
     }
 
