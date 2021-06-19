@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class UpdateSprite : MonoBehaviour
 {
+
+    [SerializeField] private SpriteRenderer sprite = default(SpriteRenderer);
+
     public void FlipSprite(float enemyPos) {
         if (enemyPos < 0f) {
-            //flipSprite
+            sprite.flipX = true;
         }
     }
 }

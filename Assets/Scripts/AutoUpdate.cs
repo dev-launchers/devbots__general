@@ -66,6 +66,5 @@ public class AutoUpdate : MonoBehaviour
             playerSprite.FlipSprite(relativeOpponentPos);
             opponentSprite.FlipSprite(relativeOpponentPos);
         }
-
     }
 }
