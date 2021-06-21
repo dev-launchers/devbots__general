@@ -15,13 +15,30 @@ public class Move : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
     }
 
-    public void MoveStep(float enemyPos) {
-        //Should depend on specific movement part
-        rb.velocity = new Vector2(enemyPos * movespeed, jumpSize);
-        audioManager.Play("Move");
+    // public void MoveStep(float enemyPos) {
+    //     //Should depend on specific movement part
+    //     rb.velocity = new Vector2(enemyPos * movespeed, jumpSize);
+    //     audioManager.Play("Move");
+    // }
+
+    public void MoveStep(List<GameObject> activeBots) {
+        Debug.Log("entered");
+        // Find nearest bot? (future stuff)
+        foreach(GameObject activeBot in activeBots) {
+            if (activeBot == this.gameObject) continue; // Change in future
+
+            int enemyDirection = GetComponent<BotSensor>().GetNearestSensedBotDirection();
+
+            Debug.Log("Jumping: "+enemyDirection+" : "+enemyDirection * movespeed + ", " + jumpSize);
+            //Should depend on specific movement part
+            rb.velocity = new Vector2(enemyDirection * movespeed, jumpSize);
+            audioManager.Play("Move");
+        }
+
     }
 
     public void TakeKnockback(float enemyPos, float knockback) {
+        Debug.Log("Knockback : "+ enemyPos * knockback + ", " + knockback);
         rb.velocity = new Vector2(enemyPos * knockback, knockback);
     }
 
