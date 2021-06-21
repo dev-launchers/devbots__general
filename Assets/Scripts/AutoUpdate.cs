@@ -29,7 +29,7 @@ public class AutoUpdate : MonoBehaviour
         playerSprite = player.GetComponent<UpdateSprite>();
         opponentMovement = opponent.GetComponent<Move>();
         opponentAttack = opponent.GetComponent<Attack>();
-        opponentSprite = player.GetComponent<UpdateSprite>();
+        opponentSprite = opponent.GetComponent<UpdateSprite>();
 
         //GameObject.FindGameObjectWithTag("Player") If objects need to be instantiated later and can't be assigned in menu
     }
@@ -64,7 +64,7 @@ public class AutoUpdate : MonoBehaviour
 
             //Update Sprites
             playerSprite.FlipSprite(relativeOpponentPos);
-            opponentSprite.FlipSprite(relativeOpponentPos);
+            opponentSprite.FlipSprite(-relativeOpponentPos);
         }
     }
 }

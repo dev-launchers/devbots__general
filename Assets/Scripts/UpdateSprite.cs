@@ -9,6 +9,9 @@ public class UpdateSprite : MonoBehaviour
 
     public void FlipSprite(float enemyPos) {
         if (enemyPos < 0f) {
+            sprite.flipX = false;
+        }
+        else {
             sprite.flipX = true;
         }
     }
