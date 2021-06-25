@@ -20,8 +20,7 @@ contract BotHull is ERC721, IERC721Receiver, IERC777Recipient, AccessControl {
   address private botPartContract;
 
   bytes32 public constant ERC777_INTERFACE = keccak256("ERC777Token");
-  bytes32 public constant MINTER_ROLE = keccak256("MINTER");
-  bytes32 public constant ADMIN_ROLE = keccak256("ADMIN");
+  bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
   Counters.Counter private _tokenIds;
 
@@ -34,20 +33,21 @@ contract BotHull is ERC721, IERC721Receiver, IERC777Recipient, AccessControl {
   mapping(uint256 => uint8[]) public instructionSlots;
   mapping(uint256 => uint16[]) public instructionData;
 
-  constructor(address _botPartContract) ERC721("BotHull", "BH") {
+  constructor(address _botPartContract, address _botInstructionTokenFactory) ERC721("BotHull", "BH") {
     _ERC1820_REGISTRY.setInterfaceImplementer(address(this), 0xac7fbab5f54a3ca8194167523c6753bfeb96a445279294b6125b68cce2177054, address(this));
 
     botPartContract = _botPartContract;
-    _setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
-    _setRoleAdmin(ADMIN_ROLE, ADMIN_ROLE);
-    _setupRole(ADMIN_ROLE, msg.sender);
+    _setRoleAdmin(MINTER_ROLE, DEFAULT_ADMIN_ROLE);
+    _setRoleAdmin(DEFAULT_ADMIN_ROLE, DEFAULT_ADMIN_ROLE);
+    _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+    _setupRole(DEFAULT_ADMIN_ROLE, _botInstructionTokenFactory);
   }
 
   function getInstructionContract(uint8 id) public view returns (address) {
     return instructionsContracts[id];
   }
 
-  function registerInstruction(uint8 id, address instructionContract) public onlyRole(ADMIN_ROLE) {
+  function registerInstruction(uint8 id, address instructionContract) public onlyRole(DEFAULT_ADMIN_ROLE) {
     address implementer = _ERC1820_REGISTRY.getInterfaceImplementer(instructionContract, ERC777_INTERFACE);
     require(implementer != address(0));
     require(id <= amountInstructions);

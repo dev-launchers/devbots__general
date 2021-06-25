@@ -10,7 +10,7 @@ module.exports = {
   /**
   * contracts_build_directory tells Truffle where to store compiled contracts
   */
-  contracts_build_directory: './build/polygon-contracts',
+  contracts_build_directory: './client/src/contracts',
 
   /**
   * contracts_directory tells Truffle where the contracts you want to compile are located
@@ -36,6 +36,13 @@ module.exports = {
         return new HDWalletProvider(mnemonic, "https://kovan.infura.io/v3/" + infuraProjectId)
       },
       network_id: 42,
+      gas: 8000000,
+    },
+    rinkeby: {
+      provider: function() {
+        return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/" + infuraProjectId)
+      },
+      network_id: 4,
       gas: 8000000,
     },
     //polygon Infura mainnet
@@ -108,7 +115,13 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-	version: "0.8.4+commit.c7e474f2.Emscripten.clang"
+	version: "0.8.4+commit.c7e474f2.Emscripten.clang",
+	settings: {
+	  optimizer: {
+	    enabled: true,
+	    runs: 1500
+	  }
+	}	    
     }
   },
   db: {
