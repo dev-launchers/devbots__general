@@ -587,7 +587,7 @@ Transform:
   - {fileID: 174490677}
   - {fileID: 170220152}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &638792072
 MonoBehaviour:
@@ -789,12 +789,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &670609746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8673065408429002268, guid: fa3ac50fa635ce74eb10a8aa27a86212,
-    type: 3}
-  m_PrefabInstance: {fileID: 2010607482}
-  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &886579155
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -856,12 +850,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
---- !u!1 &932700442 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8272854272575292070, guid: cbd298b2861a54f41aa68982085c40bc,
-    type: 3}
-  m_PrefabInstance: {fileID: 762232210944337329}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &974050039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,12 +1132,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53353ad7a5e0c246a7d525933db308b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 932700442}
-  opponent: {fileID: 247090906}
+  player: {fileID: 1507715686}
+  opponent: {fileID: 1145115525}
+  senseEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 562571296266146253, guid: 448921b0e8ba42941b4f0eb3f45f3896,
+          type: 3}
+        m_TargetAssemblyTypeName: BotSensor, Assembly-CSharp
+        m_MethodName: SenseStep
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5859938322689711843, guid: fa3ac50fa635ce74eb10a8aa27a86212,
+          type: 3}
+        m_TargetAssemblyTypeName: BotSensor, Assembly-CSharp
+        m_MethodName: SenseStep
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   moveEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1905763343590494315, guid: f5bf71bb695d90b4fb924d8a95a76d21,
+      - m_Target: {fileID: 3368941350412845370, guid: 448921b0e8ba42941b4f0eb3f45f3896,
           type: 3}
         m_TargetAssemblyTypeName: Move, Assembly-CSharp
         m_MethodName: MoveStep
@@ -1162,6 +1179,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8673065408429002260, guid: fa3ac50fa635ce74eb10a8aa27a86212,
+          type: 3}
+        m_TargetAssemblyTypeName: Move, Assembly-CSharp
+        m_MethodName: MoveStep
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  attackEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1410861600
 Transform:
   m_ObjectHideFlags: 0
@@ -1251,6 +1284,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490593668}
   m_CullTransparentMesh: 0
+--- !u!1 &1507715686 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8673065408429002268, guid: fa3ac50fa635ce74eb10a8aa27a86212,
+    type: 3}
+  m_PrefabInstance: {fileID: 762232210944337329}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572825386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,12 +1742,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8272854272575292070, guid: cbd298b2861a54f41aa68982085c40bc,
-        type: 3}
-      propertyPath: m_Name
-      value: Cloudcat
-      objectReference: {fileID: 0}
-    - target: {fileID: 8272854272575292076, guid: cbd298b2861a54f41aa68982085c40bc,
+    - target: {fileID: 8673065408429002262, guid: fa3ac50fa635ce74eb10a8aa27a86212,
         type: 3}
       propertyPath: healthSlider
       value: 
@@ -1716,7 +1750,7 @@ PrefabInstance:
     - target: {fileID: 8673065408429002263, guid: fa3ac50fa635ce74eb10a8aa27a86212,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8673065408429002263, guid: fa3ac50fa635ce74eb10a8aa27a86212,
         type: 3}
@@ -1773,5 +1807,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cloudcat
       objectReference: {fileID: 0}
+    - target: {fileID: 8272854272575292070, guid: cbd298b2861a54f41aa68982085c40bc,
+        type: 3}
+      propertyPath: m_Name
+      value: Cloudcat
+      objectReference: {fileID: 0}
+    - target: {fileID: 8272854272575292076, guid: cbd298b2861a54f41aa68982085c40bc,
+        type: 3}
+      propertyPath: healthSlider
+      value: 
+      objectReference: {fileID: 1881737249}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa3ac50fa635ce74eb10a8aa27a86212, type: 3}
