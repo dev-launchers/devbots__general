@@ -67,6 +67,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 1905763342433012612}
+  - {fileID: 5623932535340710306}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -262,3 +263,78 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &8009096613705193135
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1905763343590494312}
+    m_Modifications:
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778587994676547293, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_Name
+      value: BotGizmo
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 21f4fc3656af72546a91065f7cae266e, type: 3}
+--- !u!4 &5623932535340710306 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8009096613705193135}
+  m_PrefabAsset: {fileID: 0}
