@@ -22,18 +22,17 @@ public class Move : MonoBehaviour
     // }
 
     public void MoveStep(List<GameObject> activeBots) {
-        Debug.Log("entered");
-        // Find nearest bot? (future stuff)
-        foreach(GameObject activeBot in activeBots) {
-            if (activeBot == this.gameObject) continue; // Change in future
-
+        Debug.Log("entered movestep");
             int enemyDirection = GetComponent<BotSensor>().GetNearestSensedBotDirection();
 
             Debug.Log("Jumping: "+enemyDirection+" : "+enemyDirection * movespeed + ", " + jumpSize);
             //Should depend on specific movement part
+            rb = gameObject.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(enemyDirection * movespeed, jumpSize);
+
+            audioManager = FindObjectOfType<AudioManager>(); //PROBLEME
+
             audioManager.Play("Move");
-        }
 
     }
 

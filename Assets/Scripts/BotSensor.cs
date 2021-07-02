@@ -23,7 +23,7 @@ public class BotSensor : MonoBehaviour
     }
 
     public void SenseStep(List<GameObject> activeBots) {
-        Debug.Log("entered");
+        Debug.Log("entered sensestep");
         // Find nearest bot? (future stuff)
         foreach(GameObject activeBot in activeBots) {
             if (activeBot == this.gameObject) continue; // Change in future
