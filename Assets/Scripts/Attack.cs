@@ -12,21 +12,41 @@ public class Attack : MonoBehaviour
     [SerializeField] private float knockback = default(float);
     //Should depend on specific attack part
 
-    public void AttackStep(float enemyPos) {
+    // public void AttackStep(float enemyPos) {
+    // //Called each turn, checks for collision and calls its TakeDamage
+
+    //     //if (abs(transform.position - enemy position)) > strikingDistance {
+    //     //  Do attack stuff
+    //     //}
+
+    //     attackPos.localPosition = new Vector3(enemyPos * attackDistance, 0, 0); //Faces attack at enemy, handled as local position to parent Bot
+
+    //     Collider2D collision = Physics2D.OverlapCircle(attackPos.position, attackSize, enemy);
+    //     //OverlapBox for rectangular hitbox
+
+    //     if (collision != null) {
+    //         collision.GetComponent<Health>().TakeDamage(damage);
+    //         collision.GetComponent<Move>().TakeKnockback(enemyPos, knockback);
+    //     }
+    // }
+
+    public void AttackStep(List<GameObject> activeBots) {
     //Called each turn, checks for collision and calls its TakeDamage
 
         //if (abs(transform.position - enemy position)) > strikingDistance {
         //  Do attack stuff
         //}
 
-        attackPos.localPosition = new Vector3(enemyPos * attackDistance, 0, 0); //Faces attack at enemy, handled as local position to parent Bot
+        int enemyDirection = GetComponent<BotSensor>().GetNearestSensedBotDirection();
+
+        attackPos.localPosition = new Vector3(enemyDirection * attackDistance, 0, 0); //Faces attack at enemy, handled as local position to parent Bot
 
         Collider2D collision = Physics2D.OverlapCircle(attackPos.position, attackSize, enemy);
         //OverlapBox for rectangular hitbox
 
         if (collision != null) {
             collision.GetComponent<Health>().TakeDamage(damage);
-            collision.GetComponent<Move>().TakeKnockback(enemyPos, knockback);
+            collision.GetComponent<Move>().TakeKnockback(enemyDirection, knockback);
         }
     }
 

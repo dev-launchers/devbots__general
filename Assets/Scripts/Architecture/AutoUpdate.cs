@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AutoUpdate : MonoBehaviour
 {
@@ -19,7 +20,10 @@ public class AutoUpdate : MonoBehaviour
     private const float TURN_TIME = 2.0f;
     private float timer = TURN_TIME;
 
-    private float relativeOpponentPos;
+    // Events
+    public UnityEvent<List<GameObject>> senseEvent;
+    public UnityEvent<List<GameObject>> moveEvent;
+    public UnityEvent<List<GameObject>> attackEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -44,27 +48,20 @@ public class AutoUpdate : MonoBehaviour
         else {
             timer = TURN_TIME;
 
+            List<GameObject> activeBots = new List<GameObject>{player, opponent};
 
-            //Find if enemy to the left or right
-            if (player.transform.position.x - opponent.transform.position.x > 0) {
-                relativeOpponentPos = -1.0f;
-            }
-            else {
-                relativeOpponentPos = 1.0f;
-            }
-
+            // Make the bots sense their surroundings
+            senseEvent.Invoke(activeBots);
 
             //Make the bots move
-            playerMovement.MoveStep(relativeOpponentPos);
-            opponentMovement.MoveStep(-relativeOpponentPos);
+            moveEvent.Invoke(activeBots);
 
             //Make the bots attack
-            playerAttack.AttackStep(relativeOpponentPos);
-            opponentAttack.AttackStep(-relativeOpponentPos);
+            attackEvent.Invoke(activeBots);
 
             //Update Sprites
-            playerSprite.FlipSprite(relativeOpponentPos);
-            opponentSprite.FlipSprite(-relativeOpponentPos);
+            //playerSprite.FlipSprite(relativeOpponentPos);
+            //opponentSprite.FlipSprite(relativeOpponentPos);
         }
     }
 }
