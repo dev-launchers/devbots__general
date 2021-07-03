@@ -1,6 +1,6 @@
 public interface IBotGizmo
 {
 
-    void Activate();
+    void SetState(State state);
 
 }

@@ -13,6 +13,7 @@ public class Move : MonoBehaviour
     public void Start() {
         //Grab values from parts
         audioManager = FindObjectOfType<AudioManager>();
+        Debug.Log(audioManager);
     }
 
     // public void MoveStep(float enemyPos) {
@@ -21,7 +22,7 @@ public class Move : MonoBehaviour
     //     audioManager.Play("Move");
     // }
 
-    public void MoveStep(List<GameObject> activeBots) {
+    public void MoveStep() {
         Debug.Log("entered movestep");
             int enemyDirection = GetComponent<BotSensor>().GetNearestSensedBotDirection();
 
