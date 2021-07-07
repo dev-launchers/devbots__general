@@ -4,24 +4,6 @@ const DevLaunchersToken = artifacts.require("DevLaunchersToken");
 const BotHull = artifacts.require("BotHull");
 const LootBox = artifacts.require("LootBox");
 
-function genProbabilities(arr){
-  ret = [];
-  aIndex = 0;
-  i = 0;
-  sum = 0;
-  while(aIndex < arr.length){
-    while(arr[aIndex] != i){
-      ret[i] = sum;
-      i++;
-    }
-    sum+=arr[aIndex+1];
-    ret[i] = sum;
-    aIndex+=2;
-  }
-  return ret;
-}
-
-
 module.exports = async function (deployer) {
   lootbox = await LootBox.deployed();
   token = await DevLaunchersToken.deployed();

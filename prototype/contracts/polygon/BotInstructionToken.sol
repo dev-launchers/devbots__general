@@ -22,3 +22,4 @@ contract BotInstructionToken is ERC777, AccessControl {
   }
 
 }
+
