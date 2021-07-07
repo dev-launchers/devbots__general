@@ -144,3 +144,4 @@ contract LootBox is AccessControl, IERC777Recipient {
     }
 
 }
+

@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+
 import BotHullContract from "./contracts/BotHull.json";
 import BotInstructionTokenFactoryContract from "./contracts/BotInstructionTokenFactory.json";
 import BotInstructionTokenContract from "./contracts/BotInstructionToken.json";
@@ -14,8 +17,10 @@ import "./App.css";
 
 class App extends Component {
   childs = {};
-  state = { web3: null, accounts: null, botHull: null, botInstructionTokenFactory: null, botPart: null, devLaunchersToken: null, 
-	    lootBox: null, instructionTokens: [], displayERC777Tokens: false };
+  state = {
+    web3: null, accounts: null, botHull: null, botInstructionTokenFactory: null, botPart: null, devLaunchersToken: null,
+    lootBox: null, instructionTokens: []
+  };
 
   componentDidMount = async () => {
     try {
@@ -29,8 +34,8 @@ class App extends Component {
       const networkId = await web3.eth.net.getId();
       let deployedNetwork = BotHullContract.networks[networkId];
       const botHull = new web3.eth.Contract(
-	BotHullContract.abi,
-	deployedNetwork && deployedNetwork.address,
+        BotHullContract.abi,
+        deployedNetwork && deployedNetwork.address,
       );
       deployedNetwork = BotInstructionTokenFactoryContract.networks[networkId];
       const botInstructionTokenFactory = new web3.eth.Contract(
@@ -47,7 +52,7 @@ class App extends Component {
         DevLaunchersTokenContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
-      const obj = {type: web3.utils.toHex("ERC20"), options: {address: deployedNetwork.address}};
+      const obj = { type: web3.utils.toHex("ERC20"), options: { address: deployedNetwork.address } };
       console.log(obj);
       deployedNetwork = LootBoxContract.networks[networkId];
       const lootBox = new web3.eth.Contract(
@@ -72,7 +77,7 @@ class App extends Component {
 
     const amountInstructions = await botHull.methods.amountInstructions().call();
     let instructionTokens = [];
-    for(let i = 0; i < amountInstructions; i++){
+    for (let i = 0; i < amountInstructions; i++) {
       let address = await botHull.methods.getInstructionContract(i).call();
       const token = new web3.eth.Contract(
         BotInstructionTokenContract.abi,
@@ -86,8 +91,10 @@ class App extends Component {
   };
 
   updateState = async () => {
-    for(var key in this.childs){
-      this.childs[key].updateState();
+    for (var key in this.childs) {
+      if (this.childs[key] != null) {
+        this.childs[key].updateState();
+      }
     };
   }
 
@@ -98,16 +105,26 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Tokens:</h2>
-        <Token accounts={this.state.accounts} token={this.state.devLaunchersToken} parentUpdateState={this.updateState} ref={(node) => {this.childs["devs"] = node}}></Token>
-        <button onClick={() => this.setState({ displayERC777Tokens: !this.state.displayERC777Tokens })}>Toggle Instruction Tokens</button>
-        <div style={{display:this.state.displayERC777Tokens ? 'block' : 'none'}}>
-        {this.state.instructionTokens.map(tok => (<Token accounts={this.state.accounts} token={tok} parentUpdateState={this.updateState} ref={(node) => {this.childs[tok._address] = node}}/>))}
-        </div>
-        <ERC721 accounts={this.state.accounts} token={this.state.botPart} ref={(node) => {this.childs["erc721"] = node}}></ERC721>
-        { this.state.instructionTokens.length > 0 && (<LootBox accounts={this.state.accounts} lootboxContract={this.state.lootBox} devLaunchersToken={this.state.devLaunchersToken} insTokens={this.state.instructionTokens} parentUpdateState={this.updateState} ref={(node) => {this.childs["lootbox"] = node}}></LootBox>)}
-       </div>
-
-
+        <Token accounts={this.state.accounts} token={this.state.devLaunchersToken} parentUpdateState={this.updateState} ref={(node) => { this.childs["devs"] = node }}></Token>
+        <Tabs>
+          <TabList>
+            <Tab>Instruction Tokens</Tab>
+            <Tab>BotParts</Tab>
+            <Tab>LootBoxes</Tab>
+            <Tab>BotHulls</Tab>
+          </TabList>
+          <TabPanel>
+            {this.state.instructionTokens.map(tok => (<Token key={tok._address} accounts={this.state.accounts} token={tok} parentUpdateState={this.updateState} ref={(node) => { this.childs[tok._address] = node }} />))}
+          </TabPanel>
+          <TabPanel>
+            <ERC721 accounts={this.state.accounts} token={this.state.botPart} ref={(node) => { this.childs["erc721"] = node }}></ERC721>
+          </TabPanel>
+          <TabPanel>
+            {this.state.instructionTokens.length > 0 && (<LootBox accounts={this.state.accounts} lootboxContract={this.state.lootBox} devLaunchersToken={this.state.devLaunchersToken} insTokens={this.state.instructionTokens} parentUpdateState={this.updateState} ref={(node) => { this.childs["lootbox"] = node }}></LootBox>)}
+          </TabPanel>
+          <TabPanel></TabPanel>
+        </Tabs>
+      </div>
     );
   }
 }
