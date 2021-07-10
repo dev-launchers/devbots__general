@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheelGizmo : MonoBehaviour , IBotGizmo
+public class WheelPart : MonoBehaviour , IBotPart
 {
     [SerializeField] private float moveSpeed = default(float);
     [SerializeField] private float jumpSize = default(float);
