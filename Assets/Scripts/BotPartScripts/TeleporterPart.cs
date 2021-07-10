@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheelPart : MonoBehaviour , IBotPart
+public class TeleporterPart : MonoBehaviour , IBotPart
 {
-    [SerializeField] private float moveSpeed = default(float);
+    //[SerializeField] private float teleportDistance = default(float);
 
     private Rigidbody2D rb;
     private BotSensor sensor;
 
     private bool isRunning;
+    private float timer;
+
+    private const float COOLDOWN = 2.0f;
 
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
@@ -23,14 +26,17 @@ public class WheelPart : MonoBehaviour , IBotPart
 
     public void MoveStep() {
         if (isRunning) {
-            int enemyDirection = sensor.GetNearestSensedBotDirection();
-            float targetSpeed = enemyDirection * moveSpeed;
-            if (rb.velocity.x != (targetSpeed)) {
-                float increment = (targetSpeed - rb.velocity.x); //Mathf.Lerp(rb.velocity.x, targetSpeed, .5);
-                //This needs to be scaled to haappen over time instead of instantly
-                rb.velocity += new Vector2(increment, 0);
+
+            if (timer > 0) {
+                timer -= Time.deltaTime;
             }
-            //sensor.PlayAudio("Move");
+            else {
+                timer = COOLDOWN; //Reset Timer
+                Vector2 enemyPos = sensor.GetNearestSensedBotPosition();
+                rb.position = enemyPos + new Vector2(0, 2);
+                //teleport towards enemy bot by half distance on both axis?
+                sensor.PlayAudio("Move");
+            }
         }
     }
 

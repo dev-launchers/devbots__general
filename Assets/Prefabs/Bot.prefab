@@ -13,12 +13,11 @@ GameObject:
   - component: {fileID: 1905763343590494317}
   - component: {fileID: 1905763343590494316}
   - component: {fileID: 1905763343590494313}
-  - component: {fileID: 1905763343590494324}
   - component: {fileID: 3710091414241132700}
   - component: {fileID: 1905763343590494314}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bot
-  m_TagString: Player
+  m_TagString: Bot
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,26 +112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: {fileID: 1905763343590494316}
   healthSlider: {fileID: 0}
---- !u!114 &1905763343590494324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1905763343590494307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b0609cd1ed44e4c9ff646a90d19456, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy:
-    serializedVersion: 2
-    m_Bits: 1024
-  attackPos: {fileID: 0}
-  attackDistance: 1
-  attackSize: 1
-  damage: 0.25
-  knockback: 3
 --- !u!114 &3710091414241132700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6297049901749377424}
   - component: {fileID: 8566699972429832725}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

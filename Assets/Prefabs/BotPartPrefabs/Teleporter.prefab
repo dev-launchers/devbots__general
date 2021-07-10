@@ -41,7 +41,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cb6547090cc640a4cb06d1e7f34dedb6, type: 3}
-  m_Color: {r: 0.11454255, g: 0.6226415, b: 0.17066973, a: 1}
+  m_Color: {r: 0.16064437, g: 0.29337662, b: 0.3584906, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -51,7 +51,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3300204904268277378
+--- !u!114 &5259327071017663130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,11 +60,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9114244139634852574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eba3e26287c0d494b9476dc02f16fd02, type: 3}
+  m_Script: {fileID: 11500000, guid: 26b3685c4a98e7947a05adaf102b7176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
-  jumpSize: 0
 --- !u!1001 &3336577896613891075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79,13 +77,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
@@ -130,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 5778587994676547293, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_Name
-      value: Wheel Gizmo
+      value: Teleporter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f4fc3656af72546a91065f7cae266e, type: 3}
