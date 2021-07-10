@@ -14,7 +14,7 @@ public class WheelPart : MonoBehaviour , IBotPart
 
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
-        audioManager = FindObjectOfType<AudioManager>();  //Maybe outsource this to bot parent thing
+        //audioManager = FindObjectOfType<AudioManager>();  //Maybe outsource this to bot parent thing
     }
 
     //public void Update() {
@@ -25,7 +25,7 @@ public class WheelPart : MonoBehaviour , IBotPart
         int enemyDirection = GetComponentInParent<BotSensor>().GetNearestSensedBotDirection();
         Debug.Log("enemyDir: " + enemyDirection + " movespd: " + moveSpeed);
         rb.velocity = new Vector2(enemyDirection * moveSpeed, jumpSize);
-        audioManager.Play("Move");
+        //audioManager.Play("Move");
     }
 
     public void SetState(State state) { 
