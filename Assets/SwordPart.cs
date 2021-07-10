@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordPart : MonoBehaviour
+public class SwordPart : MonoBehaviour , IBotPart
 {
 
     [SerializeField] private LayerMask enemy = default(LayerMask);
@@ -11,6 +11,10 @@ public class SwordPart : MonoBehaviour
     [SerializeField] private float attackSize = default(float);
     [SerializeField] private float damage = default(float);
     [SerializeField] private float knockback = default(float);
+
+    public void SetState(State state) {
+        return;
+    }
 
     public void AttackStep(List<GameObject> activeBots) {
     //Called each turn, checks for collision and calls its TakeDamage
