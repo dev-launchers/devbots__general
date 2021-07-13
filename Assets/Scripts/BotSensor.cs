@@ -7,6 +7,7 @@ public class BotSensor : MonoBehaviour
     private GameObject nearestBot;
     private GameObject[] activeBots;
     private AudioManager audioManager;
+    private Rigidbody2D rb;
 
     public GameObject GetNearestSensedBot() {
         return nearestBot;
@@ -14,8 +15,9 @@ public class BotSensor : MonoBehaviour
     
     public void Start() {
         activeBots = GameObject.FindGameObjectsWithTag("Bot");
-        SenseStep();
         audioManager = FindObjectOfType<AudioManager>();
+        rb = GetComponent<Rigidbody2D>();
+        SenseStep(); //In multi-bot fights, needs to be called in Update
     }
 
     // Returns -1 if left, and 1 if right
@@ -42,6 +44,14 @@ public class BotSensor : MonoBehaviour
 
             nearestBot = activeBot;
         }
+    }
+
+    public Vector3 GetPosition() {
+        return rb.position;
+    }
+
+    public void TakeKnockback(Vector3 newPosition) {
+        rb.position = newPosition;
     }
 
     public void PlayAudio(string audioName) {

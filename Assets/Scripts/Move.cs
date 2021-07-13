@@ -13,7 +13,6 @@ public class Move : MonoBehaviour
     public void Start() {
         //Grab values from parts
         audioManager = FindObjectOfType<AudioManager>();
-        Debug.Log(audioManager);
     }
 
     // public void MoveStep(float enemyPos) {

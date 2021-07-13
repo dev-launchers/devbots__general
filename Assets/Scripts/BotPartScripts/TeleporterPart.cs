@@ -34,6 +34,8 @@ public class TeleporterPart : MonoBehaviour , IBotPart
                 timer = COOLDOWN; //Reset Timer
                 Vector2 enemyPos = sensor.GetNearestSensedBotPosition();
                 rb.position = enemyPos + new Vector2(0, 2);
+                //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot");
+
                 //teleport towards enemy bot by half distance on both axis?
                 sensor.PlayAudio("Move");
             }
