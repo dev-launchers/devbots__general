@@ -35,6 +35,8 @@ public class AutoUpdate : MonoBehaviour
         opponentAttack = opponent.GetComponent<Attack>();
         opponentSprite = opponent.GetComponent<UpdateSprite>();
 
+        
+
         //GameObject.FindGameObjectWithTag("Player") If objects need to be instantiated later and can't be assigned in menu
     }
 

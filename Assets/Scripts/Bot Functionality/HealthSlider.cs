@@ -16,6 +16,7 @@ public class HealthSlider : MonoBehaviour
     void Start()
     {     
         scene = SceneManager.GetActiveScene();
+        Slider healthSlider = FindObjectOfType<Slider>();
     }
     public void Update() {
         healthSlider.value = hp.HP;

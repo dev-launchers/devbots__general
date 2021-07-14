@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BotSensor : MonoBehaviour
 {
@@ -9,15 +10,23 @@ public class BotSensor : MonoBehaviour
     private AudioManager audioManager;
     private Rigidbody2D rb;
 
-    public GameObject GetNearestSensedBot() {
-        return nearestBot;
-    }
-    
     public void Start() {
         activeBots = GameObject.FindGameObjectsWithTag("Bot");
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         SenseStep(); //In multi-bot fights, needs to be called in Update
+    }
+
+    public void UpdatePart() {
+        return;
+    }
+
+    public GameObject GetNearestSensedBot() {
+        return nearestBot;
+    }
+
+    public Vector2 GetNearestSensedBotPosition() {
+        return nearestBot.transform.position;
     }
 
     // Returns -1 if left, and 1 if right
@@ -30,10 +39,6 @@ public class BotSensor : MonoBehaviour
             enemyDirection = -1;
         }
         return enemyDirection;
-    }
-
-    public Vector2 GetNearestSensedBotPosition() {
-        return nearestBot.transform.position;
     }
 
     public void SenseStep() {
@@ -51,6 +56,7 @@ public class BotSensor : MonoBehaviour
     }
 
     public void TakeKnockback(Vector3 newPosition) {
+        //The desired new position is sent by the attacking bot, but may be countered by certain effects
         rb.position = newPosition;
     }
 
