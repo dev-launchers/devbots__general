@@ -5,13 +5,13 @@ using UnityEngine;
 public class GunPart : MonoBehaviour, IBotPart
 {
 
-    [SerializeField] private LayerMask enemy = default(LayerMask);
+    [SerializeField] private LayerMask enemyLayer = default(LayerMask);
     [SerializeField] private float attackDistance = default(float);
     [SerializeField] private float damage = default(float);
     [SerializeField] private GameObject projectile = default(GameObject); //Object to be fired by gun part
     [SerializeField] private float projectileSpeed = default(float);
     [SerializeField] private GameObject projectileStartPos;
-
+    [SerializeField] private Vector2 projectileSize = default(Vector2);
 
     private BotSensor sensor;
 
@@ -62,8 +62,11 @@ public class GunPart : MonoBehaviour, IBotPart
                 projectileScript.enemyDirection = enemyDirection; //Set the direction of the projectile
                 projectileScript.damage = damage; //Set the damage of the projectile
                 projectileScript.speed = projectileSpeed; //Set the speed of the projectile
-                //TODO: Set the target of the projectile, so it only hits the enemy bot
-                //TODO: Set the projectile size
+                projectileScript.enemyLayer = enemyLayer;
+                //Set the target of the projectile, so it only hits the enemy bot
+
+                projectileInstance.gameObject.transform.localScale = projectileSize;
+                //Set the projectile size
                 //TODO: Set projectile knockback
 
 
