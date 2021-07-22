@@ -1,5 +1,4 @@
 const BotPart = artifacts.require("BotPart");
-const BotInstructionTokenFactory = artifacts.require("BotInstructionTokenFactory");
 const DevLaunchersToken = artifacts.require("DevLaunchersToken");
 const BotHull = artifacts.require("BotHull");
 const LootBox = artifacts.require("LootBox");
@@ -25,5 +24,5 @@ function genProbabilities(arr){
 module.exports = async function (deployer) {
   lootbox = await LootBox.deployed();
 
-  lootbox.createLootBox(0, "1000000000000000000", 2, genProbabilities([0, 0x1000, 1, 0x2000, 2, 0x4000, 33, 0x6000, 34, 0x2FFF]));
+  lootbox.createLootBox(0, "1000000000000000000", 2, genProbabilities([0, 0x1000, 1, 0x2000, 2, 0x4000, 3, 0x6000, 4, 0x2FFF]));
 };

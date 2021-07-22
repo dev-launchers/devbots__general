@@ -11,8 +11,8 @@ import "solidity-bytes-utils/contracts/BytesLib.sol";
 import "./DevLaunchersToken.sol";
 import "./BotHull.sol";
 import "./BotPart.sol";
-import "./BotInstructionToken.sol";
 import "@openzeppelin/contracts/utils/math/SafeCast.sol";
+import "./EIP712Forwarder.sol";
 
 contract LootBox is AccessControl, IERC777Recipient {
 
@@ -24,18 +24,20 @@ contract LootBox is AccessControl, IERC777Recipient {
   address public devsTokenContract;
   address public botHullContract;
   address public botPartContract;
+  address public metaTransactionForwarder;
 
   mapping(uint8 => uint256) public lootBoxPrices;
   mapping(uint8 => uint8) public amountItemsPerBox;
   mapping(uint8 => uint16[]) public probabilityDistribution; //boxID => Array(Index=partTypeID,val=sum(previous+current probability))
 
-  constructor(address _devsTokenContract, address _botHullContract, address _botPartContract)
+  constructor(address _devsTokenContract, address _botHullContract, address _botPartContract, address _metaTransactionForwarder)
     {
       _ERC1820_REGISTRY.setInterfaceImplementer(address(this), 0xac7fbab5f54a3ca8194167523c6753bfeb96a445279294b6125b68cce2177054, address(this));
 
       devsTokenContract = _devsTokenContract;
       botHullContract = _botHullContract;
       botPartContract = _botPartContract;
+      metaTransactionForwarder = _metaTransactionForwarder;
 
       _setRoleAdmin(DEFAULT_ADMIN_ROLE, DEFAULT_ADMIN_ROLE);
       _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -76,7 +78,8 @@ contract LootBox is AccessControl, IERC777Recipient {
     }
 
     // Seed is used here as INSECURE randomized number, needs to be replaced either by operator provided random or Chainlink Random
-    function openLootBox(uint8 boxID, uint16 seed) public returns (uint256[] memory) {
+    function openLootBox(uint8 boxID, uint16 seed, address from) public returns (uint256[] memory) {
+      require(msg.sender == from || msg.sender == metaTransactionForwarder);
       require(lootBoxPrices[boxID] != 0);
       require(amountItemsPerBox[boxID] != 0);
 
@@ -97,14 +100,7 @@ contract LootBox is AccessControl, IERC777Recipient {
           i++;
         }
 
-        if(i<32){
-          //Mint Instruction Token
-          address instructionTokenContract = BotHull(botHullContract).getInstructionContract(SafeCast.toUint8(i % 2**8));
-          require(instructionTokenContract != address(0));
-          BotInstructionToken(instructionTokenContract).mint(receiver, 1 * 10**18, "", "");
-        }else{
-          BotPart(botPartContract).mintItem(receiver, SafeCast.toUint32(i % 2**32), _generateStats(_pseudoRand(seed, SafeCast.toUint16(item))));
-        }
+        BotPart(botPartContract).mintItem(receiver, SafeCast.toUint32(i % 2**32), _generateStats(_pseudoRand(seed, SafeCast.toUint16(item))));
       }
       return items;
     }

@@ -18,8 +18,8 @@ import "./App.css";
 class App extends Component {
   childs = {};
   state = {
-    web3: null, accounts: null, botHull: null, botInstructionTokenFactory: null, botPart: null, devLaunchersToken: null,
-    lootBox: null, instructionTokens: []
+    web3: null, accounts: null, botHull: null, botPart: null, devLaunchersToken: null,
+    lootBox: null
   };
 
   componentDidMount = async () => {
@@ -35,11 +35,6 @@ class App extends Component {
       let deployedNetwork = BotHullContract.networks[networkId];
       const botHull = new web3.eth.Contract(
         BotHullContract.abi,
-        deployedNetwork && deployedNetwork.address,
-      );
-      deployedNetwork = BotInstructionTokenFactoryContract.networks[networkId];
-      const botInstructionTokenFactory = new web3.eth.Contract(
-        BotInstructionTokenFactoryContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
       deployedNetwork = BotPartContract.networks[networkId];
@@ -62,7 +57,7 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods. 
-      this.setState({ web3, accounts, botHull, botInstructionTokenFactory, botPart, devLaunchersToken, lootBox }, this.fetchInstructionTokens);
+      this.setState({ web3, accounts, botHull, botPart, devLaunchersToken, lootBox });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -70,24 +65,6 @@ class App extends Component {
       );
       console.error(error);
     }
-  };
-
-  fetchInstructionTokens = async () => {
-    const { web3, botHull } = this.state;
-
-    const amountInstructions = await botHull.methods.amountInstructions().call();
-    let instructionTokens = [];
-    for (let i = 0; i < amountInstructions; i++) {
-      let address = await botHull.methods.getInstructionContract(i).call();
-      const token = new web3.eth.Contract(
-        BotInstructionTokenContract.abi,
-        address
-      );
-      instructionTokens.push(token);
-    }
-
-    // Update state with the result.
-    this.setState({ instructionTokens });
   };
 
   updateState = async () => {
@@ -108,19 +85,15 @@ class App extends Component {
         <Token accounts={this.state.accounts} token={this.state.devLaunchersToken} parentUpdateState={this.updateState} ref={(node) => { this.childs["devs"] = node }}></Token>
         <Tabs>
           <TabList>
-            <Tab>Instruction Tokens</Tab>
             <Tab>BotParts</Tab>
             <Tab>LootBoxes</Tab>
             <Tab>BotHulls</Tab>
           </TabList>
           <TabPanel>
-            {this.state.instructionTokens.map(tok => (<Token key={tok._address} accounts={this.state.accounts} token={tok} parentUpdateState={this.updateState} ref={(node) => { this.childs[tok._address] = node }} />))}
-          </TabPanel>
-          <TabPanel>
             <ERC721 accounts={this.state.accounts} token={this.state.botPart} ref={(node) => { this.childs["erc721"] = node }}></ERC721>
           </TabPanel>
           <TabPanel>
-            {this.state.instructionTokens.length > 0 && (<LootBox accounts={this.state.accounts} lootboxContract={this.state.lootBox} devLaunchersToken={this.state.devLaunchersToken} insTokens={this.state.instructionTokens} parentUpdateState={this.updateState} ref={(node) => { this.childs["lootbox"] = node }}></LootBox>)}
+            {(<LootBox accounts={this.state.accounts} lootboxContract={this.state.lootBox} devLaunchersToken={this.state.devLaunchersToken} parentUpdateState={this.updateState} ref={(node) => { this.childs["lootbox"] = node }}></LootBox>)}
           </TabPanel>
           <TabPanel></TabPanel>
         </Tabs>

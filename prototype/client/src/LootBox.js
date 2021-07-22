@@ -52,10 +52,7 @@ class LootBox extends Component {
     }
 
     toTokenName = async (id) => {
-        if (id > 32) {
-            return "BotPart #" + id;
-        }
-        return await this.props.insTokens[id].methods.name().call();
+        return "BotPart #" + id;
     }
 
     openLootBox = async (lootBoxID) => {
@@ -71,7 +68,7 @@ class LootBox extends Component {
             return;
         }
         const parentUpdateState = this.props.parentUpdateState;
-        this.props.lootboxContract.methods.openLootBox(lootBoxID, Math.round(Math.random() * 0xFFFF)).send({ from: this.props.accounts[0] }).on('receipt', function () {
+        this.props.lootboxContract.methods.openLootBox(lootBoxID, Math.round(Math.random() * 0xFFFF), this.props.accounts[0]).send({ from: this.props.accounts[0] }).on('receipt', function () {
             parentUpdateState();
         });
     }
