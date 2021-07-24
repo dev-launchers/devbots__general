@@ -8,6 +8,7 @@ public class TeleporterPart : MonoBehaviour , IBotPart
 
     private Rigidbody2D rb;
     private BotSensor sensor;
+    private BotController controller;
 
     private bool isRunning;
     private float timer;
@@ -17,6 +18,7 @@ public class TeleporterPart : MonoBehaviour , IBotPart
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
+        controller = GetComponentInParent<BotController>();
         isRunning = true;
     }
 
@@ -37,7 +39,7 @@ public class TeleporterPart : MonoBehaviour , IBotPart
                 //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot");
 
                 //teleport towards enemy bot by half distance on both axis?
-                sensor.PlayAudio("Move");
+                controller.PlayAudio("Move");
             }
         }
     }

@@ -50,9 +50,9 @@ public class Attack : MonoBehaviour
             //Getting position from bot sensor
             Vector3 pos = collision.GetComponent<BotSensor>().GetPosition();
             //Updating the bot to take knockback based on calculation
-            collision.GetComponent<BotSensor>().TakeKnockback(pos - new Vector3(1,1,1));
+            //collision.GetComponent<BotSensor>().TakeKnockback(pos - new Vector3(1,1,1));
 
-            collision.GetComponent<Move>().TakeKnockback(enemyDirection, knockback);
+            //collision.GetComponent<Move>().TakeKnockback(enemyDirection, knockback);
         }
     }
 

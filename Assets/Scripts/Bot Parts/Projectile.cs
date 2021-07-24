@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce( new Vector2(enemyDirection * speed,0), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(enemyDirection * speed,0), ForceMode2D.Impulse);
 
     }
 

@@ -12,13 +12,8 @@ public class BotSensor : MonoBehaviour
 
     public void Start() {
         activeBots = GameObject.FindGameObjectsWithTag("Bot");
-        audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         SenseStep(); //In multi-bot fights, needs to be called in Update
-    }
-
-    public void UpdatePart() {
-        return;
     }
 
     public GameObject GetNearestSensedBot() {
@@ -53,14 +48,5 @@ public class BotSensor : MonoBehaviour
 
     public Vector3 GetPosition() {
         return rb.position;
-    }
-
-    public void TakeKnockback(Vector3 newPosition) {
-        //The desired new position is sent by the attacking bot, but may be countered by certain effects
-        rb.position = newPosition;
-    }
-
-    public void PlayAudio(string audioName) {
-        audioManager.Play(audioName);
     }
 }

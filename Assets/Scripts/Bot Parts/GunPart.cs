@@ -14,6 +14,7 @@ public class GunPart : MonoBehaviour, IBotPart
 
 
     private BotSensor sensor;
+    private BotController controller;
 
     private bool isRunning;
     private float timer;
@@ -24,6 +25,7 @@ public class GunPart : MonoBehaviour, IBotPart
     void Start()
     {
         sensor = GetComponentInParent<BotSensor>();
+        controller = GetComponentInParent<BotController>();
         isRunning = true;
     }
 
@@ -67,7 +69,7 @@ public class GunPart : MonoBehaviour, IBotPart
                 //TODO: Set projectile knockback
 
 
-                sensor.PlayAudio("Hit");
+                controller.PlayAudio("Hit");
             }
         }
     }
