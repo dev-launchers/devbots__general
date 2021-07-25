@@ -3,6 +3,7 @@ const BotPart = artifacts.require("BotPart");
 const DevLaunchersToken = artifacts.require("DevLaunchersToken");
 const BotHull = artifacts.require("BotHull");
 const LootBox = artifacts.require("LootBox");
+const GameDatabase = artifacts.require("GameDatabase");
 
 require('@openzeppelin/test-helpers/configure')({
   provider: web3.currentProvider,
@@ -24,4 +25,6 @@ module.exports = async function (deployer, network, accounts) {
   lootbox = await LootBox.deployed();
   await deployer.deploy(DevLaunchersToken, [lootbox.address.toString()], forwarder.address);
   devToken = await DevLaunchersToken.deployed();
+  await deployer.deploy(GameDatabase);
+  gameDatabase = await GameDatabase.deployed();
 };

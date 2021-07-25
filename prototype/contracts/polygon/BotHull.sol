@@ -25,7 +25,7 @@ contract BotHull is ERC721, IERC721Receiver, AccessControl {
 
   Counters.Counter private _tokenIds;
 
-  uint8 public constant MAX_PART_SLOTS = 8;
+  uint8 public constant MAX_PART_SLOTS = 4;
 
 
   mapping(uint256 => uint256[MAX_PART_SLOTS]) public partSlots;

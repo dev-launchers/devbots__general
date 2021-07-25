@@ -84,11 +84,11 @@ contract LootBox is AccessControl, IERC777Recipient {
       require(amountItemsPerBox[boxID] != 0);
 
       DevLaunchersToken devsToken = DevLaunchersToken(devsTokenContract);
-      require(devsToken.balanceOf(msg.sender) >= lootBoxPrices[boxID]);
+      require(devsToken.balanceOf(from) >= lootBoxPrices[boxID]);
 
-      devsToken.operatorBurn(msg.sender, lootBoxPrices[boxID], "", "");
+      devsToken.operatorBurn(from, lootBoxPrices[boxID], "", "");
 
-      return _openLootBox(msg.sender, boxID, seed);
+      return _openLootBox(from, boxID, seed);
     }
 
     function _openLootBox(address receiver, uint8 boxID, uint256 seed) private returns (uint256[] memory) {
@@ -105,10 +105,11 @@ contract LootBox is AccessControl, IERC777Recipient {
       return items;
     }
 
-    function _generateStats(uint256 seed) private pure returns (uint256[] memory) {
-      uint256[] memory stats = new uint256[](3);
-      for(uint8 i = 0; i < 3; i++){
-        stats[i] = _pseudoRand(seed, i);
+    function _generateStats(uint256 seed) private pure returns (uint128) {
+      uint128 stats = 0;
+      for(uint8 i = 0; i < 4; i++){
+        seed = _pseudoRand(seed, i);
+        stats += SafeCast.toUint128((seed % 2**32) << (i*32));
       }
       return stats;
     }

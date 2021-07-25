@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { createMetaTransaction, createBatchedMetaTransaction, interfaceMetaOpenLootBox } from "./MetaTransaction"
 
 class LootBox extends Component {
 
@@ -73,6 +74,34 @@ class LootBox extends Component {
         });
     }
 
+    
+
+    metaOpenLootBox = async (lootBoxID) => {
+        const { lootboxes } = this.state;
+
+        const balance = await this.props.devLaunchersToken.methods.balanceOf(this.props.accounts[0]).call();
+
+        console.log(lootboxes);
+        console.log(balance);
+
+        if (Number(balance) < Number(lootboxes[lootBoxID][1])) {
+            alert("You don't have enough DEVS to open this LootBox!");
+            return;
+        }
+        const parentUpdateState = this.props.parentUpdateState;
+        
+        await createMetaTransaction(this.props.web3, this.props.forwarder, 
+            this.props.lootboxContract._address, 
+            interfaceMetaOpenLootBox, 
+            [lootBoxID, Math.round(Math.random()) % 0xFFFF, this.props.accounts[0]],
+            0);
+
+          
+        // this.props.lootboxContract.methods.openLootBox(lootBoxID, Math.round(Math.random() * 0xFFFF), this.props.accounts[0]).send({ from: this.props.accounts[0] }).on('receipt', function () {
+        //     parentUpdateState();
+        // });
+    }
+
     updateState = async () => {
     }
 
@@ -128,7 +157,7 @@ class LootBox extends Component {
                                     </li>
                                 )}
                             </ul>
-                            <button onClick={() => this.openLootBox(lootbox[0])}>Open LootBox</button>
+                            <button onClick={() => this.metaOpenLootBox(lootbox[0])}>Open LootBox</button>
                         </div>
                     ))}
                     <br></br>

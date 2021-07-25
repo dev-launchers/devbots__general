@@ -3,8 +3,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 import BotHullContract from "./contracts/BotHull.json";
-import BotInstructionTokenFactoryContract from "./contracts/BotInstructionTokenFactory.json";
-import BotInstructionTokenContract from "./contracts/BotInstructionToken.json";
 import BotPartContract from "./contracts/BotPart.json";
 import DevLaunchersTokenContract from "./contracts/DevLaunchersToken.json";
 import LootBoxContract from "./contracts/LootBox.json";
@@ -12,14 +10,14 @@ import getWeb3 from "./getWeb3";
 import Token from "./Token";
 import ERC721 from "./ERC721";
 import LootBox from "./LootBox"
-
+import EIP712Forwarder from "./contracts/EIP712Forwarder.json";
 import "./App.css";
 
 class App extends Component {
   childs = {};
   state = {
     web3: null, accounts: null, botHull: null, botPart: null, devLaunchersToken: null,
-    lootBox: null
+    lootBox: null, forwarder: null
   };
 
   componentDidMount = async () => {
@@ -54,10 +52,15 @@ class App extends Component {
         LootBoxContract.abi,
         deployedNetwork && deployedNetwork.address,
       );
+      deployedNetwork = EIP712Forwarder.networks[networkId];
+      const forwarder = new web3.eth.Contract(
+        EIP712Forwarder.abi,
+        deployedNetwork && deployedNetwork.address,
+      );
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods. 
-      this.setState({ web3, accounts, botHull, botPart, devLaunchersToken, lootBox });
+      this.setState({ web3, accounts, botHull, botPart, devLaunchersToken, lootBox, forwarder });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -93,7 +96,7 @@ class App extends Component {
             <ERC721 accounts={this.state.accounts} token={this.state.botPart} ref={(node) => { this.childs["erc721"] = node }}></ERC721>
           </TabPanel>
           <TabPanel>
-            {(<LootBox accounts={this.state.accounts} lootboxContract={this.state.lootBox} devLaunchersToken={this.state.devLaunchersToken} parentUpdateState={this.updateState} ref={(node) => { this.childs["lootbox"] = node }}></LootBox>)}
+            {(<LootBox web3={this.state.web3} forwarder={this.state.forwarder} accounts={this.state.accounts} lootboxContract={this.state.lootBox} devLaunchersToken={this.state.devLaunchersToken} parentUpdateState={this.updateState} ref={(node) => { this.childs["lootbox"] = node }}></LootBox>)}
           </TabPanel>
           <TabPanel></TabPanel>
         </Tabs>

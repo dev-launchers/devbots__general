@@ -4,6 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC721/presets/ERC721PresetMinterPauserAutoId.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/math/SafeCast.sol";
 
 
 contract BotPart is ERC721PresetMinterPauserAutoId {
@@ -11,8 +12,8 @@ contract BotPart is ERC721PresetMinterPauserAutoId {
 
   Counters.Counter private _tokenIds;
 
-  mapping(uint256 => uint32) public tokenPartType; // Lowest PartType starts at = 0x00000020 = 32
-  mapping(uint256 => uint256[]) public tokenStats;
+  mapping(uint256 => uint32) private tokenPartType; // Lowest PartType starts at = 0x00000020 = 32
+  mapping(uint256 => uint128) private tokenStats;
   
   address public metaTransactionForwarder;
 
@@ -28,7 +29,7 @@ contract BotPart is ERC721PresetMinterPauserAutoId {
     revert("Function not used!");
   }
 
-  function mintItem(address player, uint32 _tokenPartType, uint256[] calldata _tokenStats) public onlyRole(MINTER_ROLE) returns (uint256) {
+  function mintItem(address player, uint32 _tokenPartType, uint128 _tokenStats) public onlyRole(MINTER_ROLE) returns (uint256) {
     _tokenIds.increment();
 
     uint256 newItemId = _tokenIds.current();
@@ -43,8 +44,16 @@ contract BotPart is ERC721PresetMinterPauserAutoId {
     tokenPartType[tokenID] = partType;
   }
 
-  function _setTokenStats(uint256 tokenID, uint256[] calldata _tokenStats) private {
+  function _setTokenStats(uint256 tokenID, uint128 _tokenStats) private {
     tokenStats[tokenID] = _tokenStats;
+  }
+
+  function getRawTokenStat(uint256 tokenID, uint8 statNumber) view public returns (uint32) {
+    return SafeCast.toUint32((tokenStats[tokenID] >> (statNumber*32)) % 2**32);
+  }
+
+  function getBotPartType(uint256 tokenID) view public returns (uint32){
+    return tokenPartType[tokenID];
   }
 
   function metaApprove(address to, uint256 tokenId, address from) public {

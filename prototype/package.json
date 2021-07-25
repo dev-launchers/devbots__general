@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.1.0",
+    "abdk-libraries-solidity": "^3.0.0",
     "oneclick": "^1.0.2",
     "solidity-bytes-utils": "^0.8.0"
   }
