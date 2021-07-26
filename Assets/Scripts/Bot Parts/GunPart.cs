@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunPart : MonoBehaviour, IBotPart
+public class GunPart : BotPart
 {
 
     [SerializeField] private LayerMask enemy = default(LayerMask);
@@ -26,7 +26,6 @@ public class GunPart : MonoBehaviour, IBotPart
     {
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
-        isRunning = true;
     }
 
     // Update is called once per frame
@@ -35,9 +34,9 @@ public class GunPart : MonoBehaviour, IBotPart
         AttackStep();
     }
 
-    public void SetState(State state)
+    public override void SetState(State state)
     {
-        return;
+        isRunning = state.isActive;
     }
 
     public void AttackStep()

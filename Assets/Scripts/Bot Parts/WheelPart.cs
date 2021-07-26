@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheelPart : MonoBehaviour , IBotPart
+public class WheelPart : BotPart
 {
     [SerializeField] private float moveSpeed = default(float);
 
@@ -34,7 +34,7 @@ public class WheelPart : MonoBehaviour , IBotPart
         }
     }
 
-    public void SetState(State state) { 
+    public override void SetState(State state) { 
         //Have the turn handler send this for now then check in Update
     }
 }

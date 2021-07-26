@@ -28,6 +28,10 @@ public class BotSensor : MonoBehaviour
     public int GetNearestSensedBotDirection() {
         GameObject player = this.gameObject;
         GameObject opponent = nearestBot;
+        if(opponent == null) { //This is a temporary workaround and needs to be fixed so that the sensor is activates and gets bot list at proper time
+            activeBots = GameObject.FindGameObjectsWithTag("Bot");
+            SenseStep();
+        }
         int enemyDirection = 1;
         //Find if enemy to the left or right
         if (player.transform.position.x - opponent.transform.position.x > 0) {
@@ -37,12 +41,11 @@ public class BotSensor : MonoBehaviour
     }
 
     public void SenseStep() {
-        //Updates the current "Nearest Bot" in case of multibot battles
-        // Find nearest bot? (future stuff)
+        //Updates the current "Nearest Bot," always the enemy in 1v1, closest enemy in multibot
         foreach(GameObject activeBot in activeBots) {
-            if (activeBot == this.gameObject) continue; // Change in future
-
-            nearestBot = activeBot;
+            if (activeBot != this.gameObject) {
+                nearestBot = activeBot;
+            }
         }
     }
 

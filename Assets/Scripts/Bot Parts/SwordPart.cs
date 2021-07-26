@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordPart : MonoBehaviour , IBotPart
+public class SwordPart : BotPart
 {
 
     [SerializeField] private LayerMask enemy = default(LayerMask);
@@ -12,7 +12,7 @@ public class SwordPart : MonoBehaviour , IBotPart
     [SerializeField] private float damage = default(float);
     [SerializeField] private float knockback = default(float);
 
-    public void SetState(State state) {
+    public override void SetState(State state) {
         return;
     }
 
