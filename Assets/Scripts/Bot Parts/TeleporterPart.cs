@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TeleporterPart : MonoBehaviour , IBotPart
+public class TeleporterPart : BotPart
 {
     //[SerializeField] private float teleportDistance = default(float);
 
@@ -44,7 +44,7 @@ public class TeleporterPart : MonoBehaviour , IBotPart
         }
     }
 
-    public void SetState(State state) { 
+    public override void SetState(State state) { 
         //Have the turn handler send this for now then check in Update
     }
 }

@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BotController : MonoBehaviour
 {
     private AudioManager audioManager;
     private Health health;
     private Rigidbody2D rb;
+
+    public void Awake() {
+        DontDestroyOnLoad(this);
+    }
 
     public void Start() {
         audioManager = FindObjectOfType<AudioManager>();
