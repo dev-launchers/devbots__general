@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff08bc4817a14f43a50e5a9fb2da5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite: {fileID: 3368941350412845374}
+  sprite: {fileID: 0}
 --- !u!1001 &3797172095190274385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -158,6 +158,11 @@ PrefabInstance:
       propertyPath: enemy.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 6005236089029418854, guid: f5bf71bb695d90b4fb924d8a95a76d21,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1905763343590494313, guid: f5bf71bb695d90b4fb924d8a95a76d21, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f5bf71bb695d90b4fb924d8a95a76d21, type: 3}
@@ -170,12 +175,6 @@ GameObject:
 --- !u!4 &3368941350412845369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1905763343590494312, guid: f5bf71bb695d90b4fb924d8a95a76d21,
-    type: 3}
-  m_PrefabInstance: {fileID: 3797172095190274385}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &3368941350412845374 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1905763343590494319, guid: f5bf71bb695d90b4fb924d8a95a76d21,
     type: 3}
   m_PrefabInstance: {fileID: 3797172095190274385}
   m_PrefabAsset: {fileID: 0}

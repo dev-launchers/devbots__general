@@ -61,6 +61,6 @@ public class BotSensor : MonoBehaviour
     }
 
     public void PlayAudio(string audioName) {
-        audioManager.Play(audioName);
+       audioManager.Play(audioName);
     }
 }
