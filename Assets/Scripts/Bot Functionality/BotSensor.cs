@@ -17,24 +17,21 @@ public class BotSensor : MonoBehaviour
     }
 
     public GameObject GetNearestSensedBot() {
+        UpdateActiveBots();
         return nearestBot;
     }
 
     public Vector2 GetNearestSensedBotPosition() {
+        UpdateActiveBots();
         return nearestBot.transform.position;
     }
 
     // Returns -1 if left, and 1 if right
     public int GetNearestSensedBotDirection() {
-        GameObject player = this.gameObject;
-        GameObject opponent = nearestBot;
-        if(opponent == null) { //This is a temporary workaround and needs to be fixed so that the sensor is activates and gets bot list at proper time
-            activeBots = GameObject.FindGameObjectsWithTag("Bot");
-            SenseStep();
-        }
+        UpdateActiveBots();
         int enemyDirection = 1;
         //Find if enemy to the left or right
-        if (player.transform.position.x - opponent.transform.position.x > 0) {
+        if (gameObject.transform.position.x - nearestBot.transform.position.x > 0) {
             enemyDirection = -1;
         }
         return enemyDirection;
@@ -51,5 +48,12 @@ public class BotSensor : MonoBehaviour
 
     public Vector3 GetPosition() {
         return rb.position;
+    }
+
+    private void UpdateActiveBots() {
+        if(nearestBot == null) { //This is a temporary workaround and needs to be fixed so that the sensor activates and gets bot list at proper time
+            activeBots = GameObject.FindGameObjectsWithTag("Bot");
+            SenseStep();
+        }
     }
 }

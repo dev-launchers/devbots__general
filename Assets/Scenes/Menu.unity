@@ -871,6 +871,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bot
       objectReference: {fileID: 0}
+    - target: {fileID: 1905763343590494307, guid: f5bf71bb695d90b4fb924d8a95a76d21,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1905763343590494312, guid: f5bf71bb695d90b4fb924d8a95a76d21,
         type: 3}
       propertyPath: m_RootOrder
@@ -944,7 +949,7 @@ PrefabInstance:
     - target: {fileID: 3710091414241132700, guid: f5bf71bb695d90b4fb924d8a95a76d21,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6005236089029418854, guid: f5bf71bb695d90b4fb924d8a95a76d21,
         type: 3}
@@ -2641,6 +2646,7 @@ MonoBehaviour:
   options:
   - {fileID: 1388517078089575376, guid: 25c029caa169a374bb16655325385717, type: 3}
   - {fileID: 1292309468158379240, guid: 2bb874502daa2a44fab9455b66fbeb6c, type: 3}
+  - {fileID: 6271039725884734431, guid: 450bab39ab11eb94bba6d0c66129964f, type: 3}
 --- !u!1 &1605588758
 GameObject:
   m_ObjectHideFlags: 0

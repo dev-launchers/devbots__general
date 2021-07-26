@@ -42,7 +42,7 @@ PrefabInstance:
     - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
@@ -114,6 +114,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TeleporterPart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f4fc3656af72546a91065f7cae266e, type: 3}

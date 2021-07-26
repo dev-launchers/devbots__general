@@ -12,8 +12,11 @@ public class SwordPart : BotPart
     [SerializeField] private float damage = default(float);
     [SerializeField] private float knockback = default(float);
 
-    public override void SetState(State state) {
-        return;
+    private bool isRunning;
+
+    public override void SetState(State state)
+    {
+        isRunning = state.isActive;
     }
 
     public void AttackStep(List<GameObject> activeBots) {

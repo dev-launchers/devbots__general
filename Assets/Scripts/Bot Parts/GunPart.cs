@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunPart : BotPart
 {
 
-    [SerializeField] private LayerMask enemyLayer = default(LayerMask);
+    [SerializeField] private int enemyLayer = default(int);
     [SerializeField] private float attackDistance = default(float);
     [SerializeField] private float damage = default(float);
     [SerializeField] private GameObject projectile = default(GameObject); //Object to be fired by gun part
@@ -60,16 +60,12 @@ public class GunPart : BotPart
                 Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
                 //Fetch script/data for projectile
 
-                projectileScript.enemyDirection = enemyDirection; //Set the direction of the projectile
-                projectileScript.damage = damage; //Set the damage of the projectile
-                projectileScript.speed = projectileSpeed; //Set the speed of the projectile
-                projectileScript.enemyLayer = enemyLayer;
-                //Set the target of the projectile, so it only hits the enemy bot
+                //TODO: Find enemy layer based on who is shooting
 
-                projectileInstance.gameObject.transform.localScale = projectileSize;
-                //Set the projectile size
+                projectileScript.SetValues(enemyDirection, damage, projectileSpeed, projectileSize, enemyLayer);
+                //Tells projectile values
+
                 //TODO: Set projectile knockback
-
 
                 controller.PlayAudio("Hit");
             }

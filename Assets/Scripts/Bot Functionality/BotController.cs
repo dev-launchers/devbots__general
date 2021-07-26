@@ -5,18 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class BotController : MonoBehaviour
 {
+    private BotSensor sensor;
     private AudioManager audioManager;
-    private Health health;
     private Rigidbody2D rb;
+
+    private float HP;
 
     public void Awake() {
         DontDestroyOnLoad(this);
     }
 
     public void Start() {
+        sensor = GetComponent<BotSensor>();
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
-        health = GetComponent<Health>();
+        HP = 1.0f;
     }
 
     public void SetPosition(Vector3 newPosition) {
@@ -34,6 +37,19 @@ public class BotController : MonoBehaviour
     }
 
     public void TakeDamage(float damage) {
-        health.HP -= damage;
+        HP -= damage;
+        if (HP <= 0.0f) {
+            Destroy(gameObject);
+            Destroy(sensor.GetNearestSensedBot());
+            SceneManager.LoadScene(0);
+            //audioManager.Play("Death");
+            //animator.Play("death");
+            //Make a new gameObject for dead hull, or disable scripts?
+            //Instantiate(deathFX, transform.position, Quaternion.identity);
+        }
+        else {
+            audioManager.Play("Hit");
+            //Instantiate(damageFX, transform.position, Quaternion.identity);
+        }
     }
 }

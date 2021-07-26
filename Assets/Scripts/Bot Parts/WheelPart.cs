@@ -14,7 +14,6 @@ public class WheelPart : BotPart
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
-        isRunning = true;
     }
 
     public void Update() {
@@ -34,7 +33,8 @@ public class WheelPart : BotPart
         }
     }
 
-    public override void SetState(State state) { 
-        //Have the turn handler send this for now then check in Update
+    public override void SetState(State state)
+    {
+        isRunning = state.isActive;
     }
 }
