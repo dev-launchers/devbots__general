@@ -1,0 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DrillBotPart : MonoBehaviour, IBotPart
+{
+    //TODO: create "private Animator drillAnimation;" // Animates the drill part when attack is active.
+
+    [SerializeField] public Transform attackPoint; // References the attack point of the drill in the scene.
+    [SerializeField] public float attackRange = 0.0f; // Range for attack to initiate.
+
+    [SerializeField] public LayerMask enemyLayers;
+    // Used to determine which objects are enemies by assigning all ememies to a layer using a layermask.
+
+    // Inherited from IBotPart
+    public void SetState(State state)
+    {
+        return;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        return;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        drillAttack();
+    }
+
+    // drillAttack
+    public void drillAttack()
+    {
+        // TODO:  Play the drill attack animation.
+
+        // Detect enemy in range of attack.
+        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayers);
+
+        // Damage enemy
+        // TODO: Implement damage to enemy health.
+
+        if(enemy)
+        {
+            // Outputs message to Unity Editor Console to verify the attack.
+            Debug.Log(enemy.name + " was attacked by drill.");
+        }
+    }
+
+    // Allows developer/user to see the attack radius in Unity editor.
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return; //Return if attackPoint has not been set.
+
+        // Draw a wire sphere at attack position to show its range in Unity editor.
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+}
