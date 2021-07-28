@@ -12,42 +12,37 @@ public class BotSensor : MonoBehaviour
 
     public void Start() {
         activeBots = GameObject.FindGameObjectsWithTag("Bot");
-        audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         SenseStep(); //In multi-bot fights, needs to be called in Update
     }
 
-    public void UpdatePart() {
-        return;
-    }
-
     public GameObject GetNearestSensedBot() {
+        UpdateActiveBots();
         return nearestBot;
     }
 
     public Vector2 GetNearestSensedBotPosition() {
+        UpdateActiveBots();
         return nearestBot.transform.position;
     }
 
     // Returns -1 if left, and 1 if right
     public int GetNearestSensedBotDirection() {
-        GameObject player = this.gameObject;
-        GameObject opponent = nearestBot;
+        UpdateActiveBots();
         int enemyDirection = 1;
         //Find if enemy to the left or right
-        if (player.transform.position.x - opponent.transform.position.x > 0) {
+        if (gameObject.transform.position.x - nearestBot.transform.position.x > 0) {
             enemyDirection = -1;
         }
         return enemyDirection;
     }
 
     public void SenseStep() {
-        //Updates the current "Nearest Bot" in case of multibot battles
-        // Find nearest bot? (future stuff)
+        //Updates the current "Nearest Bot," always the enemy in 1v1, closest enemy in multibot
         foreach(GameObject activeBot in activeBots) {
-            if (activeBot == this.gameObject) continue; // Change in future
-
-            nearestBot = activeBot;
+            if (activeBot != this.gameObject) {
+                nearestBot = activeBot;
+            }
         }
     }
 
@@ -55,12 +50,10 @@ public class BotSensor : MonoBehaviour
         return rb.position;
     }
 
-    public void TakeKnockback(Vector3 newPosition) {
-        //The desired new position is sent by the attacking bot, but may be countered by certain effects
-        rb.position = newPosition;
-    }
-
-    public void PlayAudio(string audioName) {
-       // audioManager.Play(audioName);
+    private void UpdateActiveBots() {
+        if(nearestBot == null) { //This is a temporary workaround and needs to be fixed so that the sensor activates and gets bot list at proper time
+            activeBots = GameObject.FindGameObjectsWithTag("Bot");
+            SenseStep();
+        }
     }
 }

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunPart : MonoBehaviour, IBotPart
+public class GunPart : BotPart
 {
 
-    [SerializeField] private LayerMask enemyLayer = default(LayerMask);
+    [SerializeField] private int enemyLayer = default(int);
     [SerializeField] private float attackDistance = default(float);
     [SerializeField] private float damage = default(float);
     [SerializeField] private GameObject projectile = default(GameObject); //Object to be fired by gun part
@@ -14,6 +14,7 @@ public class GunPart : MonoBehaviour, IBotPart
     [SerializeField] private Vector2 projectileSize = default(Vector2);
 
     private BotSensor sensor;
+    private BotController controller;
 
     private bool isRunning;
     private float timer;
@@ -24,7 +25,7 @@ public class GunPart : MonoBehaviour, IBotPart
     void Start()
     {
         sensor = GetComponentInParent<BotSensor>();
-        isRunning = true;
+        controller = GetComponentInParent<BotController>();
     }
 
     // Update is called once per frame
@@ -33,9 +34,9 @@ public class GunPart : MonoBehaviour, IBotPart
         AttackStep();
     }
 
-    public void SetState(State state)
+    public override void SetState(State state)
     {
-        return;
+        isRunning = state.isActive;
     }
 
     public void AttackStep()
@@ -59,18 +60,14 @@ public class GunPart : MonoBehaviour, IBotPart
                 Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
                 //Fetch script/data for projectile
 
-                projectileScript.enemyDirection = enemyDirection; //Set the direction of the projectile
-                projectileScript.damage = damage; //Set the damage of the projectile
-                projectileScript.speed = projectileSpeed; //Set the speed of the projectile
-                projectileScript.enemyLayer = enemyLayer;
-                //Set the target of the projectile, so it only hits the enemy bot
+                //TODO: Find enemy layer based on who is shooting
 
-                projectileInstance.gameObject.transform.localScale = projectileSize;
-                //Set the projectile size
+                projectileScript.SetValues(enemyDirection, damage, projectileSpeed, projectileSize, enemyLayer);
+                //Tells projectile values
+
                 //TODO: Set projectile knockback
 
-
-                sensor.PlayAudio("Hit");
+                controller.PlayAudio("Hit");
             }
         }
     }

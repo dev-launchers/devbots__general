@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordPart : MonoBehaviour , IBotPart
+public class SwordPart : BotPart
 {
 
     [SerializeField] private LayerMask enemy = default(LayerMask);

@@ -5,17 +5,19 @@ using UnityEngine.Events;
 
 public class Projectile : MonoBehaviour
 {
-    public float damage;
-    public float speed;
-    public int enemyDirection;
+    private float damage;
+    private float speed;
+    private int enemyLayer;
+    private int enemyDirection;
+
     Rigidbody2D rb;
-    [SerializeField] private UnityEvent projectileColisionEvent;
-    public int enemyLayer;
+    //[SerializeField] private UnityEvent projectileCollisionEvent;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(enemyDirection * speed, 0), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(enemyDirection * speed,0), ForceMode2D.Impulse);
 
     }
 
@@ -29,22 +31,31 @@ public class Projectile : MonoBehaviour
         //Vector3 newPos = Calculate new position
         //hitSensor.TakeKnockback(newPos);
     }
+
+    public void SetValues(int dir, float dmg, float spd, Vector2 size, int layer) {
+        enemyDirection = dir; //Set the direction of the projectile
+        damage = dmg; //Set the damage of the projectile
+        speed = spd; //Set the speed of the projectile
+        gameObject.transform.localScale = size; //Set the projectile size
+        enemyLayer = layer; //Set the target of the projectile, so it only hits the desired bot, will likely need to be array of layers for self-damaging items 
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Check what layer collided game object is
         if (collision.gameObject.layer == enemyLayer)
         {
-            //event invoke for unity event can add to in editor
-            projectileColisionEvent.Invoke();   
+            //event invoke for unity event. can add to in editor
+            //projectileColisionEvent.Invoke();   
             //Destroy projectile
             Destroy(this.gameObject);
-            //Use health script attached to collided bot to take health from enemy
-            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
-      
+            //Deal damage to collided enemy
+            collision.gameObject.GetComponent<BotController>().TakeDamage(damage);
         }
 
 
     }
+
     //For an exploding bullet: 
     //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot"); 
     //when it explodes

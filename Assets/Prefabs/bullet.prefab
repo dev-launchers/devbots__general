@@ -138,3 +138,7 @@ MonoBehaviour:
   damage: 1
   speed: 1
   enemyDirection: 0
+  projectileColisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  enemyLayer: 10
