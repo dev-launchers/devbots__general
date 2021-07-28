@@ -14,6 +14,7 @@ public class WheelPart : BotPart
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
+        isRunning = true;
     }
 
     public void Update() {

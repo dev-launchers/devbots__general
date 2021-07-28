@@ -16,7 +16,7 @@ public class SwordPart : BotPart
     private const float COOLDOWN = 2.0f;
     private Animator swordAnimator;//Animator used for sword rotation
     private Rigidbody2D botRigidbody;
-    public void SetState(State state) {
+    public override void SetState(State state) {
         return;
     }
     private void Start()
@@ -54,8 +54,8 @@ public class SwordPart : BotPart
                     swordAnimator.SetTrigger("swordAttack");
                     // add thrust to lunge bot forwaard 
                     botRigidbody.AddRelativeForce(new Vector2(forwardThrustForce, 0), ForceMode2D.Impulse);
-                    collision.GetComponent<Health>().TakeDamage(damage);
-                    //collision.GetComponent<Move>().TakeKnockback(enemyDirection, knockback);
+                    collision.GetComponent<BotController>().TakeDamage(damage);
+                    collision.GetComponent<BotController>().ApplyForce(new Vector2(-knockback,0));
                 }
             }
         }

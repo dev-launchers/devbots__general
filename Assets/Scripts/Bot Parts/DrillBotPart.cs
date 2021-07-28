@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//inherihting botpart
 public class DrillBotPart : BotPart
 {
     //TODO: create "private Animator drillAnimation;" // Animates the drill part when attack is active.
