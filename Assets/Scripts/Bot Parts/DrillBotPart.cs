@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrillBotPart : MonoBehaviour, IBotPart
+public class DrillBotPart : BotPart
 {
     //TODO: create "private Animator drillAnimation;" // Animates the drill part when attack is active.
 
@@ -13,7 +13,7 @@ public class DrillBotPart : MonoBehaviour, IBotPart
     // Used to determine which objects are enemies by assigning all ememies to a layer using a layermask.
 
     // Inherited from IBotPart
-    public void SetState(State state)
+    public override void SetState(State state)
     {
         return;
     }
