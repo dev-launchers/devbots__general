@@ -1,0 +1,30 @@
+<html>
+    <script>
+        window.addEventListener("load", async function () {
+
+            if (window.ethereum) {
+            //MetaMask detected
+
+            const accounts = await window.ethereum.request({
+                method: "eth_requestAccounts"
+            });
+            //Request MetaMask Sign-In
+
+            if (accounts) {
+                //Accounts found, use accounts[0]
+                document.getElementById("unity-container").style.display="initial";
+                //Load game!
+
+            } else {
+                //User Not Signed in
+                alert(
+                "You must sign in using MetaMask to play! Reload the page!"
+                );
+            }
+            } else {
+            ///No window.ethereum detected, take user to place to get MetaMask
+            window.location = "https://metamask.io/";
+            }
+        });
+    </script>
+</html>
