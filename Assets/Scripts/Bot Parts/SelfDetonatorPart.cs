@@ -2,23 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelfDetonatorPart : MonoBehaviour, IBotPart
+public class SelfDetonatorPart : BotPart
 {
     //TODO: create "private Animator sideDetonatorAnimation;"
-    // Animates the side detonator part when attack is active.
-
+    // Animates the side detonator part when attack is active
     [SerializeField] private Transform attackPoint;
     // References the attack point of the side detonator in the scene.
-    
+
     [SerializeField] private float attackRange = 0.0f;
     // Range for attack to initiate.
     
     [SerializeField] private float knockBackStrength;
+    [SerializeField] private float upwardForce;
     [SerializeField] private LayerMask enemyLayers;
-
-
-    // Inherited from IBotPart
-    public void SetState(State state)
+    
+    // Inherited from BotPart
+    override public void SetState(State state)
     {
         return;
     }
@@ -45,12 +44,14 @@ public class SelfDetonatorPart : MonoBehaviour, IBotPart
             // TODO: Implement small damage to player health. (Use separate class?)
 
             // Knockback opponent
-            Rigidbody2D rb = enemyCollider2D.GetComponent<Rigidbody2D>();
-
-            if (rb != null)
+            BotController controller = enemyCollider2D.GetComponentInParent<BotController>();
+            BotSensor sensor = enemyCollider2D.GetComponentInParent<BotSensor>();
+            if (controller != null)
             {
-                Vector2 direction = rb.transform.position - transform.position;
-                rb.AddForce(direction.normalized * knockBackStrength, ForceMode2D.Impulse);
+                Debug.Log("entered IF statement");
+                Vector2 direction = sensor.GetPosition() - transform.position;
+                controller.ApplyForce((direction.normalized * knockBackStrength)
+                                     +(new Vector2(0.0f,upwardForce)));
             }
         }
     }
