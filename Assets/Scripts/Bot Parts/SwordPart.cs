@@ -11,19 +11,20 @@ public class SwordPart : BotPart
     [SerializeField] private float damage = default(float);
     [SerializeField] private float knockback = default(float);
     [SerializeField] private float forwardThrustForce = default(float);
-    private bool isRunning;
+    [SerializeField] private bool isRunning;
     private float timer;
     private const float COOLDOWN = 2.0f;
     private Animator swordAnimator;//Animator used for sword rotation
     private Rigidbody2D botRigidbody;
+
     public override void SetState(State state) {
-        return;
+        isRunning = state.isActive;
     }
+
     private void Start()
     {
         swordAnimator = GetComponent<Animator>();
         botRigidbody = GetComponentInParent<Rigidbody2D>();
-        isRunning = true;
     }
     private void Update()
     {

@@ -34,7 +34,7 @@ PrefabInstance:
     - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2389790961272106765, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
@@ -116,6 +116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tesla Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}

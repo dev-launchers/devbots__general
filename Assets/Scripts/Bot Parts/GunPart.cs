@@ -16,7 +16,7 @@ public class GunPart : BotPart
     private BotSensor sensor;
     private BotController controller;
 
-    private bool isRunning;
+    [SerializeField] private bool isRunning;
     private float timer;
 
     private const float COOLDOWN = 2.0f;
