@@ -9,12 +9,11 @@ public class WheelPart : BotPart
     private Rigidbody2D rb;
     private BotSensor sensor;
 
-    private bool isRunning;
+    [SerializeField] private bool isRunning;
 
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
-        isRunning = true;
     }
 
     public void Update() {
@@ -27,7 +26,7 @@ public class WheelPart : BotPart
             int enemyDirection = sensor.GetNearestSensedBotDirection();
             float targetSpeed = enemyDirection * moveSpeed;
             //changed if statement to check if velocity is lower than target speed and is now moving the bot using add force rather than explicitly changing the velocity
-            if (Mathf.Abs(rb.velocity.x) <= (targetSpeed)) {
+            if (Mathf.Abs(rb.velocity.x) <= Mathf.Abs(targetSpeed)) {
                 //float increment = (targetSpeed - rb.velocity.x); //Mathf.Lerp(rb.velocity.x, targetSpeed, .5);
                 //This needs to be scaled to haappen over time instead of instantly
                 //rb.velocity += new Vector2(increment, 0);

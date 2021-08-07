@@ -12,7 +12,7 @@ public class WingsPart : BotPart
     private BotSensor sensor;
     private BotController controller;
 
-    private bool isRunning;
+    [SerializeField] private bool isRunning;
     private float timer;
 
     [SerializeField] private float coolDown = 4f;//cooldown time for back thrust
@@ -26,7 +26,6 @@ public class WingsPart : BotPart
         //wheelPart = transform.parent.GetComponentInChildren<WheelPart>();
         //teleporterPart = transform.parent.GetComponentInChildren<TeleporterPart>();
         timer = coolDown;
-        isRunning = true;
     }
 
     public void Update()
