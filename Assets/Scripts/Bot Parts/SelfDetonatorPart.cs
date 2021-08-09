@@ -48,7 +48,6 @@ public class SelfDetonatorPart : BotPart
             BotSensor sensor = enemyCollider2D.GetComponentInParent<BotSensor>();
             if (controller != null)
             {
-                Debug.Log("entered IF statement");
                 Vector2 direction = sensor.GetPosition() - transform.position;
                 controller.ApplyForce((direction.normalized * knockBackStrength)
                                      +(new Vector2(0.0f,upwardForce)));
