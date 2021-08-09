@@ -39,8 +39,8 @@ public class BotController : MonoBehaviour
     public void TakeDamage(float damage) {
         HP -= damage;
         if (HP <= 0.0f) {
-            Destroy(gameObject);
             Destroy(sensor.GetNearestSensedBot());
+            Destroy(gameObject);
             SceneManager.LoadScene(0);
             //audioManager.Play("Death");
             //animator.Play("death");

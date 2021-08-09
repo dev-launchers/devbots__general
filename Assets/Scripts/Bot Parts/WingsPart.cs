@@ -15,7 +15,7 @@ public class WingsPart : BotPart
     [SerializeField] private bool isRunning;
     private float timer;
 
-    [SerializeField] private float coolDown = 4f;//cooldown time for back thrust
+    [SerializeField] private float coolDown = 1f;//cooldown time for back thrust
 
     public void Start()
     {
@@ -23,8 +23,6 @@ public class WingsPart : BotPart
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
-        //wheelPart = transform.parent.GetComponentInChildren<WheelPart>();
-        //teleporterPart = transform.parent.GetComponentInChildren<TeleporterPart>();
         timer = coolDown;
     }
 
@@ -46,7 +44,8 @@ public class WingsPart : BotPart
             {
                 timer = coolDown; //Reset Timer
                 //Use add relative force to rigidbody to thrust bot up and slightly forward. 
-                rb.AddRelativeForce(wingForce, ForceMode2D.Impulse);
+                Vector2 appliedForce = new Vector2(wingForce.x * sensor.GetNearestSensedBotDirection(), wingForce.y);
+                rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
                 controller.PlayAudio("Move");
             }
         }

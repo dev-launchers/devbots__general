@@ -13,12 +13,13 @@ public class TeleporterPart : BotPart
     [SerializeField] private bool isRunning;
     private float timer;
 
-    private const float COOLDOWN = 2.0f;
+    [SerializeField] private float COOLDOWN = 2.2f;
 
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
+        timer = COOLDOWN;
     }
 
     public void Update() {

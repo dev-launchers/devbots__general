@@ -47,11 +47,13 @@ public class Projectile : MonoBehaviour
         {
             //event invoke for unity event. can add to in editor
             //projectileColisionEvent.Invoke();   
-            //Destroy projectile
-            Destroy(this.gameObject);
+
             //Deal damage to collided enemy
             collision.gameObject.GetComponent<BotController>().TakeDamage(damage);
         }
+
+        //Destroy projectile
+        Destroy(this.gameObject);
 
 
     }

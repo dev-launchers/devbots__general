@@ -26,6 +26,7 @@ public class GunPart : BotPart
     {
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
+        enemyLayer = sensor.GetEnemyLayer();
     }
 
     // Update is called once per frame
@@ -59,8 +60,6 @@ public class GunPart : BotPart
 
                 Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
                 //Fetch script/data for projectile
-
-                //TODO: Find enemy layer based on who is shooting
 
                 projectileScript.SetValues(enemyDirection, damage, projectileSpeed, projectileSize, enemyLayer);
                 //Tells projectile values
