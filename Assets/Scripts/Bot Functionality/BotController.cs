@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class BotController : MonoBehaviour
@@ -8,9 +9,9 @@ public class BotController : MonoBehaviour
     private BotSensor sensor;
     private AudioManager audioManager;
     private Rigidbody2D rb;
-
+    public UnityEvent DamageTakenEvent;
     private float HP;
-
+    public float GetHP { get { return HP; } }//Used for other scripts to get the health of this bot
     public void Awake() {
         DontDestroyOnLoad(this);
     }
@@ -19,6 +20,10 @@ public class BotController : MonoBehaviour
         sensor = GetComponent<BotSensor>();
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
+        if (DamageTakenEvent == null)
+            DamageTakenEvent = new UnityEvent();
+
+
         HP = 1.0f;
     }
 
@@ -38,6 +43,7 @@ public class BotController : MonoBehaviour
 
     public void TakeDamage(float damage) {
         HP -= damage;
+        DamageTakenEvent.Invoke();
         if (HP <= 0.0f) {
             Destroy(sensor.GetNearestSensedBot());
             Destroy(gameObject);

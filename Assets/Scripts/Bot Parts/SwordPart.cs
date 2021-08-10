@@ -55,13 +55,13 @@ public class SwordPart : BotPart
 
                 attackPos = transform.position + new Vector3(sensor.GetNearestSensedBotDirection(), 0, 0);
                 //Should be cleaned up, but currently creates Vector2 for current position + 1 in direction of enemy
-                Collider2D collision = Physics2D.OverlapCircle(attackPos, attackDistance, enemyLayer); 
+                Collider2D collision = Physics2D.OverlapCircle(attackPos, attackDistance); 
                 //Needs to attack only in front using swordPos
 
-                if (collision != null)
+                if (collision.gameObject.layer == enemyLayer)
                 {
                     print("collision");
-                    BotController collisionController = collision.GetComponent<BotController>();
+                    BotController collisionController = collision.transform.GetComponent<BotController>();
                     collisionController.TakeDamage(damage);
                     collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(),0));
                 }
@@ -72,7 +72,13 @@ public class SwordPart : BotPart
     {
         // Display the attack radius when selected
         Gizmos.color = Color.green;
+        attackPos = transform.position;
+        if (Application.isPlaying)
+        {
         attackPos = transform.position + new Vector3(sensor.GetNearestSensedBotDirection(), 0, 0);
+        }
+
+
         Gizmos.DrawWireSphere(attackPos, attackDistance);
 
     }
