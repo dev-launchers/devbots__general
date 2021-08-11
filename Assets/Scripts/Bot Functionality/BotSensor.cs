@@ -48,15 +48,31 @@ public class BotSensor : MonoBehaviour
         return enemyDirection;
     }
 
-    // Returns 1 if nearestBot is above, and -1 if below
-    public int GetNearestSensedBotAbove(){
-        UpdateActiveBots();
-        int enemyBotAbove = -1; //Enemy bot is NOT above player bot.
+    /*GetNearestSensedBotAbove returns 1 if nearestBot is above,
+    *    and -1 if below.
+    * @param xPosBuffer is a valid float representing the maximum distance
+    *    from the left or right of the players center mass.
+    * @param yPosBuffer is a valid float representing the minimum distance
+    *    above player center mass for enemy bot to be considerd above.
+    */
+    public int GetNearestSensedBotAbove(float xMaxPos, float yMinPos)
+    {
+        int enemyBotAbove = -1; //Enemy bot is NOT above player bot. 
+        float playerYPos = gameObject.transform.position.y;
+        float playerXPos = gameObject.transform.position.x;
+        float enemyYPos  = nearestBot.transform.position.y;
+        float enemyXPos  = nearestBot.transform.position.x;
 
-        // Find if enemy is above or below player bot.
-        if (gameObject.transform.position.y < nearestBot.transform.position.y)
+        UpdateActiveBots();
+        
+        // Verify enemy is within the maximum X range distance from player.
+        if(enemyXPos > playerXPos - xMaxPos && enemyXPos < playerXPos + xMaxPos)
         {
-            enemyBotAbove = 1; // Enemy bot is above player bot.
+            // Verify enemy is above the minimum domain distance from player.
+            if (enemyYPos >= playerYPos + yMinPos)
+            {
+                enemyBotAbove = 1; // Enemy bot is above player bot.
+            }
         }
         return enemyBotAbove;
     }
