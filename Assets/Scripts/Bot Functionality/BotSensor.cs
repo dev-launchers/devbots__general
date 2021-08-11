@@ -48,6 +48,19 @@ public class BotSensor : MonoBehaviour
         return enemyDirection;
     }
 
+    // Returns 1 if nearestBot is above, and -1 if below
+    public int GetNearestSensedBotAbove(){
+        UpdateActiveBots();
+        int enemyBotAbove = -1; //Enemy bot is NOT above player bot.
+
+        // Find if enemy is above or below player bot.
+        if (gameObject.transform.position.y < nearestBot.transform.position.y)
+        {
+            enemyBotAbove = 1; // Enemy bot is above player bot.
+        }
+        return enemyBotAbove;
+    }
+
     public void SenseStep() {
         //Updates the current "Nearest Bot," always the enemy in 1v1, closest enemy in multibot
         foreach(GameObject activeBot in activeBots) {
