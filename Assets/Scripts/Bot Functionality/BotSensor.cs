@@ -66,7 +66,7 @@ public class BotSensor : MonoBehaviour
         UpdateActiveBots();
         
         // Verify enemy is within the maximum X range distance from player.
-        if(enemyXPos > playerXPos - xMaxPos && enemyXPos < playerXPos + xMaxPos)
+        if(enemyXPos >= playerXPos - xMaxPos && enemyXPos <= playerXPos + xMaxPos)
         {
             // Verify enemy is above the minimum domain distance from player.
             if (enemyYPos >= playerYPos + yMinPos)
