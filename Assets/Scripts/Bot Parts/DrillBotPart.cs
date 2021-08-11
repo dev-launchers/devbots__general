@@ -10,12 +10,13 @@ public class DrillBotPart : BotPart
     [SerializeField] public float attackRange = 0.0f; // Range for attack to initiate.
 
     [SerializeField] public LayerMask enemyLayers;
+    [SerializeField] private bool isRunning;
     // Used to determine which objects are enemies by assigning all ememies to a layer using a layermask.
 
-    // Inherited from IBotPart
+    // Inherited from BotPart
     public override void SetState(State state)
     {
-        return;
+        isRunning = state.isActive;
     }
 
     // Start is called before the first frame update
@@ -33,18 +34,20 @@ public class DrillBotPart : BotPart
     // drillAttack
     public void drillAttack()
     {
-        // TODO:  Play the drill attack animation.
+        if (isRunning) {
+            // TODO:  Play the drill attack animation.
 
-        // Detect enemy in range of attack.
-        Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayers);
+            // Detect enemy in range of attack.
+            Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayers);
 
-        // Damage enemy
-        // TODO: Implement damage to enemy health.
+            // Damage enemy
+            // TODO: Implement damage to enemy health.
 
-        if(enemy)
-        {
-            // Outputs message to Unity Editor Console to verify the attack.
-            Debug.Log(enemy.name + " was attacked by drill.");
+            if(enemy)
+            {
+                // Outputs message to Unity Editor Console to verify the attack.
+                Debug.Log(enemy.name + " was attacked by drill.");
+            }
         }
     }
 

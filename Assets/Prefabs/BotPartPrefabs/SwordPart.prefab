@@ -31,14 +31,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30aa531a6bb890145a8865e71d4c41c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy:
-    serializedVersion: 2
-    m_Bits: 1024
-  attackPos: {fileID: 0}
-  attackDistance: 4
-  damage: 0.25
+  attackDistance: 2
+  damage: 0.34
   knockback: 10
-  forwardThrustForce: 5
+  thrustForce: {x: 5, y: 1}
+  isRunning: 0
 --- !u!1001 &4269596824764812334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,22 +107,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+      objectReference: {fileID: 21300000, guid: 30e069ba1fc686b44a097c9d9790d4c3,
         type: 3}
     - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.033018887
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.033018887
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_SortingOrder
-      value: -1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -786320585
       objectReference: {fileID: 0}
     - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
@@ -140,37 +152,47 @@ PrefabInstance:
     - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.21590002
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.9
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.92
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.90438014
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.4267278
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7234396616275351828, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -50.52
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21f4fc3656af72546a91065f7cae266e, type: 3}

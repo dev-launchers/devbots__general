@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+#Custom Additions
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/UnityConnectSettings.asset

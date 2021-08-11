@@ -44,3 +44,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Bot Body
+    uniqueID: 3508646711
+    locked: 0

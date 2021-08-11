@@ -5,25 +5,29 @@ using UnityEngine;
 public class SwordPart : BotPart
 {
 
-    [SerializeField] private LayerMask enemy = default(LayerMask);
-    [SerializeField] private Transform attackPos = default(Transform);
+    private Vector2 attackPos = default(Vector2);
     [SerializeField] private float attackDistance = default(float);
     [SerializeField] private float damage = default(float);
     [SerializeField] private float knockback = default(float);
-    [SerializeField] private float forwardThrustForce = default(float);
-    private bool isRunning;
+    [SerializeField] private Vector2 thrustForce = default(Vector2);
+    [SerializeField] private bool isRunning;
+    private int enemyLayer;
     private float timer;
     private const float COOLDOWN = 2.0f;
     private Animator swordAnimator;//Animator used for sword rotation
-    private Rigidbody2D botRigidbody;
+    private Rigidbody2D rb;
+    private BotSensor sensor;
+
     public override void SetState(State state) {
-        return;
+        isRunning = state.isActive;
     }
+
     private void Start()
     {
         swordAnimator = GetComponent<Animator>();
-        botRigidbody = GetComponentInParent<Rigidbody2D>();
-        isRunning = true;
+        rb = GetComponentInParent<Rigidbody2D>();
+        sensor = GetComponentInParent<BotSensor>();
+        enemyLayer = sensor.GetEnemyLayer();
     }
     private void Update()
     {
@@ -42,20 +46,24 @@ public class SwordPart : BotPart
             else
             {
                 timer = COOLDOWN; //Reset Timer
-                                  //get the enemy gameobject which is closest using the sensor script
-                                  //var enemy = sensor.GetNearestSensedBot().gameObject;
 
-                Collider2D collision = Physics2D.OverlapCircle(transform.position, attackDistance, enemy);
-                //OverlapBox for rectangular hitbox
+                // Set trigger to play animation of sword rotating 
+                swordAnimator.SetTrigger("swordAttack");
+                // add thrust to lunge bot forward 
+                Vector2 appliedForce = new Vector2(thrustForce.x * sensor.GetNearestSensedBotDirection(), thrustForce.y);
+                rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
+
+                attackPos = transform.position + new Vector3(sensor.GetNearestSensedBotDirection(), 0, 0);
+                //Should be cleaned up, but currently creates Vector2 for current position + 1 in direction of enemy
+                Collider2D collision = Physics2D.OverlapCircle(attackPos, attackDistance, enemyLayer); 
+                //Needs to attack only in front using swordPos
 
                 if (collision != null)
                 {
-                    // Set trigger to play animation of sword rotating 
-                    swordAnimator.SetTrigger("swordAttack");
-                    // add thrust to lunge bot forwaard 
-                    botRigidbody.AddRelativeForce(new Vector2(forwardThrustForce, 0), ForceMode2D.Impulse);
-                    collision.GetComponent<BotController>().TakeDamage(damage);
-                    collision.GetComponent<BotController>().ApplyForce(new Vector2(-knockback,0));
+                    print("collision");
+                    BotController collisionController = collision.GetComponent<BotController>();
+                    collisionController.TakeDamage(damage);
+                    collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(),0));
                 }
             }
         }
@@ -64,7 +72,8 @@ public class SwordPart : BotPart
     {
         // Display the attack radius when selected
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, attackDistance);
+        attackPos = transform.position + new Vector3(sensor.GetNearestSensedBotDirection(), 0, 0);
+        Gizmos.DrawWireSphere(attackPos, attackDistance);
 
     }
 }

@@ -9,11 +9,22 @@ public class BotSensor : MonoBehaviour
     private GameObject[] activeBots;
     private AudioManager audioManager;
     private Rigidbody2D rb;
+    private int enemyLayer;
 
-    public void Start() {
+    public void Awake() {
         activeBots = GameObject.FindGameObjectsWithTag("Bot");
         rb = GetComponent<Rigidbody2D>();
         SenseStep(); //In multi-bot fights, needs to be called in Update
+        if (gameObject.layer == 9) { //Player is shooting
+            enemyLayer = 10;
+        }
+        else { //Opponent is shooting
+            enemyLayer = 9;
+        }
+    }
+
+    public int GetEnemyLayer() {
+        return enemyLayer;
     }
 
     public GameObject GetNearestSensedBot() {

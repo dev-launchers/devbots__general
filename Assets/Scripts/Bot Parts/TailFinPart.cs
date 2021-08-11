@@ -6,14 +6,14 @@ using UnityEngine;
 public class TailFinPart : BotPart
 {
     [Tooltip("Amount of backforce to apply")]
-    [SerializeField] private float backThrust = default(float);//Amount of backforce to apply
+    [SerializeField] private Vector2 backThrust = default(Vector2);//Amount of backforce to apply
     private WheelPart wheelPart;//Wheel part script attatched to this bot
     private TeleporterPart teleporterPart;//Teleporter part attatched to this bot
     private Rigidbody2D rb;
     private BotSensor sensor;
     private BotController controller;
     
-    private bool isRunning;
+    [SerializeField] private bool isRunning;
     private float timer;
 
     [SerializeField]private float coolDown = 4f;//cooldown time for back thrust
@@ -27,7 +27,6 @@ public class TailFinPart : BotPart
         //wheelPart = transform.parent.GetComponentInChildren<WheelPart>();
         //teleporterPart = transform.parent.GetComponentInChildren<TeleporterPart>();
         timer = coolDown;  
-        isRunning = true;
     }
 
     public void Update()
@@ -48,7 +47,8 @@ public class TailFinPart : BotPart
             {
                 timer = coolDown; //Reset Timer
                 //Use add relative force to rigidbody to thrust bot backwards. 
-                rb.AddRelativeForce(new Vector2(-backThrust, 0), ForceMode2D.Impulse);
+                Vector2 appliedForce = new Vector2(-backThrust.x * sensor.GetNearestSensedBotDirection(), backThrust.y);
+                rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
                 controller.PlayAudio("Move");
             }
         }
