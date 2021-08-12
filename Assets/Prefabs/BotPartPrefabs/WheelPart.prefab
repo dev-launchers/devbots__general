@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  accelerationMagnitude: 1
   isRunning: 0
 --- !u!1001 &3336577896613891075
 PrefabInstance:

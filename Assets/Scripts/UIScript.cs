@@ -12,8 +12,18 @@ public class UIScript : MonoBehaviour
     
     private void Awake()
     {
-        //Set max health for health sliders before instantiated
-    //Add listeners to the damage taken events attatched to both bots
+        //Define which bot is which
+        GameObject[] bots = GameObject.FindGameObjectsWithTag("Bot");
+        foreach (GameObject bot in bots) {
+            if (bot.GetComponent<BotSensor>().IsPlayer()) {
+                playerBotController = bot.GetComponent<BotController>();
+            }
+            else {
+                enemyBotController = bot.GetComponent<BotController>();
+            }
+        }
+
+        //Add listeners to the damage taken events attatched to both bots
         enemyBotController.DamageTakenEvent.AddListener(OnEnemyDamageTaken);
         playerBotController.DamageTakenEvent.AddListener(OnPlayerDamageTaken);
     }
@@ -22,19 +32,19 @@ public class UIScript : MonoBehaviour
     void Start()
     {
         //set max value of sliders belonging to both bot health bars
-             playerHealthBar.maxValue =1f;
+        playerHealthBar.maxValue =1f;
         enemyHealthBar.maxValue = 1f;
     }
 
     //When a bot takes damage these functions are called 
     private void OnPlayerDamageTaken()
     {
-        //When player takes damage the players HP slider value is set to the current health of the players bot
+        //When player takes damage the player HP slider value is set to the current health of the players bot
         playerHealthBar.value = playerBotController.GetHP;
     }
     private void OnEnemyDamageTaken()
     {
-        //When player takes damage the players HP slider value is set to the current health of the players bot
+        //When enemy takes damage the enemy HP slider value is set to the current health of the enemy bot
         enemyHealthBar.value = enemyBotController.GetHP;
     }
 }

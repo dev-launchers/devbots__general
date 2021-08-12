@@ -6,7 +6,6 @@ public class GunPart : BotPart
 {
 
     [SerializeField] private int enemyLayer = default(int);
-    [SerializeField] private float attackDistance = default(float);
     [SerializeField] private float damage = default(float);
     [SerializeField] private GameObject projectile = default(GameObject); //Object to be fired by gun part
     [SerializeField] private float projectileSpeed = default(float);
@@ -52,7 +51,6 @@ public class GunPart : BotPart
                 timer = COOLDOWN; //Reset Timer
                 int enemyDirection = sensor.GetNearestSensedBotDirection();
     
-                projectileStartPos.transform.localPosition = new Vector3(enemyDirection * attackDistance, 0, 0);
                 //Faces attack at enemy, handled as local position to bot part
 
                 GameObject projectileInstance = Instantiate(projectile, projectileStartPos.transform.position, Quaternion.identity);

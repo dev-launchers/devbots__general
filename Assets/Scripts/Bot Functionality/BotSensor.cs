@@ -10,15 +10,19 @@ public class BotSensor : MonoBehaviour
     private AudioManager audioManager;
     private Rigidbody2D rb;
     private int enemyLayer;
+    private bool isPlayer;
 
     public void Awake() {
         activeBots = GameObject.FindGameObjectsWithTag("Bot");
         rb = GetComponent<Rigidbody2D>();
         SenseStep(); //In multi-bot fights, needs to be called in Update
-        if (gameObject.layer == 9) { //Player is shooting
+
+        if (gameObject.layer == 9) { //This bot is Player
+            isPlayer = true;
             enemyLayer = 10;
         }
-        else { //Opponent is shooting
+        else { //This bot is Opponent
+            isPlayer = false;
             enemyLayer = 9;
         }
     }
@@ -86,14 +90,18 @@ public class BotSensor : MonoBehaviour
         }
     }
 
-    public Vector3 GetPosition() {
-        return rb.position;
-    }
-
     private void UpdateActiveBots() {
         if(nearestBot == null) { //This is a temporary workaround and needs to be fixed so that the sensor activates and gets bot list at proper time
             activeBots = GameObject.FindGameObjectsWithTag("Bot");
             SenseStep();
         }
+    }
+    
+    public Vector3 GetPosition() {
+        return rb.position;
+    }
+
+    public bool IsPlayer() {
+        return isPlayer;
     }
 }
