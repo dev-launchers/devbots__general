@@ -11,7 +11,7 @@ public class BotController : MonoBehaviour
     private Rigidbody2D rb;
     public UnityEvent DamageTakenEvent;
     private float HP;
-    public float GetHP { get { return HP; } }//Used for other scripts to get the health of this bot
+    public float GetHP { get { return HP; } } //Used for other scripts to get the health of this bot
     public void Awake() {
         DontDestroyOnLoad(this);
     }
@@ -25,6 +25,18 @@ public class BotController : MonoBehaviour
 
 
         HP = 1.0f;
+    }
+
+    public void Update() {
+        if (SceneManager.GetActiveScene().name == "Combat") {
+            FaceEnemy();
+        }
+    }
+
+    private void FaceEnemy() {
+        foreach (Transform childtransform in transform) {
+            childtransform.localScale = new Vector3(sensor.GetNearestSensedBotDirection(), 1, 1);
+        }
     }
 
     public void SetPosition(Vector3 newPosition) {
