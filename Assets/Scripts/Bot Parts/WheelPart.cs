@@ -5,6 +5,7 @@ using UnityEngine;
 public class WheelPart : BotPart
 {
     [SerializeField] private float moveSpeed = default(float);
+    [SerializeField] private float accelerationMagnitude = default(float);
 
     private Rigidbody2D rb;
     private BotSensor sensor;
@@ -24,15 +25,11 @@ public class WheelPart : BotPart
     public void MoveStep() {
         if (isRunning) {
             int enemyDirection = sensor.GetNearestSensedBotDirection();
-            float targetSpeed = enemyDirection * moveSpeed;
-            //changed if statement to check if velocity is lower than target speed and is now moving the bot using add force rather than explicitly changing the velocity
-            if (Mathf.Abs(rb.velocity.x) <= Mathf.Abs(targetSpeed)) {
-                //float increment = (targetSpeed - rb.velocity.x); //Mathf.Lerp(rb.velocity.x, targetSpeed, .5);
-                //This needs to be scaled to haappen over time instead of instantly
-                //rb.velocity += new Vector2(increment, 0);
-                rb.AddRelativeForce(new Vector2(targetSpeed, 0),ForceMode2D.Force);
+
+            float mySpeed = rb.velocity.x;
+            if (mySpeed < moveSpeed && mySpeed > -moveSpeed) {
+                rb.AddRelativeForce(new Vector2(accelerationMagnitude*enemyDirection, 0), ForceMode2D.Force);
             }
-            //sensor.PlayAudio("Move");
         }
     }
 
