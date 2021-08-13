@@ -28,7 +28,8 @@ public class BotController : MonoBehaviour
     }
 
     public void Update() {
-        if (SceneManager.GetActiveScene().name == "Combat") {
+        string currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene == "Combat" || currentScene == "General Testing Scene") {
             FaceEnemy();
         }
     }
