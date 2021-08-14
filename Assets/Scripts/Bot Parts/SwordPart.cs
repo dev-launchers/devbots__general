@@ -12,8 +12,6 @@ public class SwordPart : BotPart
     [SerializeField] private Vector2 thrustForce = default(Vector2);
     [SerializeField] private bool isRunning;
     private int enemyLayer;
-    private float timer;
-    private const float COOLDOWN = 2.0f;
     private Animator swordAnimator;//Animator used for sword rotation
     private Rigidbody2D rb;
     private BotSensor sensor;
@@ -28,6 +26,7 @@ public class SwordPart : BotPart
         rb = GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         enemyLayer = sensor.GetEnemyLayer();
+        timer = GetCoolDown();
     }
     private void Update()
     {
@@ -45,7 +44,7 @@ public class SwordPart : BotPart
             }
             else
             {
-                timer = COOLDOWN; //Reset Timer
+                timer = GetCoolDown(); //Reset Timer
 
                 // Set trigger to play animation of sword rotating 
                 swordAnimator.SetTrigger("swordAttack");
