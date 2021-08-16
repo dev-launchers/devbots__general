@@ -16,8 +16,6 @@ public class TailFinPart : BotPart
     [SerializeField] private bool isRunning;
     private float timer;
 
-    [SerializeField]private float coolDown = 4f;//cooldown time for back thrust
-
     public void Start()
     {
 
@@ -26,7 +24,7 @@ public class TailFinPart : BotPart
         controller = GetComponentInParent<BotController>();
         //wheelPart = transform.parent.GetComponentInChildren<WheelPart>();
         //teleporterPart = transform.parent.GetComponentInChildren<TeleporterPart>();
-        timer = coolDown;  
+        timer = GetCoolDown();  
     }
 
     public void Update()
@@ -45,7 +43,7 @@ public class TailFinPart : BotPart
             }
             else
             {
-                timer = coolDown; //Reset Timer
+                timer = GetCoolDown(); //Reset Timer
                 //Use add relative force to rigidbody to thrust bot backwards. 
                 Vector2 appliedForce = new Vector2(-backThrust.x * sensor.GetNearestSensedBotDirection(), backThrust.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
