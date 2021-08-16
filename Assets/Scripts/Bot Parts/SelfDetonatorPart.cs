@@ -15,6 +15,8 @@ public class SelfDetonatorPart : BotPart
     [SerializeField] private float knockBackStrength;
     [SerializeField] private float upwardForce;
     [SerializeField] private LayerMask enemyLayers;
+
+    private float timer;
     
     // Inherited from BotPart
     override public void SetState(State state)
@@ -22,7 +24,11 @@ public class SelfDetonatorPart : BotPart
         return;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        timer = 0.0f;
+    }
+
     void Update()
     {
         SelfDetonatorAttack();
@@ -35,26 +41,32 @@ public class SelfDetonatorPart : BotPart
         Collider2D enemyCollider2D = Physics2D.OverlapCircle(attackPoint.position,
                                                    attackRange,
                                                    enemyLayers);
-
         if (enemyCollider2D)
         {
-            Debug.Log(enemyCollider2D.name + " was attacked by self detonator part.");
-            // TODO: Play the side detonator attack animation.
-            // TODO: Implement damage to enemy health. (Use separate class?)
-            // TODO: Implement small damage to player health. (Use separate class?)
-
-            // Knockback opponent
-            BotController controller = enemyCollider2D.GetComponentInParent<BotController>();
-            BotSensor sensor = enemyCollider2D.GetComponentInParent<BotSensor>();
-            if (controller != null)
+            if (timer > 0)
             {
-                Vector2 direction = sensor.GetPosition() - transform.position;
-                controller.ApplyForce((direction.normalized * knockBackStrength)
-                                     +(new Vector2(0.0f,upwardForce)));
+                timer -= Time.deltaTime;
+            }
+            else
+            {
+                timer = GetCoolDown(); //Reset Timer
+                Debug.Log(enemyCollider2D.name + " was attacked by self detonator part.");
+                // TODO: Play the side detonator attack animation.
+                // TODO: Implement damage to enemy health. (Use separate class?)
+                // TODO: Implement small damage to player health. (Use separate class?)
+
+                // Knockback opponent
+                BotController controller = enemyCollider2D.GetComponentInParent<BotController>();
+                BotSensor sensor = enemyCollider2D.GetComponentInParent<BotSensor>();
+                if (controller != null)
+                {
+                    Vector2 direction = sensor.GetPosition() - transform.position;
+                    controller.ApplyForce((direction.normalized * knockBackStrength)
+                                         +(new Vector2(0.0f,upwardForce)));
+                }
             }
         }
     }
-
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
