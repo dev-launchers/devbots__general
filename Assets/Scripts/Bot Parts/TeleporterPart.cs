@@ -9,17 +9,14 @@ public class TeleporterPart : BotPart
     private Rigidbody2D rb;
     private BotSensor sensor;
     private BotController controller;
-
     [SerializeField] private bool isRunning;
     private float timer;
-
-    [SerializeField] private float COOLDOWN = 2.2f;
-
+    
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
-        timer = COOLDOWN;
+        timer = GetCoolDown();
     }
 
     public void Update() {
@@ -33,7 +30,7 @@ public class TeleporterPart : BotPart
                 timer -= Time.deltaTime;
             }
             else {
-                timer = COOLDOWN; //Reset Timer
+                timer = GetCoolDown(); //Reset Timer
                 Vector2 enemyPos = sensor.GetNearestSensedBotPosition();
                 rb.position = enemyPos + new Vector2(0, 2);
                 //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot");
