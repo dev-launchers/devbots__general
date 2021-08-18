@@ -21,7 +21,7 @@ public class WingsPart : BotPart
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
-        timer = GetCoolDown();
+        timer = GetCoolDownTime();
     }
 
     public void Update()
@@ -40,7 +40,7 @@ public class WingsPart : BotPart
             }
             else
             {
-                timer = GetCoolDown(); //Reset Timer
+                timer = GetCoolDownTime(); //Reset Timer
                 //Use add relative force to rigidbody to thrust bot up and slightly forward. 
                 Vector2 appliedForce = new Vector2(wingForce.x * sensor.GetNearestSensedBotDirection(), wingForce.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);

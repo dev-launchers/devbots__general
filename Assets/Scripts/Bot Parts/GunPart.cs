@@ -22,7 +22,7 @@ public class GunPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
         enemyLayer = sensor.GetEnemyLayer();
-        timer = GetCoolDown();
+        timer = GetCoolDownTime();
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class GunPart : BotPart
                 timer -= Time.deltaTime;
             }
             else {
-                timer = GetCoolDown(); //Reset Timer
+                timer = GetCoolDownTime(); //Reset Timer
                 int enemyDirection = sensor.GetNearestSensedBotDirection();
     
                 //Faces attack at enemy, handled as local position to bot part

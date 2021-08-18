@@ -16,7 +16,7 @@ public class TeleporterPart : BotPart
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
-        timer = GetCoolDown();
+        timer = GetCoolDownTime();
     }
 
     public void Update() {
@@ -30,7 +30,7 @@ public class TeleporterPart : BotPart
                 timer -= Time.deltaTime;
             }
             else {
-                timer = GetCoolDown(); //Reset Timer
+                timer = GetCoolDownTime(); //Reset Timer
                 Vector2 enemyPos = sensor.GetNearestSensedBotPosition();
                 rb.position = enemyPos + new Vector2(0, 2);
                 //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot");

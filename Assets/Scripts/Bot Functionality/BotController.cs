@@ -10,7 +10,7 @@ public class BotController : MonoBehaviour
     private AudioManager audioManager;
     private Rigidbody2D rb;
     public UnityEvent DamageTakenEvent;
-    private float HP;
+    [SerializeField]private float HP= 1;
     public float GetHP { get { return HP; } } //Used for other scripts to get the health of this bot
     public void Awake() {
         DontDestroyOnLoad(this);
@@ -24,7 +24,7 @@ public class BotController : MonoBehaviour
             DamageTakenEvent = new UnityEvent();
 
 
-        HP = 1.0f;
+  
     }
 
     public void Update() {
@@ -51,7 +51,7 @@ public class BotController : MonoBehaviour
     }
 
     public void PlayAudio(string audioName) {
-        audioManager.Play(audioName);
+      //  audioManager.Play(audioName);
     }
 
     public void TakeDamage(float damage) {
@@ -67,7 +67,7 @@ public class BotController : MonoBehaviour
             //Instantiate(deathFX, transform.position, Quaternion.identity);
         }
         else {
-            audioManager.Play("Hit");
+           // audioManager.Play("Hit");
             //Instantiate(damageFX, transform.position, Quaternion.identity);
         }
     }
