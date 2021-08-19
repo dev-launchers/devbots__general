@@ -51,7 +51,7 @@ public class BotController : MonoBehaviour
     }
 
     public void PlayAudio(string audioName) {
-      //  audioManager.Play(audioName);
+        audioManager.Play(audioName);
     }
 
     public void TakeDamage(float damage) {
@@ -61,13 +61,13 @@ public class BotController : MonoBehaviour
             Destroy(sensor.GetNearestSensedBot());
             Destroy(gameObject);
             SceneManager.LoadScene(0);
-            //audioManager.Play("Death");
+            audioManager.Play("Death");
             //animator.Play("death");
             //Make a new gameObject for dead hull, or disable scripts?
             //Instantiate(deathFX, transform.position, Quaternion.identity);
         }
         else {
-           // audioManager.Play("Hit");
+            audioManager.Play("Hit");
             //Instantiate(damageFX, transform.position, Quaternion.identity);
         }
     }
