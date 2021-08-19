@@ -61,7 +61,7 @@ public class BotController : MonoBehaviour
             Destroy(sensor.GetNearestSensedBot());
             Destroy(gameObject);
             SceneManager.LoadScene(0);
-            audioManager.Play("Death");
+            //audioManager.Play("Death");
             //animator.Play("death");
             //Make a new gameObject for dead hull, or disable scripts?
             //Instantiate(deathFX, transform.position, Quaternion.identity);
