@@ -27,9 +27,10 @@ public class TeslaPart : BotPart
     }
 
     // Update is called once per frame
-    void Update()
+    public new void Update()
     {
         AttackStep();
+        base.Update();
     }
 
     public void AttackStep()
@@ -37,14 +38,9 @@ public class TeslaPart : BotPart
 
         if (isRunning)
         {
-
-            if (timer > 0)
+            if(!IsPartCoolingDown())
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = GetCoolDown(); //Reset Timer
+                ResetCooldownTimer();
 
                 //Instantiate effect at the position of the tesla tower and parent it with this transfom to keep its position with the bot
                 GameObject effect = Instantiate(teslaEffect, this.gameObject.transform.position, Quaternion.identity);
