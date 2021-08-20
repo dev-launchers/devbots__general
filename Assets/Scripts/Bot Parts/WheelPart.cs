@@ -7,6 +7,8 @@ public class WheelPart : BotPart
     [SerializeField] private float moveSpeed = default(float);
     [SerializeField] private float accelerationMagnitude = default(float);
 
+    private int currentDirection = 0;
+
     private Rigidbody2D rb;
     private BotSensor sensor;
 
@@ -17,24 +19,31 @@ public class WheelPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
     }
 
-    public void Update() {
+    public new void Update() {
         MoveStep();
 
+        base.Update();
     }
 
     public void MoveStep() {
         if (isRunning) {
-            int enemyDirection = sensor.GetNearestSensedBotDirection();
+            // Should we change direction? (can only change directions once every cooldown period)
+            if (!IsPartCoolingDown()) {
+                int enemyDirection = sensor.GetNearestSensedBotDirection();
+                currentDirection = enemyDirection;
+                ResetCooldownTimer();
+            }
 
             float mySpeed = rb.velocity.x;
-            if (mySpeed < moveSpeed && mySpeed > -moveSpeed) {
-                rb.AddRelativeForce(new Vector2(accelerationMagnitude*enemyDirection, 0), ForceMode2D.Force);
+            if (mySpeed <= moveSpeed && mySpeed >= -moveSpeed) {
+                rb.AddRelativeForce(new Vector2(accelerationMagnitude*currentDirection, 0), ForceMode2D.Force);
             }
         }
+
+        //base.MoveStep();
     }
 
-    public override void SetState(State state)
-    {
+    public override void SetState(State state) {
         isRunning = state.isActive;
     }
 }
