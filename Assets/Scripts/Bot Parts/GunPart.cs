@@ -18,8 +18,6 @@ public class GunPart : BotPart
     [SerializeField] private bool isRunning;
     private float timer;
 
-    private const float COOLDOWN = 2.0f;
-
         // Start is called before the first frame update
     void Start()
     {
@@ -29,9 +27,10 @@ public class GunPart : BotPart
     }
 
     // Update is called once per frame
-    void Update()
+    public new void Update()
     {
         AttackStep();
+        base.Update();
     }
 
     public override void SetState(State state)
@@ -44,11 +43,9 @@ public class GunPart : BotPart
 
         if (isRunning) {
 
-            if (timer > 0) {
-                timer -= Time.deltaTime;
-            }
-            else {
-                timer = COOLDOWN; //Reset Timer
+            if (!IsPartCoolingDown()){
+                ResetCooldownTimer();
+                
                 int enemyDirection = sensor.GetNearestSensedBotDirection();
     
                 //Faces attack at enemy, handled as local position to bot part
