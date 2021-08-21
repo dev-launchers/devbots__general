@@ -12,8 +12,6 @@ public class TeslaPart : BotPart
     private BotController controller;
     private int enemyLayer;
     [SerializeField] private bool isRunning;
-    private float timer;
-    private const float COOLDOWN = 2.0f;
 
     public override void SetState(State state)
     {
@@ -25,6 +23,7 @@ public class TeslaPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
         enemyLayer = sensor.GetEnemyLayer();
+        timer = GetCoolDownTime();
     }
 
     // Update is called once per frame
@@ -45,7 +44,7 @@ public class TeslaPart : BotPart
             }
             else
             {
-                timer = COOLDOWN; //Reset Timer
+                timer = GetCoolDownTime(); //Reset Timer
 
                 //Instantiate effect at the position of the tesla tower and parent it with this transfom to keep its position with the bot
                 GameObject effect = Instantiate(teslaEffect, this.gameObject.transform.position, Quaternion.identity);
@@ -56,7 +55,7 @@ public class TeslaPart : BotPart
                 Destroy(effect, 0.5f);
 
                 List<Collider2D> collisions = new List<Collider2D>(Physics2D.OverlapCircleAll(transform.position, attackRadius));
-                print(collisions.Count);
+                //print(collisions.Count);
                 foreach (Collider2D collision in collisions) {
                     if (collision.gameObject.layer == enemyLayer) {
                         print(GetInstanceID()+ " is colliding with "+ collision.gameObject.GetInstanceID());

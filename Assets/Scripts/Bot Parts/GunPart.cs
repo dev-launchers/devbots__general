@@ -16,16 +16,13 @@ public class GunPart : BotPart
     private BotController controller;
 
     [SerializeField] private bool isRunning;
-    private float timer;
-
-    private const float COOLDOWN = 2.0f;
-
         // Start is called before the first frame update
     void Start()
     {
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
         enemyLayer = sensor.GetEnemyLayer();
+        timer = GetCoolDownTime();
     }
 
     // Update is called once per frame
@@ -48,7 +45,7 @@ public class GunPart : BotPart
                 timer -= Time.deltaTime;
             }
             else {
-                timer = COOLDOWN; //Reset Timer
+                timer = GetCoolDownTime(); //Reset Timer
                 int enemyDirection = sensor.GetNearestSensedBotDirection();
     
                 //Faces attack at enemy, handled as local position to bot part

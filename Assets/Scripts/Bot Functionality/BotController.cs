@@ -10,7 +10,7 @@ public class BotController : MonoBehaviour
     private AudioManager audioManager;
     private Rigidbody2D rb;
     public UnityEvent DamageTakenEvent;
-    private float HP;
+    [SerializeField]private float HP= 1;
     public float GetHP { get { return HP; } } //Used for other scripts to get the health of this bot
     public void Awake() {
         DontDestroyOnLoad(this);
@@ -24,7 +24,7 @@ public class BotController : MonoBehaviour
             DamageTakenEvent = new UnityEvent();
 
 
-        HP = 1.0f;
+  
     }
 
     public void Update() {
