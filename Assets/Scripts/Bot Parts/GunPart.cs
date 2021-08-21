@@ -27,7 +27,7 @@ public class GunPart : BotPart
     }
 
     // Update is called once per frame
-    void Update()
+    public new void Update()
     {
         AttackStep();
         base.Update();
