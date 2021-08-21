@@ -51,7 +51,7 @@ public class BotController : MonoBehaviour
     }
 
     public void PlayAudio(string audioName) {
-      //  audioManager.Play(audioName);
+        audioManager.Play(audioName);
     }
 
     public void TakeDamage(float damage) {
@@ -67,7 +67,7 @@ public class BotController : MonoBehaviour
             //Instantiate(deathFX, transform.position, Quaternion.identity);
         }
         else {
-           // audioManager.Play("Hit");
+            audioManager.Play("Hit");
             //Instantiate(damageFX, transform.position, Quaternion.identity);
         }
     }
