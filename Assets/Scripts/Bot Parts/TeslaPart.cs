@@ -23,14 +23,9 @@ public class TeslaPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
         enemyLayer = sensor.GetEnemyLayer();
-        timer = GetCoolDownTime();
+        timer = GetCoolDown();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        AttackStep();
-    }
 
     public void AttackStep()
     {
@@ -44,7 +39,7 @@ public class TeslaPart : BotPart
             }
             else
             {
-                timer = GetCoolDownTime(); //Reset Timer
+                timer = GetCoolDown(); //Reset Timer
 
                 //Instantiate effect at the position of the tesla tower and parent it with this transfom to keep its position with the bot
                 GameObject effect = Instantiate(teslaEffect, this.gameObject.transform.position, Quaternion.identity);
@@ -94,5 +89,10 @@ public class TeslaPart : BotPart
         // Display the attack radius when selected
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
+
+    public override void BotPartUpdate()
+    {
+        AttackStep();
     }
 }

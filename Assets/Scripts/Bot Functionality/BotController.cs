@@ -47,7 +47,7 @@ public class BotController : MonoBehaviour
 
     public void ApplyForce(Vector3 force) {
         //The desired force is sent by the attacking bot, but may be countered by certain effects
-        rb.AddForce(force);
+        rb.AddRelativeForce(force, ForceMode2D.Impulse);
     }
 
     public void PlayAudio(string audioName) {
