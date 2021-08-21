@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba3e26287c0d494b9476dc02f16fd02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coolDown: 2
   moveSpeed: 2
   accelerationMagnitude: 1
   isRunning: 0
@@ -111,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3166250824774524065, guid: 21f4fc3656af72546a91065f7cae266e,
         type: 3}
