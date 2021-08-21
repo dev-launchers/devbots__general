@@ -22,11 +22,6 @@ public class SelfDetonatorPart : BotPart
         return;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        SelfDetonatorAttack();
-    }
 
     // Side Detonator Attack
     public void SelfDetonatorAttack()
@@ -59,5 +54,10 @@ public class SelfDetonatorPart : BotPart
     {
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    public override void BotPartUpdate()
+    {
+        SelfDetonatorAttack();
     }
 }
