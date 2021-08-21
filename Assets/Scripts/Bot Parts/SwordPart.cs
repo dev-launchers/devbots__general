@@ -28,23 +28,19 @@ public class SwordPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
         enemyLayer = sensor.GetEnemyLayer();
     }
-    private void Update()
+    private new void Update()
     {
         AttackStep();
+        base.Update();
     }
     public void AttackStep()
     {
 
         if (isRunning)
         {
-
-            if (timer > 0)
+            if(!IsPartCoolingDown())        
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = GetCoolDown(); //Reset Timer
+                ResetCooldownTimer();
 
                 // Set trigger to play animation of sword rotating 
                 swordAnimator.SetTrigger("swordAttack");
