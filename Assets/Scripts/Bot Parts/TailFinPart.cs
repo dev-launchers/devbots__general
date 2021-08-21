@@ -24,7 +24,7 @@ public class TailFinPart : BotPart
         controller = GetComponentInParent<BotController>();
         //wheelPart = transform.parent.GetComponentInChildren<WheelPart>();
         //teleporterPart = transform.parent.GetComponentInChildren<TeleporterPart>();
-        timer = 0.0f;  
+        timer = GetCoolDown();  
     }
 
     public void Update()
