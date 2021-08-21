@@ -24,14 +24,10 @@ public class SelfDetonatorPart : BotPart
         return;
     }
 
-    void Start()
-    {
-        timer = 0.0f;
-    }
-
-    void Update()
+    public new void Update()
     {
         SelfDetonatorAttack();
+        base.Update();
     }
 
     // Side Detonator Attack
@@ -43,13 +39,9 @@ public class SelfDetonatorPart : BotPart
                                                    enemyLayers);
         if (enemyCollider2D)
         {
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = GetCoolDown(); //Reset Timer
+            if (!IsPartCoolingDown()){
+                ResetCooldownTimer();
+
                 Debug.Log(enemyCollider2D.name + " was attacked by self detonator part.");
                 // TODO: Play the side detonator attack animation.
                 // TODO: Implement damage to enemy health. (Use separate class?)
@@ -67,6 +59,7 @@ public class SelfDetonatorPart : BotPart
             }
         }
     }
+    
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
