@@ -19,11 +19,6 @@ public class WheelPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
     }
 
-    public new void Update() {
-        MoveStep();
-
-        base.Update();
-    }
 
     public void MoveStep() {
         if (isRunning) {
@@ -45,5 +40,10 @@ public class WheelPart : BotPart
 
     public override void SetState(State state) {
         isRunning = state.isActive;
+    }
+
+    public override void BotPartUpdate()
+    {
+        MoveStep();
     }
 }

@@ -25,11 +25,6 @@ public class DrillBotPart : BotPart
         return;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        drillAttack();
-    }
 
     // drillAttack
     public void drillAttack()
@@ -58,5 +53,10 @@ public class DrillBotPart : BotPart
 
         // Draw a wire sphere at attack position to show its range in Unity editor.
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    public override void BotPartUpdate()
+    {     
+        drillAttack();
     }
 }

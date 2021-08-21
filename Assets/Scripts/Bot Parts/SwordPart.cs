@@ -26,12 +26,9 @@ public class SwordPart : BotPart
         rb = GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         enemyLayer = sensor.GetEnemyLayer();
-        timer = GetCoolDownTime();
+        timer = GetCoolDown();
     }
-    private void Update()
-    {
-        AttackStep();
-    }
+
     public void AttackStep()
     {
 
@@ -44,7 +41,7 @@ public class SwordPart : BotPart
             }
             else
             {
-                timer = GetCoolDownTime(); //Reset Timer
+                timer = GetCoolDown(); //Reset Timer
 
                 // Set trigger to play animation of sword rotating 
                 swordAnimator.SetTrigger("swordAttack");
@@ -80,5 +77,10 @@ public class SwordPart : BotPart
 
         Gizmos.DrawWireSphere(attackPos, attackDistance);
 
+    }
+
+    public override void BotPartUpdate()
+    {
+        AttackStep();
     }
 }
