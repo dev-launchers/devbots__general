@@ -46,7 +46,7 @@ public class BotSensor : MonoBehaviour
         UpdateActiveBots();
         int enemyDirection = 1;
         //Find if enemy to the left or right
-        if (gameObject.transform.position.x - nearestBot.transform.position.x > 0) {
+        if (gameObject.transform.position.x > nearestBot.transform.position.x) {
             enemyDirection = -1;
         }
         return enemyDirection;
