@@ -14,7 +14,6 @@ public class TailFinPart : BotPart
     private BotController controller;
     
     [SerializeField] private bool isRunning;
-    private float timer;
 
     public void Start()
     {
@@ -24,7 +23,6 @@ public class TailFinPart : BotPart
         controller = GetComponentInParent<BotController>();
         //wheelPart = transform.parent.GetComponentInChildren<WheelPart>();
         //teleporterPart = transform.parent.GetComponentInChildren<TeleporterPart>();
-        timer = 0.0f;  
     }
 
     public new void Update()
