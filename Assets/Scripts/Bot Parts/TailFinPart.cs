@@ -23,6 +23,7 @@ public class TailFinPart : BotPart
         controller = GetComponentInParent<BotController>();
         //wheelPart = transform.parent.GetComponentInChildren<WheelPart>();
         //teleporterPart = transform.parent.GetComponentInChildren<TeleporterPart>();
+        timer = GetCoolDown();  
     }
 
     public new void Update()
@@ -38,6 +39,7 @@ public class TailFinPart : BotPart
             if (!IsPartCoolingDown())
             {
                 ResetCooldownTimer();
+
                 //Use add relative force to rigidbody to thrust bot backwards. 
                 Vector2 appliedForce = new Vector2(-backThrust.x * sensor.GetNearestSensedBotDirection(), backThrust.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);

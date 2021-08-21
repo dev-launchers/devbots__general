@@ -13,7 +13,6 @@ public class TeslaPart : BotPart
     private int enemyLayer;
     [SerializeField] private bool isRunning;
     private float timer;
-    private const float COOLDOWN = 2.0f;
 
     public override void SetState(State state)
     {
@@ -28,9 +27,10 @@ public class TeslaPart : BotPart
     }
 
     // Update is called once per frame
-    void Update()
+    public new void Update()
     {
         AttackStep();
+        base.Update();
     }
 
     public void AttackStep()
@@ -38,14 +38,9 @@ public class TeslaPart : BotPart
 
         if (isRunning)
         {
-
-            if (timer > 0)
+            if(!IsPartCoolingDown())
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = COOLDOWN; //Reset Timer
+                ResetCooldownTimer();
 
                 //Instantiate effect at the position of the tesla tower and parent it with this transfom to keep its position with the bot
                 GameObject effect = Instantiate(teslaEffect, this.gameObject.transform.position, Quaternion.identity);
