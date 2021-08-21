@@ -15,8 +15,6 @@ public class SelfDetonatorPart : BotPart
     [SerializeField] private float knockBackStrength;
     [SerializeField] private float upwardForce;
     [SerializeField] private LayerMask enemyLayers;
-
-    private float timer;
     
     // Inherited from BotPart
     override public void SetState(State state)
