@@ -27,23 +27,19 @@ public class TailFinPart : BotPart
         timer = 0.0f;  
     }
 
-    public void Update()
+    public new void Update()
     {
         BackStep();
+        base.Update();
     }
 
     public void BackStep()
     {
         if (isRunning)
         {
-
-            if (timer > 0)
+            if (!IsPartCoolingDown())
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = GetCoolDown(); //Reset Timer
+                ResetCooldownTimer();
                 //Use add relative force to rigidbody to thrust bot backwards. 
                 Vector2 appliedForce = new Vector2(-backThrust.x * sensor.GetNearestSensedBotDirection(), backThrust.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
