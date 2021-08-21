@@ -23,23 +23,19 @@ public class WingsPart : BotPart
         timer = 0.0f;
     }
 
-    public void Update()
+    public new void Update()
     {
         BackStep();
+        base.Update();
     }
 
     public void BackStep()
     {
         if (isRunning)
         {
-
-            if (timer > 0)
+            if (!IsPartCoolingDown())
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = GetCoolDown(); //Reset Timer
+                ResetCooldownTimer();
                 //Use add relative force to rigidbody to thrust bot up and slightly forward. 
                 Vector2 appliedForce = new Vector2(wingForce.x * sensor.GetNearestSensedBotDirection(), wingForce.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
