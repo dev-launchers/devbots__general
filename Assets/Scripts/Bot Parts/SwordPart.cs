@@ -12,6 +12,7 @@ public class SwordPart : BotPart
     [SerializeField] private Vector2 thrustForce = default(Vector2);
     [SerializeField] private bool isRunning;
     private int enemyLayer;
+
     private Animator swordAnimator;//Animator used for sword rotation
     private Rigidbody2D rb;
     private BotSensor sensor;
@@ -34,14 +35,9 @@ public class SwordPart : BotPart
 
         if (isRunning)
         {
-
-            if (timer > 0)
+            if(!IsPartCoolingDown())        
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = GetCoolDown(); //Reset Timer
+                ResetCooldownTimer();
 
                 // Set trigger to play animation of sword rotating 
                 swordAnimator.SetTrigger("swordAttack");

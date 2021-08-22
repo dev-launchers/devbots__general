@@ -15,7 +15,6 @@ public class TailFinPart : BotPart
     
     [SerializeField] private bool isRunning;
 
-
     public void Start()
     {
 
@@ -31,14 +30,10 @@ public class TailFinPart : BotPart
     {
         if (isRunning)
         {
+            if (!IsPartCoolingDown())
+            {
+                ResetCooldownTimer();
 
-            if (timer > 0)
-            {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = GetCoolDown(); //Reset Timer
                 //Use add relative force to rigidbody to thrust bot backwards. 
                 Vector2 appliedForce = new Vector2(-backThrust.x * sensor.GetNearestSensedBotDirection(), backThrust.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);

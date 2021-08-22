@@ -25,23 +25,25 @@ public class DrillBotPart : BotPart
         return;
     }
 
-
     // drillAttack
     public void drillAttack()
     {
         if (isRunning) {
-            // TODO:  Play the drill attack animation.
+            if(!IsPartCoolingDown()){
+                ResetCooldownTimer();
+                // TODO:  Play the drill attack animation.
 
-            // Detect enemy in range of attack.
-            Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayers);
+                // Detect enemy in range of attack.
+                Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayers);
 
-            // Damage enemy
-            // TODO: Implement damage to enemy health.
+                // Damage enemy
+                // TODO: Implement damage to enemy health.
 
-            if(enemy)
-            {
-                // Outputs message to Unity Editor Console to verify the attack.
-                Debug.Log(enemy.name + " was attacked by drill.");
+                if(enemy)
+                {
+                    // Outputs message to Unity Editor Console to verify the attack.
+                    Debug.Log(enemy.name + " was attacked by drill.");
+                }
             }
         }
     }
