@@ -2,10 +2,16 @@ using UnityEngine;
 
 public abstract class BotPart : MonoBehaviour
 {
-    [SerializeField] private float coolDown; 
+    [SerializeField] private float coolDown;
+    protected float timer;
+    
+    public abstract void BotPartUpdate();
     abstract public void SetState(State state);
     //[SerializeField] abstract private bool isRunning;
-    private float timer = 0;
+
+    public float GetCoolDownTimer(){ 
+        return timer;
+    }
 
     public float GetCoolDown() {
         return coolDown;
@@ -23,8 +29,10 @@ public abstract class BotPart : MonoBehaviour
         timer = coolDown;
     }
 
-    public void Update() {
+    private void Update() {
         AdvanceCooldownTimer();
+        BotPartUpdate();
     }
+
 
 }

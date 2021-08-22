@@ -13,21 +13,12 @@ public class WingsPart : BotPart
     private BotController controller;
 
     [SerializeField] private bool isRunning;
-    private float timer;
 
     public void Start()
     {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
-        timer = 0.0f;
-    }
-
-    public new void Update()
-    {
-        BackStep();
-        base.Update();
-    }
 
     public void BackStep()
     {
@@ -47,5 +38,10 @@ public class WingsPart : BotPart
     public override void SetState(State state)
     {
         isRunning = state.isActive;
+    }
+
+    public override void BotPartUpdate()
+    {
+        BackStep();
     }
 }

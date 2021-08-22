@@ -10,18 +10,12 @@ public class TeleporterPart : BotPart
     private BotSensor sensor;
     private BotController controller;
     [SerializeField] private bool isRunning;
-    private float timer;
-    
+
     public void Start() {
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
         timer = GetCoolDown();
-    }
-
-    public new void Update() {
-        MoveStep();
-        base.Update();
     }
 
     public void MoveStep() {
@@ -41,5 +35,10 @@ public class TeleporterPart : BotPart
     public override void SetState(State state)
     {
         isRunning = state.isActive;
+    }
+
+    public override void BotPartUpdate()
+    {
+        MoveStep();
     }
 }

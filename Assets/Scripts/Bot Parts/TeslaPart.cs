@@ -12,7 +12,6 @@ public class TeslaPart : BotPart
     private BotController controller;
     private int enemyLayer;
     [SerializeField] private bool isRunning;
-    private float timer;
 
     public override void SetState(State state)
     {
@@ -24,13 +23,7 @@ public class TeslaPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
         enemyLayer = sensor.GetEnemyLayer();
-    }
-
-    // Update is called once per frame
-    public new void Update()
-    {
-        AttackStep();
-        base.Update();
+        timer = GetCoolDown();
     }
 
     public void AttackStep()
@@ -51,7 +44,7 @@ public class TeslaPart : BotPart
                 Destroy(effect, 0.5f);
 
                 List<Collider2D> collisions = new List<Collider2D>(Physics2D.OverlapCircleAll(transform.position, attackRadius));
-                print(collisions.Count);
+                //print(collisions.Count);
                 foreach (Collider2D collision in collisions) {
                     if (collision.gameObject.layer == enemyLayer) {
                         print(GetInstanceID()+ " is colliding with "+ collision.gameObject.GetInstanceID());
@@ -90,5 +83,10 @@ public class TeslaPart : BotPart
         // Display the attack radius when selected
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attackRadius);
+    }
+
+    public override void BotPartUpdate()
+    {
+        AttackStep();
     }
 }

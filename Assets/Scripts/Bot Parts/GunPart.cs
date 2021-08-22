@@ -16,7 +16,6 @@ public class GunPart : BotPart
     private BotController controller;
 
     [SerializeField] private bool isRunning;
-    private float timer;
 
         // Start is called before the first frame update
     void Start()
@@ -24,13 +23,13 @@ public class GunPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
         enemyLayer = sensor.GetEnemyLayer();
+        timer = GetCoolDown();
     }
 
     // Update is called once per frame
     public new void Update()
     {
-        AttackStep();
-        base.Update();
+
     }
 
     public override void SetState(State state)
@@ -46,6 +45,7 @@ public class GunPart : BotPart
             if (!IsPartCoolingDown()){
                 ResetCooldownTimer();
                 
+
                 int enemyDirection = sensor.GetNearestSensedBotDirection();
     
                 //Faces attack at enemy, handled as local position to bot part
@@ -64,5 +64,10 @@ public class GunPart : BotPart
                 controller.PlayAudio("Hit");
             }
         }
+    }
+
+    public override void BotPartUpdate()
+    {
+        AttackStep();
     }
 }

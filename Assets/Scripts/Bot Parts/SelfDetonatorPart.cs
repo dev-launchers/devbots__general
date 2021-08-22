@@ -22,11 +22,6 @@ public class SelfDetonatorPart : BotPart
         return;
     }
 
-    public new void Update()
-    {
-        SelfDetonatorAttack();
-        base.Update();
-    }
 
     // Side Detonator Attack
     public void SelfDetonatorAttack()
@@ -62,5 +57,10 @@ public class SelfDetonatorPart : BotPart
     {
         if (attackPoint == null) return;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    public override void BotPartUpdate()
+    {
+        SelfDetonatorAttack();
     }
 }

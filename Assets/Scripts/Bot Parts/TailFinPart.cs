@@ -26,12 +26,6 @@ public class TailFinPart : BotPart
         timer = GetCoolDown();  
     }
 
-    public new void Update()
-    {
-        BackStep();
-        base.Update();
-    }
-
     public void BackStep()
     {
         if (isRunning)
@@ -51,5 +45,10 @@ public class TailFinPart : BotPart
     public override void SetState(State state)
     {
         isRunning = state.isActive;
+    }
+
+    public override void BotPartUpdate()
+    {        
+        BackStep();
     }
 }

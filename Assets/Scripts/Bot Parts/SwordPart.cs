@@ -12,7 +12,7 @@ public class SwordPart : BotPart
     [SerializeField] private Vector2 thrustForce = default(Vector2);
     [SerializeField] private bool isRunning;
     private int enemyLayer;
-    private float timer;
+
     private Animator swordAnimator;//Animator used for sword rotation
     private Rigidbody2D rb;
     private BotSensor sensor;
@@ -27,12 +27,9 @@ public class SwordPart : BotPart
         rb = GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         enemyLayer = sensor.GetEnemyLayer();
+        timer = GetCoolDown();
     }
-    private new void Update()
-    {
-        AttackStep();
-        base.Update();
-    }
+
     public void AttackStep()
     {
 
@@ -76,5 +73,10 @@ public class SwordPart : BotPart
 
         Gizmos.DrawWireSphere(attackPos, attackDistance);
 
+    }
+
+    public override void BotPartUpdate()
+    {
+        AttackStep();
     }
 }
