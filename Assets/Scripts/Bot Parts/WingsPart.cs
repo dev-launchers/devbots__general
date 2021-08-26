@@ -19,7 +19,8 @@ public class WingsPart : BotPart
         rb = gameObject.GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
-
+    }
+    
     public void BackStep()
     {
         if (isRunning)

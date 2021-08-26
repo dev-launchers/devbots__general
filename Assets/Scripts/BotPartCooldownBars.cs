@@ -46,7 +46,7 @@ class BotPartCooldownBars
             //Instantiate a cooldown prefab object and set it as a child of the choosen layout transform
             var cooldownBar = Object.Instantiate(cooldownBarPrefab, layout);
             //Set the max value of the slider of the cooldown prefab to the cooldown time of this botpart
-            cooldownBar.GetComponentInChildren<Slider>().maxValue = botPart.GetCoolDownTime();
+            cooldownBar.GetComponentInChildren<Slider>().maxValue = botPart.GetCoolDownTimer();
             //Set the text of the text object belonging to the prefab to the current botpart name
             cooldownBar.GetComponentInChildren<Text>().text = botPart.name;
             // Create a BotpartCoolDownObject using the cooldownBar Instantiated and the botpart as parameters
@@ -66,7 +66,7 @@ class BotPartCooldownBars
             //Set the slider belonging to each cooldown object
             Slider slider = botPartCooldownObject.coolDownBar.GetComponentInChildren<Slider>();
             //Get the cooldown time bbelonging to this botpart
-            float coolDownTime = botPartCooldownObject.botPart.GetCoolDownTime();
+            float coolDownTime = botPartCooldownObject.botPart.GetCoolDownTimer();
             //Get the timer time attatch to thia bot
             float timer = botPartCooldownObject.botPart.GetCoolDownTimer();
             slider.value = coolDownTime - timer;

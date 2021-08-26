@@ -26,12 +26,6 @@ public class GunPart : BotPart
         timer = GetCoolDown();
     }
 
-    // Update is called once per frame
-    public new void Update()
-    {
-
-    }
-
     public override void SetState(State state)
     {
         isRunning = state.isActive;
