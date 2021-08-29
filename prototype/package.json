@@ -29,13 +29,15 @@
   "devDependencies": {
     "@maticnetwork/maticjs": "^2.0.40",
     "@openzeppelin/test-helpers": "^0.5.12",
-    "@truffle/hdwallet-provider": "^1.2.3",
+    "@truffle/hdwallet-provider": "^1.4.3",
     "dotenv": "^9.0.0",
-    "truffle-plugin-verify": "^0.5.8"
-  },
-  "dependencies": {
+    "eip-712": "^0.4.3",
+    "truffle-assertions": "^0.9.2",
+    "truffle-plugin-verify": "^0.5.8",
     "@openzeppelin/contracts": "^4.1.0",
     "abdk-libraries-solidity": "^3.0.0",
+    "ethereumjs-util": "^7.1.0",
+    "ethereumjs-wallet": "^1.0.1",
     "oneclick": "^1.0.2",
     "solidity-bytes-utils": "^0.8.0"
   }

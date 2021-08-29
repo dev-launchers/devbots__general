@@ -12,7 +12,7 @@ contract BotPart is ERC721PresetMinterPauserAutoId {
 
   Counters.Counter private _tokenIds;
 
-  mapping(uint256 => uint32) private tokenPartType; // Lowest PartType starts at = 0x00000020 = 32
+  mapping(uint256 => uint32) private tokenPartType;
   mapping(uint256 => uint128) private tokenStats;
   
   address public metaTransactionForwarder;
@@ -26,7 +26,7 @@ contract BotPart is ERC721PresetMinterPauserAutoId {
   }
 
   function mint(address) pure public override {
-    revert("Function not used!");
+    revert("Function disabled");
   }
 
   function mintItem(address player, uint32 _tokenPartType, uint128 _tokenStats) public onlyRole(MINTER_ROLE) returns (uint256) {
@@ -35,9 +35,20 @@ contract BotPart is ERC721PresetMinterPauserAutoId {
     uint256 newItemId = _tokenIds.current();
     _mint(player, newItemId);
     _setTokenPartType(newItemId, _tokenPartType);
+    // Disallow zero Stats (highly unlikely)
+    if(_tokenStats == 0){
+      _tokenStats = 1;
+    }
     _setTokenStats(newItemId, _tokenStats);
 
     return newItemId;
+  }
+
+  function _burn(uint256 tokenId) internal virtual override {
+        super._burn(tokenId);
+
+        delete tokenPartType[tokenId];
+        delete tokenStats[tokenId];
   }
 
   function _setTokenPartType(uint256 tokenID, uint32 partType) private {
@@ -48,8 +59,12 @@ contract BotPart is ERC721PresetMinterPauserAutoId {
     tokenStats[tokenID] = _tokenStats;
   }
 
+  function exists(uint256 tokenID) view public returns (bool) {
+    return tokenStats[tokenID] != 0;
+  }
+
   function getRawTokenStat(uint256 tokenID, uint8 statNumber) view public returns (uint32) {
-    return SafeCast.toUint32((tokenStats[tokenID] >> (statNumber*32)) % 2**32);
+    return SafeCast.toUint32((tokenStats[tokenID] >> (statNumber*32)) & 0xFFFFFFFF);
   }
 
   function getBotPartType(uint256 tokenID) view public returns (uint32){

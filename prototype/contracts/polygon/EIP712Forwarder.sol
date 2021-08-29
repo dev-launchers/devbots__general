@@ -29,6 +29,8 @@
 pragma solidity ^0.8;
 pragma experimental ABIEncoderV2;
 
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+
 interface ERC1271 {
     function isValidSignature(bytes calldata data, bytes calldata signature) external view returns (bytes4 magicValue);
 }
@@ -60,34 +62,6 @@ interface Forwarder {
         SignatureType signatureType,
         bytes calldata signature
     ) external payable;
-}
-
-library SigUtil {
-    function recover(bytes32 hash, bytes memory sig) internal pure returns (address recovered) {
-        require(sig.length == 65, "SIGNATURE_INVALID_LENGTH");
-
-        bytes32 r;
-        bytes32 s;
-        uint8 v;
-        assembly {
-            r := mload(add(sig, 32))
-            s := mload(add(sig, 64))
-            v := byte(0, mload(add(sig, 96)))
-        }
-
-        // Version of signature should be 27 or 28, but 0 and 1 are also possible versions
-        if (v < 27) {
-            v += 27;
-        }
-        require(v == 27 || v == 28, "SIGNATURE_INVALID_V");
-
-        recovered = ecrecover(hash, v, r, s);
-        require(recovered != address(0), "SIGNATURE_ZERO_ADDRESS");
-    }
-
-    function eth_sign_prefix(bytes32 hash) internal pure returns (bytes memory) {
-        return abi.encodePacked("\x19Ethereum Signed Message:\n32", hash);
-    }
 }
 
 /// @notice Forwarder for Meta Transactions Using EIP712 Signing Standard, also implement default Replay Protection using 2 dimensional nonces
@@ -202,7 +176,7 @@ contract EIP712Forwarder is Forwarder, ReplayProtection {
         } else if(signatureType == SignatureType.EIP1654){
             require(ERC1654(message.from).isValidSignature(keccak256(dataToHash), signature) == ERC1654_MAGICVALUE, "SIGNATURE_1654_INVALID");
         } else {
-            address signer = SigUtil.recover(keccak256(dataToHash), signature);
+            address signer = ECDSA.recover(keccak256(dataToHash), signature);
             require(signer == message.from, "SIGNATURE_WRONG_SIGNER");
         }
         return message.from;

@@ -60,6 +60,10 @@ contract BotHull is ERC721, IERC721Receiver, AccessControl {
     _fillSlot(botHullID, slotID, part, from);
   }
 
+  function getPartSlots(uint256 botHullID) view public returns (uint256[4] memory){
+    return partSlots[botHullID];
+  }
+
   function _fillSlot(uint256 botHullID, uint8 slotID, uint256 part, address from) private {
     BotPart(botPartContract).safeTransferFrom(from, address(this), part);
     partSlots[botHullID][slotID] = part;
