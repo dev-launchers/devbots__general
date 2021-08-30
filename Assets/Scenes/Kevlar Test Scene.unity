@@ -1675,6 +1675,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 20.866
       objectReference: {fileID: 0}
+    - target: {fileID: 6445505664823348032, guid: 06345ee7d9af06949be17088ab68c014,
+        type: 3}
+      propertyPath: sliderTextDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6786567294282938749, guid: 06345ee7d9af06949be17088ab68c014,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2972,6 +2977,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 82.01998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445505664823348032, guid: 06345ee7d9af06949be17088ab68c014,
+        type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445505664823348032, guid: 06345ee7d9af06949be17088ab68c014,
+        type: 3}
+      propertyPath: sliderTextDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7236876732892360868, guid: 06345ee7d9af06949be17088ab68c014,
         type: 3}
