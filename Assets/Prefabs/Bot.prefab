@@ -102,6 +102,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab71af02dec8cda499a2f4310365d216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageTakenEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  HP: 1
+  slots:
+    top: {fileID: 2218394917664512222}
+    side: {fileID: 4064826110347054174}
+    bottom: {fileID: 3323561284705917647}
+    back: {fileID: 9079137432710273378}
 --- !u!95 &1905763343590494314
 Animator:
   serializedVersion: 3
@@ -340,7 +349,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -786320585
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 39deb41d956f4194d9dd7e71b59a208f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -422,7 +431,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -786320585
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 169f5099e6918634dad4c1819675f679, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
