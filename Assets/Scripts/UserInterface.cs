@@ -9,9 +9,6 @@ public class UserInterface : MonoBehaviour
     [SerializeField] HealthBar enemyHealthBar;
     //Prefab used to instantiate a cooldown bar
     [SerializeField] GameObject cooldownBarPrefab;
-    [Header("Layout transform belonging to each bot for cooldown bars")]
-    [SerializeField] Transform playerCooldownLayout;
-    [SerializeField] Transform enemyCooldownLayout;
 
     private void Awake()
     {
