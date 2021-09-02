@@ -371,6 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetBot: {fileID: 721326015}
   targetSlot: {fileID: 721326016}
+  slotPosition: 3
   options:
   - {fileID: 5726450835038516284, guid: e7c847d38fb666144a7d4be0cc5b25a5, type: 3}
   - {fileID: 5497557742926636410, guid: e2f62a27fccbbb048bf103c6fc8509aa, type: 3}
@@ -2869,6 +2870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetBot: {fileID: 721326015}
   targetSlot: {fileID: 1025444609}
+  slotPosition: 2
   options:
   - {fileID: 9114244139634852574, guid: fb8d26ba44e01774090a511c05903f02, type: 3}
   - {fileID: 9114244139634852574, guid: b80df119c99d20a49a7afe7942721bc5, type: 3}
@@ -3460,6 +3462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetBot: {fileID: 721326015}
   targetSlot: {fileID: 1214146723}
+  slotPosition: 0
   options:
   - {fileID: 7741983093954069235, guid: e4f6e9c68b57e704387e9dc38b67fefa, type: 3}
   - {fileID: 1292309468158379240, guid: 2bb874502daa2a44fab9455b66fbeb6c, type: 3}
@@ -3797,6 +3800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetBot: {fileID: 721326015}
   targetSlot: {fileID: 721326017}
+  slotPosition: 1
   options: []
 --- !u!1 &1888345588
 GameObject:
