@@ -10,13 +10,14 @@ public class BotController : MonoBehaviour
     private Rigidbody2D rb;
     public UnityEvent DamageTakenEvent;
     [SerializeField] private float HP = 1;
+    [SerializeField] private float deathAnimationTime = 0;
     //class used to locate and change slots and the botparts which are on each slot
     public Slots slots;
 
     //Get this bot's current HP
     public float GetGetHP()
-    { 
-        return HP; 
+    {
+        return HP;
     }
 
     public void Awake()
@@ -76,9 +77,13 @@ public class BotController : MonoBehaviour
         DamageTakenEvent.Invoke();
         if (HP <= 0.0f)
         {
-            Destroy(sensor.GetNearestSensedBot());
-            Destroy(gameObject);
-            SceneManager.LoadScene(0);
+            //start botdestroyed coroutine when bot reaches zero health
+            StartCoroutine(BotDestroyed());
+
+            //Destroy(sensor.GetNearestSensedBot());
+            //Destroy(gameObject);
+
+
             //audioManager.Play("Death");
             //animator.Play("death");
             //Make a new gameObject for dead hull, or disable scripts?
@@ -88,6 +93,23 @@ public class BotController : MonoBehaviour
         {
             audioManager.Play("Hit");
             //Instantiate(damageFX, transform.position, Quaternion.identity);
+        }
+    }
+    public IEnumerator BotDestroyed()
+    {
+        //run death animation here and change deathAnimationTime in the inspector
+
+        //delay to play animation before changing scene
+        yield return new WaitForSeconds(deathAnimationTime);
+
+        //check if bot desstroyed is the players or not then load appropiate scene
+        if (sensor.IsPlayer())
+        {
+            SceneHandler.LoadLoseScene();
+        }
+        else
+        {
+            SceneHandler.LoadVictoryScene();
         }
     }
 }
