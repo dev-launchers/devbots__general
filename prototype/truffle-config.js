@@ -4,6 +4,7 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 require('dotenv').config();
 const mnemonic = process.env["MNEMONIC"];
 const infuraProjectId = process.env["INFURA_PROJECT_ID"];
+const maticVigilAppId = process.env["MATIC_VIGIL_APP_ID"];
 
 module.exports = {
 
@@ -81,14 +82,15 @@ module.exports = {
         mnemonic: {
           phrase: mnemonic
         },
-        providerOrUrl:  `https://rpc-mumbai.matic.today`,
+        providerOrUrl:  `https://rpc-mumbai.maticvigil.com/v1/` + maticVigilAppId,
         chainId: 80001
       }),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true,
-      chainId: 80001
+      chainId: 80001,
+      gasPrice: 1000000000
     },
     //polygon mainnet
     polygon_mainnet: {
