@@ -1,4 +1,4 @@
-# How to Contribute to the DevBots
+# How to Contribute to DevBots
 
 ## Requirements:
 Before you start contributing, you're going to need a few things:
