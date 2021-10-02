@@ -57,3 +57,5 @@ We use the [C# coding conventions](https://docs.microsoft.com/en-us/dotnet/cshar
         - It doesn't comply with the standards we've set forth
         - It would be wise to add a new feature
         - Or, something is missing or confusing
+
+*(Template credit: Mohammed Maqbol Enjoy2Live)*
