@@ -21,7 +21,7 @@ Before you start contributing, you're going to need a few things:
 
 ## Code Style
 
-We use the [C# coding conventions](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)
+We use [C# coding conventions](https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions)
 
 ## Commits, Branches, and Pull Requests
 - Before starting anything, make sure you:
