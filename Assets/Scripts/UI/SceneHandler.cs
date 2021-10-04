@@ -8,20 +8,34 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class SceneHandler : MonoBehaviour
 {
-public static void LoadCustomizeBotScene()
+    public static void LoadMainMenuScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main Menu Scene");
+    }
+
+    public static void LoadCustomizeBotScene()
+    {
+        SceneManager.LoadScene("Bot Customize Scene");
+    } 
+    public static void LoadMarketplaceScene()
+    {
+        SceneManager.LoadScene("Marketplace Scene");
     }
     public static void LoadCombatScene()
     {
-        SceneManager.LoadScene(1);
-    }
+        SceneManager.LoadScene("Combat");
+    } 
+
     public static void LoadVictoryScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Victory Scene");
     }
     public static void LoadLoseScene()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Lose Scene");
+    }
+    public static void LoadSettingsScene()
+    {
+        SceneManager.LoadScene("Settings Scene");
     }
 }

@@ -13,7 +13,8 @@ public class BotController : MonoBehaviour
     [SerializeField] private float deathAnimationTime = 0;
     //class used to locate and change slots and the botparts which are on each slot
     public Slots slots;
-
+    //bool used to determine whether this bot has already been created
+    public static bool created = false;
     //Get this bot's current HP
     public float GetGetHP()
     {
@@ -22,18 +23,32 @@ public class BotController : MonoBehaviour
 
     public void Awake()
     {
-        DontDestroyOnLoad(this);
+        if (!created)
+        {
+            //if this bot hasn't been created add it to dontdestroy on load
+      DontDestroyOnLoad(this);
+            created = true;
+        }
+        else
+        {
+            //if this bot has been created already destroy this bot
+            Destroy(this.gameObject);
+        }
+  
+    }
+    public void OnEnable()
+    {
+        //Delegate used to trigger Onsceneloaded method when a new scene is loaded
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void Start()
-    {
+    {        
         sensor = GetComponent<BotSensor>();
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         if (DamageTakenEvent == null)
             DamageTakenEvent = new UnityEvent();
-
-
 
     }
 
@@ -45,6 +60,28 @@ public class BotController : MonoBehaviour
             FaceEnemy();
         }
     }
+    /// <summary>
+    /// Method called when a scene is loaded
+    /// </summary>
+    /// <param name="scene">the name of new scene that is loaded</param>
+    /// <param name="loadSceneMode"></param>
+    private void OnSceneLoaded(Scene scene,LoadSceneMode loadSceneMode)
+    {
+        //check new loaded scene's name
+if (scene.name == "Main Menu Scene" || scene.name == "Bot Customize Scene"|| scene.name == "Combat")
+        {
+            //activate this bot
+            gameObject.SetActive(true);
+            //set bot's position to the botStartPos gameobjects position
+            transform.position = GameObject.Find("botStartPos").transform.position;
+        }
+        else if (scene.name == "Marketplace Scene"|| scene.name == "Settings Scene")
+        {
+            //deactivate this bot
+            gameObject.SetActive(false);
+        }
+    }
+
 
     private void FaceEnemy()
     {
