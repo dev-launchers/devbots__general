@@ -159,7 +159,7 @@ MonoBehaviour:
   enemyHealthBar: {fileID: 1852994894}
   cooldownBarPrefab: {fileID: 1218340617803918248, guid: 0fd6bf3d2238dac4daaa127d5e6b7115,
     type: 3}
-  pausePanel: {fileID: 969995863}
+  settingsPanel: {fileID: 969995863}
 --- !u!4 &1223745
 Transform:
   m_ObjectHideFlags: 0
@@ -1358,30 +1358,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713708968}
   m_CullTransparentMesh: 1
---- !u!1001 &855153675
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1818261325}
-    m_Modifications:
-    - target: {fileID: 1110095376163496718, guid: b80df119c99d20a49a7afe7942721bc5,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1110095376163496718, guid: b80df119c99d20a49a7afe7942721bc5,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 1110095376163496718, guid: b80df119c99d20a49a7afe7942721bc5,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.91
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b80df119c99d20a49a7afe7942721bc5, type: 3}
 --- !u!850595691 &886579155
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1529,7 +1505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &969995864
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2669,12 +2645,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1818261325 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3564784679485423897, guid: fa3ac50fa635ce74eb10a8aa27a86212,
-    type: 3}
-  m_PrefabInstance: {fileID: 467746987}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1822766827
 GameObject:
   m_ObjectHideFlags: 0

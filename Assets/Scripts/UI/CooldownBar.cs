@@ -26,13 +26,15 @@ public class CooldownBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ///Set slider maxvalue to botpart cooldown time
-        if (slider.maxValue != botPart.GetCoolDown())
+        if (botPart)
         {
-            slider.maxValue = botPart.GetCoolDown();
-        }
-          //Update the value of the slider
+            ///Set slider maxvalue to botpart cooldown time
+            if (slider.maxValue != botPart.GetCoolDown())
+            {
+                slider.maxValue = botPart.GetCoolDown();
+            }
+            //Update the value of the slider
             slider.value = botPart.GetCoolDown() - botPart.GetCoolDownTimer();
-        
+        }
     }
 }

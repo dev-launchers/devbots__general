@@ -23,13 +23,13 @@ public class BotController : MonoBehaviour
 
     public void Awake()
     {
-        if (!created)
+        if (!created && sensor.IsPlayer())
         {
             //if this bot hasn't been created add it to dontdestroy on load
       DontDestroyOnLoad(this);
             created = true;
         }
-        else
+        else if(sensor.IsPlayer())
         {
             //if this bot has been created already destroy this bot
             Destroy(this.gameObject);
