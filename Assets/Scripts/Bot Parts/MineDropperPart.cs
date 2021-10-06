@@ -4,28 +4,52 @@ using UnityEngine;
 
 public class MineDropperPart : BotPart
 {
-    private Rigidbody2D rb;
+
+    [SerializeField] private int enemyLayer = default(int);
+    [SerializeField] private float damage = default(float);
+    [SerializeField] private GameObject landmine; // gameobject to be dropped
+    [SerializeField] private GameObject projectileStartPos;
+    [SerializeField] private Vector3 projectileSize = default(Vector3);
+
     private BotSensor sensor;
     private BotController controller;
 
-    [SerializeField] private GameObject landmine;
+
 
     [SerializeField] private bool isRunning;
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        sensor = GetComponentInParent<BotSensor>();
+        controller = GetComponentInParent<BotController>();
+        enemyLayer = sensor.GetEnemyLayer();
+        timer = GetCoolDown();
     }
 
     public void BackStep()
     {
         // drop landmines
+        if(isRunning)
+        {
+            if (!IsPartCoolingDown())
+            {
+                ResetCooldownTimer();
+
+                //Create a landmine at the start position
+                GameObject landmineInstance = Instantiate(landmine, projectileStartPos.transform.position, Quaternion.identity);
+
+                //Fetch script/data for landmine
+                Landmine projectileScript = landmineInstance.GetComponent<Landmine>();
+
+                //Tells landmine values
+                projectileScript.SetValues(damage, projectileSize, enemyLayer);
+                
+
+                //TODO: Set landmine knockback
+
+                controller.PlayAudio("Hit");
+            }
+        }
     }
 
     public override void SetState(State state)
@@ -35,6 +59,6 @@ public class MineDropperPart : BotPart
 
     public override void BotPartUpdate()
     {
-        
+        BackStep();
     }
 }
