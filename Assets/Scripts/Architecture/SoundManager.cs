@@ -6,40 +6,50 @@ using UnityEditor.Audio;
 using UnityEngine.Audio;
 public enum SoundType
 {
-    Sfx, Music, Reactive 
+    Part, Music, Reactive 
 };
-
-public enum MusicType
-{
-    BattleMountainTheme,
-    BattleFactoryTheme,
-    BattleCityTheme,
-    MenuTheme
-};
-
+/*
+ *
+ *
+ * for bot parts, why not create an audio manager to apply onto bot prefabs?
+ */
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager main;
+
+    [SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource partSoundSource;
+    [SerializeField] private AudioSource reactiveAudioSource;
+
+    public MusicScriptableObject[] musicList;//meant to be filled in the editor
 
     private void Awake()
     {
         main = this;
     }
 
-    // Start is called before the first frame update
-    void Start()
+
+    public void PlayMusic(string music)
     {
+        MusicScriptableObject s = Array.Find(musicList, sound => sound.name == name);
+        musicSource.PlayOneShot(s.clip);
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StopMusic()
     {
-        
+        musicSource.Stop();
+    }
+    
+    public void PlayBotPartSound(PartScriptableObject sound)//temporary
+    {
+        partSoundSource.pitch = sound.pitch;
+        partSoundSource.PlayOneShot(sound.clip);
     }
 
-    public void PlayMusic()
+    public void PlayReactionarySound(ReactiveAudioScriptableObject sound)//UI sounds, click effects, one time effects for things that don't need their own audio maager
     {
-        
+        reactiveAudioSource.PlayOneShot(sound.clip);
     }
+    
 }
