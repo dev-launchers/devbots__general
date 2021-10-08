@@ -32,7 +32,7 @@ public class SoundManager : MonoBehaviour//this only manages one off sounds, UI 
 
     public void PlayMusic(string music)
     {
-        MusicScriptableObject s = Array.Find(musicList, sound => sound.name == name);
+        MusicScriptableObject s = Array.Find(musicList, sound => sound.name == music);
         musicSource.PlayOneShot(s.clip);
     }
 
