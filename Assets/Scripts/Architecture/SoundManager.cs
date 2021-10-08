@@ -4,25 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Audio;
 using UnityEngine.Audio;
-public enum SoundType
+/*public enum SoundType
 {
     Part, Music, Reactive 
-};
+};*/
 /*
  *
  *
  * for bot parts, why not create an audio manager to apply onto bot prefabs?
  */
-public class SoundManager : MonoBehaviour
+public class SoundManager : MonoBehaviour//this only manages one off sounds, UI sounds, music
 {
     public static SoundManager main;
 
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource partSoundSource;
+   // [SerializeField] private AudioSource partSoundSource;
     [SerializeField] private AudioSource reactiveAudioSource;
 
     public MusicScriptableObject[] musicList;//meant to be filled in the editor
-
+    
+    
     private void Awake()
     {
         main = this;
@@ -33,7 +34,6 @@ public class SoundManager : MonoBehaviour
     {
         MusicScriptableObject s = Array.Find(musicList, sound => sound.name == name);
         musicSource.PlayOneShot(s.clip);
-        
     }
 
     public void StopMusic()
@@ -43,8 +43,8 @@ public class SoundManager : MonoBehaviour
     
     public void PlayBotPartSound(PartScriptableObject sound)//temporary
     {
-        partSoundSource.pitch = sound.pitch;
-        partSoundSource.PlayOneShot(sound.clip);
+      //  partSoundSource.pitch = sound.pitch;
+      //  partSoundSource.PlayOneShot(sound.clip);
     }
 
     public void PlayReactionarySound(ReactiveAudioScriptableObject sound)//UI sounds, click effects, one time effects for things that don't need their own audio maager

@@ -1,0 +1,29 @@
+HOW TO USE AUDIO SCRIPTS
+
+MUSIC
+1. Create music scriptable object in the prefabs folder under
+scriptable object>>music
+
+2. Add this object under the array of scriptable music objects under the audio manager
+
+3. To call from code, call the function, pass the name of the music as a string
+
+REACTIONARY SOUNDS(UI clicks, Ca-ching sound, fanfares)
+1. Create music scriptable object in the prefabs folder under
+scriptable object>>Reactionary
+
+2. Add the SoundProducer script onto the object making the sound
+
+Add the required object in the object slot in the script
+
+If you are creating a sound that plays with an animation:
+	Call the function PlaySound() from the animation frame
+
+If you want to create the sound through a UI element:
+	Call the function PlaySound() from event system
+
+BOT PART SOUNDS(PROPOSAL)
+
+Create a script exclsuively meant for bot part audio
+Add an audio source to bot prefab
+Call the audio script and send the necessary sounds when required

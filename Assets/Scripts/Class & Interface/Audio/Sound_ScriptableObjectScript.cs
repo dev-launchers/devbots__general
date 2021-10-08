@@ -7,5 +7,5 @@ using UnityEngine.Audio;
 public class SoundScriptableObjectScript:ScriptableObject
 {
     public AudioClip clip;
-    public SoundType type;
+    
 }
