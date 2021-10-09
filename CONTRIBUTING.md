@@ -8,7 +8,7 @@ Before you start contributing, you're going to need a few things:
       - Debugger for Unity
       - Unity Tools
       - Unity Code Snippets
-    - Why? VS Code is familiar and tested by our team members, and is 100% guaranteed to support useful functionality we appreciate.
+    - Why? VS Code is familiar and tested by our team members, and is 100% guaranteed to support the useful functionality we appreciate.
 - **Communication:**
     - While it may be obvious, you're going to need a GitHub account.
     - You're also going to need a Discord account, so you can:
