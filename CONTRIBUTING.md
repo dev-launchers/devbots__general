@@ -15,7 +15,7 @@ Before you start contributing, you're going to need a few things:
         - Communicate effectively with other contributors
         - Test the changes you've made to the website
         - Receive help as you need it
-    - Message `Quix (James)#9317` if confusion arrises!
+    - Message `Quix (James)#9317` if you have any questions!
 
 # Standards
 
