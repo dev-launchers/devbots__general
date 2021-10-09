@@ -29,6 +29,7 @@ public class Landmine : MonoBehaviour
         enemyLayer = layer; //Set the target of the projectile, so it only hits the desired bot, will likely need to be array of layers for self-damaging items 
     }
 
+    // TO-DO make the landmine stick to surfaces
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //Check what layer collided game object is
