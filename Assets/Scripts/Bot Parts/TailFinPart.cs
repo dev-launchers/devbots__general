@@ -37,7 +37,7 @@ public class TailFinPart : BotPart
                 //Use add relative force to rigidbody to thrust bot backwards. 
                 Vector2 appliedForce = new Vector2(-backThrust.x * sensor.GetNearestSensedBotDirection(), backThrust.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
-                controller.PlayAudio("Move");
+                //controller.PlayAudio("Move");
             }
         }
     }

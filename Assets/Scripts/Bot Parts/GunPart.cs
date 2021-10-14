@@ -61,7 +61,7 @@ public class GunPart : BotPart
 
                 //TODO: Set projectile knockback
 
-                controller.PlayAudio("Hit");
+                //controller.PlayAudio("Hit");
             }
         }
     }

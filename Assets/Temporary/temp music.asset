@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e396931b6412e4aac1c21dbd73d543, type: 3}
-  m_Name: New Audio
+  m_Script: {fileID: 11500000, guid: 368f6af0b46f0614a9200c83685cbbb8, type: 3}
+  m_Name: temp music
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: e02744da42f507c49bce80622fa48c7d, type: 3}
+  name: temp

@@ -5,5 +5,5 @@ using UnityEngine;
 public class MusicScriptableObject : SoundScriptableObjectScript
 {
     [Tooltip("spaces to be marked with an underscore. \nEg:  Battle_Music_Mountain")]
-    public string name;
+    public string musicName;
 }
