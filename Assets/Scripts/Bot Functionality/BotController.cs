@@ -21,8 +21,16 @@ public class BotController : MonoBehaviour
         return HP;
     }
 
-    public void Awake()
+
+    public void OnEnable()
     {
+        //Delegate used to trigger Onsceneloaded method when a new scene is loaded
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    public void Start()
+    {        
+     sensor = GetComponent<BotSensor>();
         if (!created && sensor.IsPlayer())
         {
             //if this bot hasn't been created add it to dontdestroy on load
@@ -35,16 +43,6 @@ public class BotController : MonoBehaviour
             Destroy(this.gameObject);
         }
   
-    }
-    public void OnEnable()
-    {
-        //Delegate used to trigger Onsceneloaded method when a new scene is loaded
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    public void Start()
-    {        
-        sensor = GetComponent<BotSensor>();
         audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         if (DamageTakenEvent == null)
