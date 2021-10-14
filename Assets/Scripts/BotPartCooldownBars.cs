@@ -66,7 +66,7 @@ class BotPartCooldownBars
             //Set the slider belonging to each cooldown object
             Slider slider = botPartCooldownObject.coolDownBar.GetComponentInChildren<Slider>();
             //Get the cooldown time bbelonging to this botpart
-            float coolDownTime = botPartCooldownObject.botPart.GetCoolDown();
+            float coolDownTime = botPartCooldownObject.botPart.GetCoolDownTimer();
             //Get the timer time attatch to thia bot
             float timer = botPartCooldownObject.botPart.GetCoolDownTimer();
             slider.value = coolDownTime - timer;

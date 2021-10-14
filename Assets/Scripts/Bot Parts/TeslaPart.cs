@@ -26,20 +26,14 @@ public class TeslaPart : BotPart
         timer = GetCoolDown();
     }
 
-
     public void AttackStep()
     {
 
         if (isRunning)
         {
-
-            if (timer > 0)
+            if(!IsPartCoolingDown())
             {
-                timer -= Time.deltaTime;
-            }
-            else
-            {
-                timer = GetCoolDown(); //Reset Timer
+                ResetCooldownTimer();
 
                 //Instantiate effect at the position of the tesla tower and parent it with this transfom to keep its position with the bot
                 GameObject effect = Instantiate(teslaEffect, this.gameObject.transform.position, Quaternion.identity);

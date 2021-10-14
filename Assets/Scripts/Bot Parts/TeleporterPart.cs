@@ -9,7 +9,6 @@ public class TeleporterPart : BotPart
     private Rigidbody2D rb;
     private BotSensor sensor;
     private BotController controller;
-
     [SerializeField] private bool isRunning;
 
     public void Start() {
@@ -19,18 +18,10 @@ public class TeleporterPart : BotPart
         timer = GetCoolDown();
     }
 
-    public void Update() {
-       
-    }
-
     public void MoveStep() {
         if (isRunning) {
-
-            if (timer > 0) {
-                timer -= Time.deltaTime;
-            }
-            else {
-                timer = GetCoolDown(); //Reset Timer
+            if (!IsPartCoolingDown()) {
+                ResetCooldownTimer();
                 Vector2 enemyPos = sensor.GetNearestSensedBotPosition();
                 rb.position = enemyPos + new Vector2(0, 2);
                 //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot");
