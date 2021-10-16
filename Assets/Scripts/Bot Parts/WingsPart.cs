@@ -20,10 +20,6 @@ public class WingsPart : BotPart
         sensor = GetComponentInParent<BotSensor>();
         controller = GetComponentInParent<BotController>();
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> main
     public void BackStep()
     {
         if (isRunning)
