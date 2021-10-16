@@ -19,6 +19,7 @@ public class BotAudioManager : MonoBehaviour
 
     public void PerformSound(PartScriptableObject sound)
     {
+        source.pitch = sound.pitch;
         source.PlayOneShot(sound.clip);
     }
 }

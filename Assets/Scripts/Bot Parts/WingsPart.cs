@@ -11,6 +11,7 @@ public class WingsPart : BotPart
     private Rigidbody2D rb;
     private BotSensor sensor;
     private BotController controller;
+    
 
     [SerializeField] private bool isRunning;
 
@@ -32,6 +33,7 @@ public class WingsPart : BotPart
                 Vector2 appliedForce = new Vector2(wingForce.x * sensor.GetNearestSensedBotDirection(), wingForce.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
                 //controller.PlayAudio("Move");
+                botPartAudio.PlaySound();
             }
         }
     }
