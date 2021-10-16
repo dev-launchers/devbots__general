@@ -22,8 +22,13 @@ If you are creating a sound that plays with an animation:
 If you want to create the sound through a UI element:
 	Call the function PlaySound() from event system
 
-BOT PART SOUNDS(PROPOSAL)
+BOT PART SOUNDS
+Every bot has a BotAudioManager with the audio source.
 
-Create a script exclsuively meant for bot part audio
-Add an audio source to bot prefab
-Call the audio script and send the necessary sounds when required
+Every bot part prefab has a BotPartAudio script and the BotPart base script has a reference to this script on the object.
+
+For now, every bot part can create ONE sound. To call, one must use botPartAudio.PlaySound(); to play the sound. 
+
+The sound is to be loaded as a serialized object of type PartScriptableObject onto the BotPartAudio script.
+This object will hold the pitch and audio clip.
+
