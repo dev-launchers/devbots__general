@@ -6,9 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
+    path: Assets/Scenes/Main Menu Scene.unity
+    guid: f2d0f4b725535094c8b40b1a9fbb9981
+  - enabled: 1
+    path: Assets/Scenes/Bot Customize Scene.unity
     guid: d0c5ae8b61e6be6419fc2acc376c7ebe
+  - enabled: 1
+    path: Assets/Scenes/Marketplace Scene.unity
+    guid: 0cded00939eac8d4a869283af40d28f0
   - enabled: 1
     path: Assets/Scenes/Combat.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Victory Scene.unity
+    guid: e5c0d69e7d27aae478dec94a753fdcee
+  - enabled: 1
+    path: Assets/Scenes/Lose Scene.unity
+    guid: 1a9f1d5728c63a84dbd0185219196a4c
+  - enabled: 1
+    path: Assets/Scenes/Settings Scene.unity
+    guid: c63b13ff0abfd69428302e6691faa98f
   m_configObjects: {}

@@ -22,7 +22,7 @@ public abstract class BotPart : MonoBehaviour
         return timer > 0;
     }
 
-    public void AdvanceCooldownTimer() {
+    private void AdvanceCooldownTimer() {
         timer -= Time.deltaTime;
     }
 
