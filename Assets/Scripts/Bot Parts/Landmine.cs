@@ -16,12 +16,6 @@ public class Landmine : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetValues(float dmg, Vector3 size, int layer)
     {
         damage = dmg; //Set the damage of the projectile
