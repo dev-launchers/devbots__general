@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: temp music
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: e02744da42f507c49bce80622fa48c7d, type: 3}
-  name: temp
+  musicName: temp
