@@ -26,6 +26,8 @@ public class GunPart : BotPart
         timer = GetCoolDown();
     }
 
+
+
     public override void SetState(State state)
     {
         isRunning = state.isActive;

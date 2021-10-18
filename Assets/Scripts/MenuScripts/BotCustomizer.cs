@@ -33,7 +33,11 @@ public class BotCustomizer : MonoBehaviour
         }
         UpdateSlot();
     }
-
+    private void Start()
+    {
+        targetBot = GameObject.FindGameObjectWithTag("Bot");
+        slots = targetBot.GetComponent<BotController>().slots;
+    }
     public void UpdateSlot()
     {
         //clunky?
