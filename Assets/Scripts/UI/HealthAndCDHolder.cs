@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthAndCDHolder : MonoBehaviour
 {
     //Bot controller used with this healthbar and cooldown  bars
-    [SerializeField]private BotController botController;
+    [SerializeField]public BotController botController;
     //get the bot controller 
     public BotController GetBotController()
     {
