@@ -29,7 +29,6 @@ public class SwordPart : BotPart
         enemyLayer = sensor.GetEnemyLayer();
         timer = GetCoolDown();
     }
-
     public void AttackStep()
     {
 

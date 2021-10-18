@@ -4,7 +4,7 @@ public abstract class BotPart : MonoBehaviour
 {
     [SerializeField] private float coolDown;
     protected float timer;
-    
+
     public abstract void BotPartUpdate();
     abstract public void SetState(State state);
     //[SerializeField] abstract private bool isRunning;

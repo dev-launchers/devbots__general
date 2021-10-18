@@ -32,7 +32,7 @@ public class DrillBotPart : BotPart
             if(!IsPartCoolingDown()){
                 ResetCooldownTimer();
                 // TODO:  Play the drill attack animation.
-
+                
                 // Detect enemy in range of attack.
                 Collider2D enemy = Physics2D.OverlapCircle(attackPoint.position, attackRange, enemyLayers);
 
