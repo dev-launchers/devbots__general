@@ -66,7 +66,7 @@ public class BotController : MonoBehaviour
     private void OnSceneLoaded(Scene scene,LoadSceneMode loadSceneMode)
     {
         //check new loaded scene's name
-if (scene.name == "Main Menu Scene" || scene.name == "Bot Customize Scene"|| scene.name == "Combat")
+        if (scene.name == "Main Menu Scene" || scene.name == "Bot Customize Scene"|| scene.name == "Combat")
         {
             //activate this bot
             gameObject.SetActive(true);
@@ -79,7 +79,6 @@ if (scene.name == "Main Menu Scene" || scene.name == "Bot Customize Scene"|| sce
             gameObject.SetActive(false);
         }
     }
-
 
     private void FaceEnemy()
     {
@@ -126,7 +125,6 @@ if (scene.name == "Main Menu Scene" || scene.name == "Bot Customize Scene"|| sce
         }
         else
         {
-            audioManager.Play("Hit");
             //Instantiate(damageFX, transform.position, Quaternion.identity);
         }
     }
