@@ -36,7 +36,7 @@ public class Landmine : MonoBehaviour
             collision.gameObject.GetComponent<BotController>().TakeDamage(damage);
 
             //Destroy landmine if hit by an enemy
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         
