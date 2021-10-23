@@ -47,6 +47,15 @@ TagManager:
   - name: Background
     uniqueID: 1995137983
     locked: 0
-  - name: Bot Body
+  - name: Projectiles
+    uniqueID: 1627371701
+    locked: 0
+  - name: Opponent Bot
+    uniqueID: 580058117
+    locked: 0
+  - name: Player Bot
     uniqueID: 3508646711
+    locked: 0
+  - name: VFX
+    uniqueID: 2302495903
     locked: 0

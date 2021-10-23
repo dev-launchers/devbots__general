@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunPart : BotPart
 {
 
-    [SerializeField] private int enemyLayer = default(int);
+    private int enemyLayer;
     [SerializeField] private float damage = default(float);
     [SerializeField] private GameObject projectile = default(GameObject); //Object to be fired by gun part
     [SerializeField] private float projectileSpeed = default(float);
