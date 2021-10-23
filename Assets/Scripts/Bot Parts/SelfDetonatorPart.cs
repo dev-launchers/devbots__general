@@ -30,29 +30,26 @@ public class SelfDetonatorPart : BotPart
         Collider2D enemyCollider2D = Physics2D.OverlapCircle(attackPoint.position,
                                                    attackRange,
                                                    enemyLayers);
+
         if (enemyCollider2D)
         {
-            if (!IsPartCoolingDown()){
-                ResetCooldownTimer();
+            Debug.Log(enemyCollider2D.name + " was attacked by self detonator part.");
+            // TODO: Play the side detonator attack animation.
+            // TODO: Implement damage to enemy health. (Use separate class?)
+            // TODO: Implement small damage to player health. (Use separate class?)
 
-                Debug.Log(enemyCollider2D.name + " was attacked by self detonator part.");
-                // TODO: Play the side detonator attack animation.
-                // TODO: Implement damage to enemy health. (Use separate class?)
-                // TODO: Implement small damage to player health. (Use separate class?)
-
-                // Knockback opponent
-                BotController controller = enemyCollider2D.GetComponentInParent<BotController>();
-                BotSensor sensor = enemyCollider2D.GetComponentInParent<BotSensor>();
-                if (controller != null)
-                {
-                    Vector2 direction = sensor.GetPosition() - transform.position;
-                    controller.ApplyForce((direction.normalized * knockBackStrength)
-                                         +(new Vector2(0.0f,upwardForce)));
-                }
+            // Knockback opponent
+            BotController controller = enemyCollider2D.GetComponentInParent<BotController>();
+            BotSensor sensor = enemyCollider2D.GetComponentInParent<BotSensor>();
+            if (controller != null)
+            {
+                Vector2 direction = sensor.GetPosition() - transform.position;
+                controller.ApplyForce((direction.normalized * knockBackStrength)
+                                     +(new Vector2(0.0f,upwardForce)));
             }
         }
     }
-    
+
     void OnDrawGizmosSelected()
     {
         if (attackPoint == null) return;
