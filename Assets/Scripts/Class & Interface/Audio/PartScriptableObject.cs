@@ -5,5 +5,5 @@ using UnityEngine;
 public class PartScriptableObject : SoundScriptableObjectScript
 {
     [Range(0.1f,100f)]public float pitch;
-    
+    public string soundName;
 }

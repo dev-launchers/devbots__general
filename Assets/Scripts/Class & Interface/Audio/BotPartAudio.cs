@@ -3,18 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
-class BotPartSound
-{
-    public string nameOfSound;
-    public PartScriptableObject partSound;
-};
-
 public class BotPartAudio : MonoBehaviour
 {
     private BotAudioManager manager;
 
-    [SerializeField] private BotPartSound[] botPartSounds;
+    [SerializeField] private  PartScriptableObject[] botPartSounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +18,13 @@ public class BotPartAudio : MonoBehaviour
     {
         if (soundName == " ")
         {
-            manager.PerformSound(botPartSounds[0].partSound);
+            manager.PerformSound(botPartSounds[0]);
+            
         }
         else
         {
-            BotPartSound s = Array.Find(botPartSounds, sound => sound.nameOfSound == soundName);
-            manager.PerformSound(s.partSound);
+            PartScriptableObject s = Array.Find(botPartSounds, sound => sound.soundName == soundName);
+            manager.PerformSound(s);
         }
         
     }

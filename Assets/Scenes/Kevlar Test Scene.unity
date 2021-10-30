@@ -982,10 +982,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
         type: 3}
+      propertyPath: botPartSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c18cb20377092148882e7d4a154bf85,
+        type: 2}
+    - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
+        type: 3}
       propertyPath: botPartSounds.Array.data[0].partSound
       value: 
       objectReference: {fileID: 11400000, guid: 13e4324ad0c32e74a96d0c9d4a9f2b6f,
         type: 2}
+    - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
+        type: 3}
+      propertyPath: botPartSounds.Array.data[1].partSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 13e4324ad0c32e74a96d0c9d4a9f2b6f,
+        type: 2}
+    - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
+        type: 3}
+      propertyPath: botPartSounds.Array.data[2].partSound
+      value: 
+      objectReference: {fileID: 11400000, guid: 13e4324ad0c32e74a96d0c9d4a9f2b6f,
+        type: 2}
+    - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
+        type: 3}
+      propertyPath: botPartSounds.Array.data[0].nameOfSound
+      value: wing flap
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
+        type: 3}
+      propertyPath: botPartSounds.Array.data[1].nameOfSound
+      value: wing flap
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2f62a27fccbbb048bf103c6fc8509aa, type: 3}
 --- !u!1001 &421478386
@@ -3488,10 +3516,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
         type: 3}
+      propertyPath: botPartSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 13e4324ad0c32e74a96d0c9d4a9f2b6f,
+        type: 2}
+    - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
+        type: 3}
       propertyPath: botPartSounds.Array.data[0].partSound
       value: 
       objectReference: {fileID: 11400000, guid: 9c18cb20377092148882e7d4a154bf85,
         type: 2}
+    - target: {fileID: 9092478990273160170, guid: e2f62a27fccbbb048bf103c6fc8509aa,
+        type: 3}
+      propertyPath: botPartSounds.Array.data[0].nameOfSound
+      value: wing flap
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2f62a27fccbbb048bf103c6fc8509aa, type: 3}
 --- !u!114 &2033073669 stripped
