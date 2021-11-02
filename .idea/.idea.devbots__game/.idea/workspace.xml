@@ -14,6 +14,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -24,6 +25,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/DrillBotPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/WingsPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zezugiXn2pzia2up4MUAlPjxju" />
@@ -72,7 +74,7 @@
       <workItem from="1634523666502" duration="3978000" />
       <workItem from="1635609315132" duration="2508000" />
       <workItem from="1635613156501" duration="2087000" />
-      <workItem from="1635861713574" duration="572000" />
+      <workItem from="1635861713574" duration="1249000" />
     </task>
     <servers />
   </component>
