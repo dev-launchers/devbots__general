@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BotAbility : ScriptableObject
 {
-    public string name;
+    public string abilityName;
     public float coolDownTime;
     public float activeTime;
     

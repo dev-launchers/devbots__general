@@ -11,7 +11,7 @@ public class BotAbilityHolder : MonoBehaviour
 {
     
 
-    private AbilityState state = AbilityState.ready;
+    private AbilityState state = AbilityState.Ready;
     
     public BotAbility ability;
 
