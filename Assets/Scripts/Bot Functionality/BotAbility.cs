@@ -10,6 +10,6 @@ public class BotAbility : ScriptableObject
     
     public virtual void Activate(GameObject parent)
     {
-    
+        Debug.Log(name+" activated");
     }
 }

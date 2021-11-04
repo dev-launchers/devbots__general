@@ -13,6 +13,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/MoveAbility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/AttackAbility.cs" root0="FORCE_HIGHLIGHTING" />
@@ -26,6 +28,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/DrillBotPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/WingsPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/MoveAbility.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbility.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/AttackAbility.cs" />
     </changedPaths>
@@ -77,6 +80,8 @@
       <workItem from="1635609315132" duration="2508000" />
       <workItem from="1635613156501" duration="2087000" />
       <workItem from="1635861713574" duration="3532000" />
+      <workItem from="1636042342706" duration="42000" />
+      <workItem from="1636042452471" duration="1383000" />
     </task>
     <servers />
   </component>

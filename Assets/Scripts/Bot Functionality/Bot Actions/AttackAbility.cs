@@ -6,4 +6,10 @@ public class AttackAbility : BotAbility
 {
     public Vector2 dir;
     public float power;
+
+    public override void Activate(GameObject parent)
+    {
+        base.Activate(parent);
+        Debug.Log(name+"Perform attack ability");
+    }
 }
