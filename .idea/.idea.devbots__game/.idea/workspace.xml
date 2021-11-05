@@ -27,9 +27,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Class &amp; Interface/Audio/BotPartAudio.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/DrillBotPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/WingsPart.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/MoveAbility.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/AttackAbility.cs" />
     </changedPaths>
   </component>
@@ -81,7 +81,7 @@
       <workItem from="1635613156501" duration="2087000" />
       <workItem from="1635861713574" duration="3532000" />
       <workItem from="1636042342706" duration="42000" />
-      <workItem from="1636042452471" duration="1383000" />
+      <workItem from="1636042452471" duration="5132000" />
     </task>
     <servers />
   </component>
