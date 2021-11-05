@@ -18,4 +18,4 @@ MonoBehaviour:
   rb: {fileID: 0}
   sensor: {fileID: 0}
   controller: {fileID: 0}
-  forceOfMovement: {x: 3, y: 3}
+  forceOfMovement: {x: 1, y: 3}
