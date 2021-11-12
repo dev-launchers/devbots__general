@@ -14,12 +14,16 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/WheelAbility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/TeleportAbility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/DrillAbility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/MoveAbility.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/GunAbility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/TeslaAbility.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/AttackAbility.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/WingAbility.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Additions/GunPosition.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/DashAbility.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -30,11 +34,19 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/DrillBotPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/WingsPart.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbility.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/AttackAbility.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/MoveAbility.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/WingAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/GunPart.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Bot Actions/AttackAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Additions/GunPosition.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Parts/Projectile.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/GunAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/DrillAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/DashAbility.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/WheelAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/TeslaAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/Specific Abilities/TeleportAbility.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/Bot Functionality/BotAbilityHolder.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1zezugiXn2pzia2up4MUAlPjxju" />
@@ -86,6 +98,8 @@
       <workItem from="1635861713574" duration="3532000" />
       <workItem from="1636042342706" duration="42000" />
       <workItem from="1636042452471" duration="9054000" />
+      <workItem from="1636215149630" duration="1118000" />
+      <workItem from="1636704286918" duration="6110000" />
     </task>
     <servers />
   </component>

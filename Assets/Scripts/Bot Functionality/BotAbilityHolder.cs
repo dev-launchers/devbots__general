@@ -14,7 +14,7 @@ public class BotAbilityHolder : MonoBehaviour
 {
     
 
-    private AbilityState state = AbilityState.Ready;
+    private AbilityState state = AbilityState.Active;
     
     public BotAbility ability;
 
@@ -29,7 +29,7 @@ public class BotAbilityHolder : MonoBehaviour
         switch(state)
         {
             case AbilityState.Ready:
-                if (isRunning/*condition for move*/)
+                if (isRunning/*condition for any move*/)
                 {
                     ability.Activate(gameObject);
                     state = AbilityState.Active;

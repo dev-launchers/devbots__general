@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446ee00296ba45743b1b2abb84faad50, type: 3}
-  m_Name: Wing Ability
+  m_Script: {fileID: 11500000, guid: c4eb0e68d46e93d4891d89a1e60ec98f, type: 3}
+  m_Name: Tesla Ability
   m_EditorClassIdentifier: 
-  abilityName: Wing Flap
-  coolDownTime: 2
-  activeTime: 0.5
-  rb: {fileID: 0}
-  sensor: {fileID: 0}
-  controller: {fileID: 0}
-  forceOfMovement: {x: 2, y: 2}
+  abilityName: Tesla
+  coolDownTime: 1
+  activeTime: 1
+  damage: 1
+  teslaEffect: {fileID: 6701458812791396994, guid: 0a15cc7107652694892244d89b9f7c63,
+    type: 3}
+  attackRadius: 3

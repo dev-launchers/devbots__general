@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Wheel Ability
   m_EditorClassIdentifier: 
   abilityName: Wheel Roll
-  coolDownTime: 2
-  activeTime: 1
+  coolDownTime: 1
+  activeTime: 2
   rb: {fileID: 0}
   sensor: {fileID: 0}
   controller: {fileID: 0}
   moveSpeed: 2
-  accelerationMagnitude: 10
+  accelerationMagnitude: 3

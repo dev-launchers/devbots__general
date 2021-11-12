@@ -16,8 +16,8 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(enemyDirection * speed,0), ForceMode2D.Impulse);
+        //rb = GetComponent<Rigidbody2D>();
+        //rb.AddForce(new Vector2(enemyDirection * speed,0), ForceMode2D.Impulse);
 
     }
 
@@ -40,7 +40,7 @@ public class Projectile : MonoBehaviour
         enemyLayer = layer; //Set the target of the projectile, so it only hits the desired bot, will likely need to be array of layers for self-damaging items 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+  /*  private void OnCollisionEnter2D(Collision2D collision)
     {
         //Check what layer collided game object is
         if (collision.gameObject.layer == enemyLayer)
@@ -56,7 +56,7 @@ public class Projectile : MonoBehaviour
         Destroy(this.gameObject);
 
 
-    }
+    }*/
 
     //For an exploding bullet: 
     //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot"); 

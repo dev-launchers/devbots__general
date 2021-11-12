@@ -15,13 +15,13 @@ public class WheelAbility : MoveAbility
                 controller = parent.GetComponentInParent<BotController>();
         int enemyDirection = sensor.GetNearestSensedBotDirection();
         int currentDirection = enemyDirection;
-        Debug.Log(currentDirection);
+        
         
         float mySpeed = rb.velocity.x;
-        Debug.Log(rb.velocity.x);
+       
         if (mySpeed <= moveSpeed && mySpeed >= -moveSpeed) {
-            rb.AddRelativeForce(new Vector2(accelerationMagnitude*currentDirection, 0), ForceMode2D.Force);
-            Debug.Log("happened");
+            rb.AddRelativeForce(new Vector2(accelerationMagnitude*currentDirection, 0), ForceMode2D.Impulse);
+            
         }
     }
 }

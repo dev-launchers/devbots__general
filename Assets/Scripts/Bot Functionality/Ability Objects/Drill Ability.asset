@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446ee00296ba45743b1b2abb84faad50, type: 3}
-  m_Name: Wing Ability
+  m_Script: {fileID: 11500000, guid: e70f62c8284f35d47a5fcd78e68327b8, type: 3}
+  m_Name: Drill Ability
   m_EditorClassIdentifier: 
-  abilityName: Wing Flap
-  coolDownTime: 2
-  activeTime: 0.5
-  rb: {fileID: 0}
-  sensor: {fileID: 0}
-  controller: {fileID: 0}
-  forceOfMovement: {x: 2, y: 2}
+  abilityName: Drill
+  coolDownTime: 0
+  activeTime: 0

@@ -59,7 +59,7 @@ public class GunPart : BotPart
                     new Vector2(1, 1)
                     );
 
-                //GameObject projectileInstance = Instantiate(projectile, projectileStartPos.transform.position, Quaternion.identity);
+                GameObject projectileInstance = Instantiate(projectile, projectileStartPos.transform.position, Quaternion.identity);
                 ////Create a projectile at the start position
 
                 //Projectile projectileScript = projectileInstance.GetComponent<Projectile>();

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446ee00296ba45743b1b2abb84faad50, type: 3}
-  m_Name: Wing Ability
+  m_Script: {fileID: 11500000, guid: 9f637398ad835eb4c949893f3e5e34d3, type: 3}
+  m_Name: Gun Ability
   m_EditorClassIdentifier: 
-  abilityName: Wing Flap
-  coolDownTime: 2
-  activeTime: 0.5
-  rb: {fileID: 0}
-  sensor: {fileID: 0}
-  controller: {fileID: 0}
-  forceOfMovement: {x: 2, y: 2}
+  abilityName: Shoot
+  coolDownTime: 1
+  activeTime: 1
+  projectile: {fileID: 320862649137496441, guid: 1079d5f5cdb322b4680ebb1ed73d214d,
+    type: 3}
+  direction: {x: 1, y: 0}
+  speed: 20
