@@ -40,20 +40,29 @@ public class GunPart : BotPart
 
             if (!IsPartCoolingDown()){
                 ResetCooldownTimer();
-                
 
                 int enemyDirection = sensor.GetNearestSensedBotDirection();
-    
+
                 //Faces attack at enemy, handled as local position to bot part
+                AttackActions.ProjectileAttack(
+                    enemyDirection, 
+                    projectileStartPos.transform, 
+                    damage, 
+                    projectileSpeed, 
+                    enemyLayer, 
+                    null, 
+                    projectile, 
+                    new Vector2(1, 1)
+                    );
 
                 GameObject projectileInstance = Instantiate(projectile, projectileStartPos.transform.position, Quaternion.identity);
-                //Create a projectile at the start position
+                ////Create a projectile at the start position
 
-                Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
-                //Fetch script/data for projectile
+                //Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
+                ////Fetch script/data for projectile
 
-                projectileScript.SetValues(enemyDirection, damage, projectileSpeed, projectileSize, enemyLayer);
-                //Tells projectile values
+                //projectileScript.SetValues(enemyDirection, damage, projectileSpeed, projectileSize, enemyLayer);
+                ////Tells projectile values
 
                 //TODO: Set projectile knockback
 
