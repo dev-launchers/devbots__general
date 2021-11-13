@@ -16,12 +16,6 @@ public class Landmine : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetValues(float dmg, Vector3 size, int layer)
     {
         damage = dmg; //Set the damage of the projectile
@@ -42,7 +36,7 @@ public class Landmine : MonoBehaviour
             collision.gameObject.GetComponent<BotController>().TakeDamage(damage);
 
             //Destroy landmine if hit by an enemy
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         

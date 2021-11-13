@@ -5,7 +5,7 @@ using UnityEngine;
 public class MineDropperPart : BotPart
 {
 
-    [SerializeField] private int enemyLayer = default(int);
+    private int enemyLayer;
     [SerializeField] private float damage = default(float);
     [SerializeField] private GameObject landmine; // gameobject to be dropped
     [SerializeField] private GameObject projectileStartPos;
