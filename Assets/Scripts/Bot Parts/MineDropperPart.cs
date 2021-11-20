@@ -46,8 +46,6 @@ public class MineDropperPart : BotPart
                 
 
                 //TODO: Set landmine knockback
-
-                controller.PlayAudio("Hit");
             }
         }
     }

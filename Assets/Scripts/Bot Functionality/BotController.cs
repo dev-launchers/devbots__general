@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class BotController : MonoBehaviour
 {
     private BotSensor sensor;
-    private AudioManager audioManager;
+    //private AudioManager audioManager;
     private Rigidbody2D rb;
     public UnityEvent DamageTakenEvent;
     [SerializeField] private float HP = 1;
@@ -43,7 +43,6 @@ public class BotController : MonoBehaviour
             Destroy(this.gameObject);
         }
   
-        audioManager = FindObjectOfType<AudioManager>();
         rb = GetComponent<Rigidbody2D>();
         if (DamageTakenEvent == null)
             DamageTakenEvent = new UnityEvent();
@@ -100,11 +99,11 @@ public class BotController : MonoBehaviour
         rb.AddRelativeForce(force, ForceMode2D.Impulse);
     }
 
-    public void PlayAudio(string audioName)
+ /*   public void PlayAudio(string audioName)
     {
         //audioManager.Play(audioName);
     }
-
+*/
     public void TakeDamage(float damage)
     {
         HP -= damage;

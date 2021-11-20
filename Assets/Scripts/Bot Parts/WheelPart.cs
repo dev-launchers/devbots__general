@@ -32,6 +32,7 @@ public class WheelPart : BotPart
             float mySpeed = rb.velocity.x;
             if (mySpeed <= moveSpeed && mySpeed >= -moveSpeed) {
                 rb.AddRelativeForce(new Vector2(accelerationMagnitude*currentDirection, 0), ForceMode2D.Force);
+                
             }
         }
 

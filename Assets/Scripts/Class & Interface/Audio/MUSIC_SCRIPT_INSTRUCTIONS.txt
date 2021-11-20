@@ -1,0 +1,50 @@
+HOW TO USE AUDIO SCRIPTS
+
+MUSIC
+1. Create music scriptable object in the prefabs folder under
+scriptable object>>music
+
+2. Add this object under the array of scriptable music objects under the audio manager
+
+3. To call from code, call the function, pass the name of the music as a string
+
+REACTIONARY SOUNDS(UI clicks, Ca-ching sound, fanfares, sound effects)
+1. Create music scriptable object in the prefabs folder under
+scriptable object>>Reactionary
+
+2. Add the SoundProducer script onto the object making the sound
+
+Add the required object in the object slot in the script
+
+If you are creating a sound that plays with an animation:
+	Call the function PlaySound() from the animation frame
+
+If you want to create the sound through a UI element:
+	Call the function PlaySound() from event system
+
+BOT PART SOUNDS
+Every bot has a BotAudioManager with the audio source.
+
+Every bot part prefab has a BotPartAudio script and the BotPart base script has a reference to this script on the object.
+
+Every bot part can hold multiple sounds. 
+
+To call, one must use botPartAudio.PlaySound(string sound_you_want_to_play); to play the sound. 
+You do not need to put an argument if there is only one sound.
+
+The sound is to be loaded as a serialized object of type PartScriptableObject onto the BotPartAudio script.
+
+You can also assign a string name to each sound locally onto the BotPart.
+Every sound must be named unless there is only a single sound.
+
+This object will hold the pitch and audio clip.
+
+Why is the name local and not on the ScriptableObject?
+It's likely that the string references will need to be quickly referenced for testing and implementation.
+When dealing with large lists of scriptable objects, it might prove tedious to move around this list
+in order to find the sound you want and the accompanying string.
+This also allows one to assign strings in the serializable field to whatever one wants.
+
+
+
+

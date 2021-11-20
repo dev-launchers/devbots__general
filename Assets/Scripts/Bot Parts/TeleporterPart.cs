@@ -27,7 +27,7 @@ public class TeleporterPart : BotPart
                 //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot");
 
                 //teleport towards enemy bot by half distance on both axis?
-                controller.PlayAudio("Move");
+                //controller.PlayAudio("Move");
             }
         }
     }

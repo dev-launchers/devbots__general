@@ -7,7 +7,6 @@ public class BotSensor : MonoBehaviour
 {
     private GameObject nearestBot;
     private GameObject[] activeBots;
-    private AudioManager audioManager;
     private Rigidbody2D rb;
     private int enemyLayer;
     private bool isPlayer;
