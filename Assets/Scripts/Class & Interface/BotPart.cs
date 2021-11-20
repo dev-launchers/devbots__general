@@ -5,14 +5,13 @@ public abstract class BotPart : MonoBehaviour
 {
     [SerializeField] private float coolDown;
     protected float timer;
-    
+
     public abstract void BotPartUpdate();
     abstract public void SetState(State state);
     public BotPartAudio botPartAudio;
     //[SerializeField] abstract private bool isRunning;
 
-
-
+    // These should be protected?
     public float GetCoolDownTimer(){ 
         return timer;
     }
@@ -25,7 +24,7 @@ public abstract class BotPart : MonoBehaviour
         return timer > 0;
     }
 
-    public void AdvanceCooldownTimer() {
+    private void AdvanceCooldownTimer() {
         timer -= Time.deltaTime;
     }
 
