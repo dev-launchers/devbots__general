@@ -46,19 +46,20 @@ public class SwordPart : BotPart
 
                 attackPos = transform.position + new Vector3(sensor.GetNearestSensedBotDirection(), 0, 0);
                 //Should be cleaned up, but currently creates Vector2 for current position + 1 in direction of enemy
-                Collider2D collision = Physics2D.OverlapCircle(attackPos, attackDistance); 
-                //Needs to attack only in front using swordPos
+
+                Collider2D collision = Physics2D.OverlapCircle(attackPos, attackDistance);
 
                 if (collision.gameObject.layer == enemyLayer)
                 {
                     print("collision");
                     BotController collisionController = collision.transform.GetComponent<BotController>();
                     collisionController.TakeDamage(damage);
-                    collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(),0));
+                    collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(), 0));
                 }
             }
         }
     }
+
     void OnDrawGizmosSelected()
     {
         // Display the attack radius when selected

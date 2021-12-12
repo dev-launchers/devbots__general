@@ -130,6 +130,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1522975942906792622, guid: f5bf71bb695d90b4fb924d8a95a76d21,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -1522975942906792622, guid: f5bf71bb695d90b4fb924d8a95a76d21,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 268827301798713698, guid: f5bf71bb695d90b4fb924d8a95a76d21,
         type: 3}
       propertyPath: m_RootOrder
@@ -774,6 +784,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &336450026 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5119701041641690834, guid: 55a5686628bdc0149b38cd6270fdf86a,
+    type: 3}
+  m_PrefabInstance: {fileID: 651551277}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b240202f61e0a54babb0a67cb3f05a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &353056009
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +851,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -786320585
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: aefeb4a0544125a48b27ae573b4c6e17, type: 3}
   m_Color: {r: 0.52118194, g: 0.6037736, b: 0.5388801, a: 1}
@@ -856,6 +878,18 @@ Transform:
   m_Father: {fileID: 638792071}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373975150 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6180655250878159276, guid: 993785d800ec6944fa983f0321403afe,
+    type: 3}
+  m_PrefabInstance: {fileID: 2029469836}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b240202f61e0a54babb0a67cb3f05a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,9 +1710,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBotController: {fileID: 0}
-  enemyBotController: {fileID: 0}
-  playerHealthBar: {fileID: 0}
-  enemyHealthBar: {fileID: 0}
+  enemyBotController: {fileID: 1486176202}
+  playerHealthBar: {fileID: 336450026}
+  enemyHealthBar: {fileID: 373975150}
   cooldownBarPrefab: {fileID: 0}
   settingsPanel: {fileID: 0}
 --- !u!4 &1434926992
@@ -1790,6 +1824,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1467554969}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1486176202 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4803837761002279098, guid: f5bf71bb695d90b4fb924d8a95a76d21,
+    type: 3}
+  m_PrefabInstance: {fileID: 36362518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab71af02dec8cda499a2f4310365d216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1549424950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,7 +1973,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -786320585
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: c21b4cc7e81b1a040bceaf9812f6da04, type: 3}
   m_Color: {r: 0.53266287, g: 0.6603774, b: 0.53692, a: 1}

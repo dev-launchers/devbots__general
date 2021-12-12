@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SelfDetonatorPart : BotPart
@@ -15,6 +13,8 @@ public class SelfDetonatorPart : BotPart
     [SerializeField] private float knockBackStrength;
     [SerializeField] private float upwardForce;
     [SerializeField] private LayerMask enemyLayers;
+
+    [SerializeField] private bool isRunning;
     
     // Inherited from BotPart
     override public void SetState(State state)

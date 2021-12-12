@@ -12,28 +12,27 @@ public enum AbilityState
 };
 public class BotAbilityHolder : MonoBehaviour
 {
-    
-
     private AbilityState state = AbilityState.Active;
     
     public BotAbility ability;
 
     private float coolDownTime;
 
-    private float activeTime;
+    private float activeTime = 0;
 
     [SerializeField] private bool isRunning;
     // Update is called once per frame
     void Update()
     {
+        activeTime += Time.deltaTime;
         switch(state)
         {
             case AbilityState.Ready:
                 if (isRunning/*condition for any move*/)
                 {
-                    ability.Activate(gameObject);
-                    state = AbilityState.Active;
-                    activeTime = ability.activeTime;
+                    //ability.Activate(gameObject);
+                    //state = AbilityState.Active;
+                    //activeTime = ability.activeTime;
                 }
                 break;
             

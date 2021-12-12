@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunPart : BotPart
@@ -32,7 +30,9 @@ public class GunPart : BotPart
     {
         isRunning = state.isActive;
     }
-
+    /// <summary>
+    ///  
+    /// </summary>
     public void AttackStep()
     {
 
@@ -44,7 +44,7 @@ public class GunPart : BotPart
                 int enemyDirection = sensor.GetNearestSensedBotDirection();
 
                 //Faces attack at enemy, handled as local position to bot part
-                AttackActions.ProjectileAttack(
+                AttackActions.ProjectileAttack( 
                     enemyDirection, 
                     projectileStartPos.transform, 
                     damage, 
@@ -52,11 +52,13 @@ public class GunPart : BotPart
                     enemyLayer, 
                     null, 
                     projectile, 
-                    new Vector2(1, 1)
+                    // new Vector2(1, 1)
+                    projectileSize
                     );
 
-                GameObject projectileInstance = Instantiate(projectile, projectileStartPos.transform.position, Quaternion.identity);
-                ////Create a projectile at the start position
+                // Removed redundant instantaite
+                // GameObject projectileInstance = Instantiate(projectile, projectileStartPos.transform.position, Quaternion.identity);
+                //// Create a projectile at the start position
 
                 //Projectile projectileScript = projectileInstance.GetComponent<Projectile>();
                 ////Fetch script/data for projectile
@@ -69,6 +71,10 @@ public class GunPart : BotPart
                 //controller.PlayAudio("Hit");
             }
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        collision.gameObject.SetActive(false);
     }
 
     public override void BotPartUpdate()
