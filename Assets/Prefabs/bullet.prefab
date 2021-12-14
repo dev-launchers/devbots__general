@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 320862649137496447}
   - component: {fileID: 320862649137496440}
   - component: {fileID: -3562898366278187523}
-  m_Layer: 0
+  - component: {fileID: -3068860251581543906}
+  - component: {fileID: -3968035036778890871}
+  m_Layer: 11
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +98,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -135,3 +137,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d737a603e6e3474d9c8dcb952a9f74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3068860251581543906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320862649137496441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8834875cdbc49e4b9e770eb6e2ce75f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_collider: {fileID: 320862649137496447}
+  m_layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+--- !u!114 &-3968035036778890871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320862649137496441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13959f97a7a45254c81316a6f3ad1727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_attack: 1
+  m_damange: 10
+  m_hitbox: {fileID: -3068860251581543906}

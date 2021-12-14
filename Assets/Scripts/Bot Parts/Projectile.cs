@@ -40,23 +40,22 @@ public class Projectile : MonoBehaviour
         enemyLayer = layer; //Set the target of the projectile, so it only hits the desired bot, will likely need to be array of layers for self-damaging items 
     }
 
-  /*  private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Check what layer collided game object is
-        if (collision.gameObject.layer == enemyLayer)
-        {
-            //event invoke for unity event. can add to in editor
-            //projectileColisionEvent.Invoke();   
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    print("collided wtih " + collision.gameObject.name);
+    //    //Check what layer collided game object is
+    //    if (collision.gameObject.layer == enemyLayer)
+    //    {
+    //        //event invoke for unity event. can add to in editor
+    //        //projectileColisionEvent.Invoke();   
 
-            //Deal damage to collided enemy
-            collision.gameObject.GetComponent<BotController>().TakeDamage(damage);
-        }
+    //        //Deal damage to collided enemy
+    //        // collision.gameObject.GetComponent<BotController>().TakeDamage(damage);
+    //    }
 
-        //Destroy projectile
-        Destroy(this.gameObject);
-
-
-    }*/
+    //    //Destroy projectile
+    //    Destroy(this.gameObject);
+    //}
 
     //For an exploding bullet: 
     //Collider2D collision = Physics2D.OverlapCircle(new Vector2 (0,0), 1, "Bot"); 

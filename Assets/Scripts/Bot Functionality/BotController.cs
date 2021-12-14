@@ -29,12 +29,12 @@ public class BotController : MonoBehaviour
     }
 
     public void Start()
-    {        
-     sensor = GetComponent<BotSensor>();
+    {
+        sensor = GetComponent<BotSensor>();
         if (!created && sensor.IsPlayer())
         {
             //if this bot hasn't been created add it to dontdestroy on load
-      DontDestroyOnLoad(this);
+            DontDestroyOnLoad(this);
             created = true;
         }
         else if(sensor.IsPlayer())
