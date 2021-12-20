@@ -11,11 +11,14 @@ public class SwordPart : BotPart
     [SerializeField] private float knockback = default(float);
     [SerializeField] private Vector2 thrustForce = default(Vector2);
     [SerializeField] private bool isRunning;
-    private int enemyLayer;
+    [SerializeField] private LayerMask enemyLayer;
+
 
     private Animator swordAnimator;//Animator used for sword rotation
     private Rigidbody2D rb;
     private BotSensor sensor;
+
+    private Sword_Hitbox hitbox;
 
     public override void SetState(State state) {
         isRunning = state.isActive;
@@ -26,7 +29,7 @@ public class SwordPart : BotPart
         swordAnimator = GetComponent<Animator>();
         rb = GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
-        enemyLayer = sensor.GetEnemyLayer();
+        //enemyLayer = sensor.GetEnemyLayer();
         timer = GetCoolDown();
     }
     public void AttackStep()
@@ -47,15 +50,20 @@ public class SwordPart : BotPart
                 attackPos = transform.position + new Vector3(sensor.GetNearestSensedBotDirection(), 0, 0);
                 //Should be cleaned up, but currently creates Vector2 for current position + 1 in direction of enemy
 
-                Collider2D collision = Physics2D.OverlapCircle(attackPos, attackDistance);
-
-                //if (collision.gameObject.layer == enemyLayer)
-                //{
-                //    print("collision");
-                //    BotController collisionController = collision.transform.GetComponent<BotController>();
-                //    collisionController.TakeDamage(damage);
-                //    collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(), 0));
-                //}
+                //hitbox.CheckHit();
+                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos, attackDistance, enemyLayer);
+                Debug.Log("Overlapcircle");
+                foreach (Collider2D enemy in hitEnemies)
+                {
+                    Debug.Log("we hit " + enemy.name);
+                    BotController collisionController = enemy.transform.GetComponent<BotController>();
+                    if(collisionController != null)
+                    {
+                        collisionController.TakeDamage(damage);
+                        //collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(), 0));
+                    }
+                    
+                }          
             }
         }
     }
