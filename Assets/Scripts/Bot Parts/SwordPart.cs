@@ -49,13 +49,13 @@ public class SwordPart : BotPart
 
                 Collider2D collision = Physics2D.OverlapCircle(attackPos, attackDistance);
 
-                if (collision.gameObject.layer == enemyLayer)
-                {
-                    print("collision");
-                    BotController collisionController = collision.transform.GetComponent<BotController>();
-                    collisionController.TakeDamage(damage);
-                    collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(), 0));
-                }
+                //if (collision.gameObject.layer == enemyLayer)
+                //{
+                //    print("collision");
+                //    BotController collisionController = collision.transform.GetComponent<BotController>();
+                //    collisionController.TakeDamage(damage);
+                //    collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(), 0));
+                //}
             }
         }
     }

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 320862649137496447}
   - component: {fileID: 320862649137496440}
   - component: {fileID: -3562898366278187523}
-  - component: {fileID: -3068860251581543906}
-  - component: {fileID: -3968035036778890871}
+  - component: {fileID: -3883531567923813964}
+  - component: {fileID: -7950421402837390847}
   m_Layer: 11
   m_Name: bullet
   m_TagString: Untagged
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d737a603e6e3474d9c8dcb952a9f74a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3068860251581543906
+--- !u!114 &-3883531567923813964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,14 +146,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 320862649137496441}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8834875cdbc49e4b9e770eb6e2ce75f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d0a07dd741c661428122fd8d8ebbf3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_collider: {fileID: 320862649137496447}
   m_layerMask:
     serializedVersion: 2
     m_Bits: 2048
---- !u!114 &-3968035036778890871
+--- !u!114 &-7950421402837390847
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,4 +167,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_attack: 1
   m_damange: 10
-  m_hitbox: {fileID: -3068860251581543906}
+  m_bulletHitbox: {fileID: -3883531567923813964}

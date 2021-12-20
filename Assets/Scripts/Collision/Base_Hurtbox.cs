@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hurtbox : MonoBehaviour, IHurtbox
+public class Base_Hurtbox : MonoBehaviour, IHurtbox
 {
-    [SerializeField] private bool m_active = true;
+    [SerializeField] private bool m_active = false;
     [SerializeField] private GameObject m_owner = null;
     private IHurtResponder m_hurtResponder;
 
@@ -15,12 +15,22 @@ public class Hurtbox : MonoBehaviour, IHurtbox
 
     public IHurtResponder hurtResponder { get => m_hurtResponder; set => m_hurtResponder = value; }
 
+
+    /// <summary>
+    /// This determines whether or not the collision with the bot results in an reaction
+    /// armor (reduce damage), do damage, use a shield, etc.
+    /// </summary>
+    /// <param name="hitData"></param>
+    /// <returns></returns>
     public bool Checkhit(HitData hitData)
     {
         if (m_hurtResponder == null)
             Debug.Log("No responder");
 
+        Debug.Log(this.gameObject + " confirming hit");
+
         return true;
     }
+
 }
 
