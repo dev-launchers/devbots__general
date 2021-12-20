@@ -8,6 +8,7 @@ public class HitboxBullet : MonoBehaviour, IHitDetector
 {
     [SerializeField] private Collider2D m_collider; // Sprite's hitbox
     [SerializeField] private LayerMask m_layerMask; // Which layer to find enemies
+    [SerializeField] private HurtboxMask m_hurtboxMask = HurtboxMask.Enemy;
     private Collider2D hit; // Collider hit
 
     private float m_thickness = 0.25f; // arbitrary thickness to test
@@ -58,19 +59,22 @@ public class HitboxBullet : MonoBehaviour, IHitDetector
             Debug.Log("Hit " + hit.name);
             if (_hurtbox.Active)
             {
-                // Generate HitData
-                _hitData = new HitData
+                if (m_hurtboxMask.HasFlag((HurtboxMask)_hurtbox.Type))
                 {
-                    damage = m_hitResponder == null ? 0 : m_hitResponder.Damage,
-                    hurtBox = _hurtbox,
-                    hitDetector = this
-                };
+                    // Generate HitData
+                    _hitData = new HitData
+                    {
+                        damage = m_hitResponder == null ? 0 : m_hitResponder.Damage,
+                        hurtBox = _hurtbox,
+                        hitDetector = this
+                    };
 
-                // Validate a response
-                if (_hitData.Validate())
-                {
-                    _hitData.hitDetector.hitResponder?.Response(_hitData);
-                    _hitData.hurtBox.hurtResponder?.Response(_hitData);
+                    // Validate a response
+                    if (_hitData.Validate())
+                    {
+                        _hitData.hitDetector.hitResponder?.Response(_hitData);
+                        _hitData.hurtBox.hurtResponder?.Response(_hitData);
+                    }
                 }
             }
         }

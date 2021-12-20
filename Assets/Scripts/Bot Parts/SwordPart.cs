@@ -12,13 +12,13 @@ public class SwordPart : BotPart
     [SerializeField] private Vector2 thrustForce = default(Vector2);
     [SerializeField] private bool isRunning;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private Sword_Hitbox hitbox;
+
 
 
     private Animator swordAnimator;//Animator used for sword rotation
     private Rigidbody2D rb;
     private BotSensor sensor;
-
-    private Sword_Hitbox hitbox;
 
     public override void SetState(State state) {
         isRunning = state.isActive;
@@ -26,6 +26,7 @@ public class SwordPart : BotPart
 
     private void Start()
     {
+        
         swordAnimator = GetComponent<Animator>();
         rb = GetComponentInParent<Rigidbody2D>();
         sensor = GetComponentInParent<BotSensor>();
@@ -47,23 +48,10 @@ public class SwordPart : BotPart
                 Vector2 appliedForce = new Vector2(thrustForce.x * sensor.GetNearestSensedBotDirection(), thrustForce.y);
                 rb.AddRelativeForce(appliedForce, ForceMode2D.Impulse);
 
-                attackPos = transform.position + new Vector3(sensor.GetNearestSensedBotDirection(), 0, 0);
+                hitbox.CheckHit();
                 //Should be cleaned up, but currently creates Vector2 for current position + 1 in direction of enemy
 
-                //hitbox.CheckHit();
-                Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPos, attackDistance, enemyLayer);
-                Debug.Log("Overlapcircle");
-                foreach (Collider2D enemy in hitEnemies)
-                {
-                    Debug.Log("we hit " + enemy.name);
-                    BotController collisionController = enemy.transform.GetComponent<BotController>();
-                    if(collisionController != null)
-                    {
-                        collisionController.TakeDamage(damage);
-                        //collisionController.ApplyForce(new Vector2(knockback * sensor.GetNearestSensedBotDirection(), 0));
-                    }
-                    
-                }          
+                 
             }
         }
     }

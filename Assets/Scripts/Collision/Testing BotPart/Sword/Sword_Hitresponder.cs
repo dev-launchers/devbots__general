@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class Sword_Hitresponder : MonoBehaviour, IHitResponder
 {
-    public int Damage => throw new System.NotImplementedException();
+    [SerializeField] private bool m_attack;
+    [SerializeField] private int m_damange = 15;
+    [SerializeField] private Sword_Hitbox m_hitbox;
+    [SerializeField] private float m_knockback = default(float);
+    [SerializeField] private Vector2 thrustForce = default(Vector2);
+
+    public int Damage { get => m_damange; }
+    public float knockback { get => m_knockback; }
 
     public bool CheckHit(HitData hitData)
     {
-        throw new System.NotImplementedException();
+        return true;
     }
 
     public void Response(HitData hitData)
     {
-        throw new System.NotImplementedException();
+        // Sword applies a knockback to the hurtbox
+        Vector2 knockbackForce = new Vector2(knockback * hitData.hurtBox.Transform.position.x, 0);
+        //hitData.hurtBox.Owner.GetComponent<BotController>().ApplyForce(knockbackForce);
+        Debug.Log(this.gameObject.name + "Is responding");
+
     }
 
     // Start is called before the first frame update

@@ -6,6 +6,7 @@ public class Enemy_Hurtbox : MonoBehaviour, IHurtbox
 {
     [SerializeField] private bool m_active = false;
     [SerializeField] private GameObject m_owner = null;
+    [SerializeField] private HurtBoxType m_hurtboxType = HurtBoxType.Enemy;
     private IHurtResponder m_hurtResponder;
 
     public bool Active { get => m_active; }
@@ -14,6 +15,8 @@ public class Enemy_Hurtbox : MonoBehaviour, IHurtbox
     public Transform Transform { get => transform; }
 
     public IHurtResponder hurtResponder { get => m_hurtResponder; set => m_hurtResponder = value; }
+
+    public HurtBoxType Type { get => m_hurtboxType;}
 
 
     /// <summary>
@@ -25,7 +28,11 @@ public class Enemy_Hurtbox : MonoBehaviour, IHurtbox
     public bool Checkhit(HitData hitData)
     {
         if (m_hurtResponder == null)
+        {
             Debug.Log("No responder");
+            return false;
+        }
+            
 
         Debug.Log(this.gameObject + " confirming hit");
 

@@ -15,6 +15,8 @@ public class BotController : MonoBehaviour
     public Slots slots;
     //bool used to determine whether this bot has already been created
     public static bool created = false;
+    
+    public Enemy_Hurtresponder hurtResponder;
     //Get this bot's current HP
     public float GetGetHP()
     {
@@ -96,6 +98,7 @@ public class BotController : MonoBehaviour
     public void ApplyForce(Vector3 force)
     {
         //The desired force is sent by the attacking bot, but may be countered by certain effects
+        Debug.Log("Applying force is active");
         rb.AddRelativeForce(force, ForceMode2D.Impulse);
     }
 
@@ -111,7 +114,8 @@ public class BotController : MonoBehaviour
         if (HP <= 0.0f)
         {
             //start botdestroyed coroutine when bot reaches zero health
-            StartCoroutine(BotDestroyed());
+            /* Commneted out to test collision */
+            //StartCoroutine(BotDestroyed());
 
             //Destroy(sensor.GetNearestSensedBot());
             //Destroy(gameObject);
