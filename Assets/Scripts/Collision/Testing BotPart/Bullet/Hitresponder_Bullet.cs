@@ -30,9 +30,9 @@ public class Hitresponder_Bullet : MonoBehaviour, IHitResponder
 
     public bool CheckHit(HitData hitData)
     {
-        Debug.Log("HitData DAMAGE = " + hitData.damage);
-        Debug.Log("HitData HitDetector = " + hitData.hitDetector);
-        Debug.Log("HitData hurtBox = " + hitData.hurtBox);
+        //Debug.Log("HitData DAMAGE = " + hitData.damage);
+        //Debug.Log("HitData HitDetector = " + hitData.hitDetector);
+        //Debug.Log("HitData hurtBox = " + hitData.hurtBox);
 
         return true;
     }

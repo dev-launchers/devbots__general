@@ -17,25 +17,25 @@ public class HitData
     {
         // Which effect is determined first - hurtbox or hitdetector?
         // Can be changed to be more flexible 
-        Debug.Log("[1/4] Validating new hitdata");
+        //Debug.Log("[1/4] Validating new hitdata");
         if(hurtBox != null)    // If the item does have a hurtbox 
         {
-            Debug.Log("[2/4] we hit a hurtbox TRUE: " + hurtBox.ToString());
+            //Debug.Log("[2/4] we hit a hurtbox TRUE: " + hurtBox.ToString());
             if (hurtBox.Checkhit(this))   // Check to see if this has a hurtbox to be hit
             {
-                Debug.Log("[3/4] the enemy checked it's hit TRUE: " + hurtBox.Checkhit(this));
+                //Debug.Log("[3/4] the enemy checked it's hit TRUE: " + hurtBox.Checkhit(this));
                 if (hurtBox.hurtResponder == null || hurtBox.hurtResponder.CheckHit(this))  // check if the hurtbox needs to compute anything for the parent
                 {
-                    Debug.Log("[4/4] TRUE: " + hurtBox.hurtResponder + " OR " + hurtBox.hurtResponder.CheckHit(this));
+                    //Debug.Log("[4/4] TRUE: " + hurtBox.hurtResponder + " OR " + hurtBox.hurtResponder.CheckHit(this));
                     if (hitDetector.hitResponder == null || hitDetector.hitResponder.CheckHit(this)) // Determine if the hitDetector needs to do anything to this hurtbox with the most recent data
                     {
-                        Debug.Log("[4/4] SUCCESS!");
+                        //Debug.Log("[4/4] SUCCESS!");
                         return true;
                     }
                 }   
             }   
         }
-        Debug.Log("FALSE hurt box is null");
+        //Debug.Log("FALSE hurt box is null");
         return false;
     }
 }

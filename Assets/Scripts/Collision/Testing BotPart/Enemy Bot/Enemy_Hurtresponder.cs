@@ -5,11 +5,15 @@ using UnityEngine;
 public class Enemy_Hurtresponder : MonoBehaviour, IHurtResponder
 {
     [SerializeField] private bool m_targetable = true;
+    [SerializeField] private int m_health = default;
+    [SerializeField] private BotController m_controller = default;
+
     //[SerializeField] private Transform m_targetTransform;
     //[SerializeField] private Rigidbody m_rigidbody;
 
     private List<Enemy_Hurtbox> m_hurtboxes = new List<Enemy_Hurtbox>(); // If there are multiple hurtboxese per sprite, place this script in the most parent bot object.
-    private int TEST_health = 100;
+    public BotController controller { get { return m_controller; } }
+
     public bool CheckHit(HitData hitData)
     {
         Debug.Log(this.gameObject + " checked a hit");
@@ -19,11 +23,8 @@ public class Enemy_Hurtresponder : MonoBehaviour, IHurtResponder
     public void Response(HitData hitData)
     {
         Debug.Log(this.gameObject + " lost " + hitData.damage + " health!");
-        TEST_health -= hitData.damage;
-        if(TEST_health <= 0)
-        {
-            Destroy(this.gameObject);
-        }
+        // Call the controller to take damage
+        
     }
 
     // Start is called before the first frame update

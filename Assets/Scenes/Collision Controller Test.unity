@@ -535,7 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_targetable: 1
   m_health: 0
-  m_controller: {fileID: 0}
+  m_controller: {fileID: 266122593}
 --- !u!114 &266122588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,6 +551,18 @@ MonoBehaviour:
   m_active: 1
   m_owner: {fileID: 266122586}
   m_hurtboxType: 2
+--- !u!114 &266122593 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4803837761002279098, guid: f5bf71bb695d90b4fb924d8a95a76d21,
+    type: 3}
+  m_PrefabInstance: {fileID: 869409406}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266122586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab71af02dec8cda499a2f4310365d216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &266122597 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1905763343590494312, guid: f5bf71bb695d90b4fb924d8a95a76d21,

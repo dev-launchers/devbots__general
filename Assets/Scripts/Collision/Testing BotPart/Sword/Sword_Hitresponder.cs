@@ -22,7 +22,6 @@ public class Sword_Hitresponder : MonoBehaviour, IHitResponder
     {
         // Sword applies a knockback to the hurtbox
         Vector2 knockbackForce = new Vector2(knockback * hitData.hurtBox.Transform.position.x, 0);
-        //hitData.hurtBox.Owner.GetComponent<BotController>().ApplyForce(knockbackForce);
         Debug.Log(this.gameObject.name + "Is responding");
 
     }
