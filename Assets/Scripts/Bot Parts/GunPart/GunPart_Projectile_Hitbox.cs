@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Hit box takes in hit data from hurtboxes
 /// </summary>
-public class HitboxBullet : MonoBehaviour, IHitDetector
+public class GunPart_Projectile_Hitbox : MonoBehaviour, IHitBox
 {
     [SerializeField] private Collider2D m_collider; // Sprite's hitbox
     [SerializeField] private LayerMask m_layerMask; // Which layer to find enemies
@@ -16,17 +16,6 @@ public class HitboxBullet : MonoBehaviour, IHitDetector
     private bool madeHit = false;
 
     public IHitResponder hitResponder { get => m_hitResponder; set => m_hitResponder = value; }
-
-    /// <summary>
-    /// Using OnCollisionEnter2D for bullet projectile as it's animation may not collide with anything 
-    /// therefore we only need to CheckHit if collision is detected first.
-    /// </summary>
-    /// <param name="collision"> object bullet collided with </param>
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.GetComponent<IHurtbox>() != null)

@@ -9,9 +9,9 @@ public class HitData
 {
     // Data objects need 
     // TODO: Add more possible datas
-    public int damage;
+    public float damage;
     public IHurtbox hurtBox;
-    public IHitDetector hitDetector;
+    public IHitBox hitDetector; // Hitbox
 
     public bool Validate()
     {
@@ -62,8 +62,7 @@ public enum HurtboxMask
 public interface IHitResponder
 {
     // Data for hit responders is up for manipulation 
-
-    int Damage { get; }
+    float Damage { get; }
     // Method declaration for ALL things that hit - check to see if the attached game object 
     // hits something
     public bool CheckHit(HitData hitData);
@@ -71,8 +70,7 @@ public interface IHitResponder
     public void Response(HitData hitData);
 }
 
-
-public interface IHitDetector
+public interface IHitBox
 {
     /// <summary>
     /// This is an interface attached to ALL game obejcts that need to determine if an obbject collided with this object

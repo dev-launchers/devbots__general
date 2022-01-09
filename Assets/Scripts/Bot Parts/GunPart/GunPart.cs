@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GunPart : BotPart
+public class GunPart : BotPart, IHitResponder
 {
 
     private int enemyLayer;
@@ -15,7 +15,9 @@ public class GunPart : BotPart
 
     [SerializeField] private bool isRunning;
 
-        // Start is called before the first frame update
+    public float Damage { get => damage; }
+
+    // Start is called before the first frame update
     void Start()
     {
         sensor = GetComponentInParent<BotSensor>();
@@ -80,5 +82,15 @@ public class GunPart : BotPart
     public override void BotPartUpdate()
     {
         AttackStep();
+    }
+
+    public bool CheckHit(HitData hitData)
+    {
+        return true;
+    }
+
+    public void Response(HitData hitData)
+    {
+        
     }
 }

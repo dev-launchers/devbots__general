@@ -1,9 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class BotController : MonoBehaviour
+public class BotController : MonoBehaviour, IHurtResponder
 {
     private BotSensor sensor;
     //private AudioManager audioManager;
@@ -15,8 +16,9 @@ public class BotController : MonoBehaviour
     public Slots slots;
     //bool used to determine whether this bot has already been created
     public static bool created = false;
-    
-    public Enemy_Hurtresponder hurtResponder;
+
+    private List<Bot_Hurtbox> m_hurtboxes = new List<Bot_Hurtbox>(); // If there are multiple hurtboxese per sprite, place this script in the most parent bot object.
+
     //Get this bot's current HP
     public float GetGetHP()
     {
@@ -48,6 +50,13 @@ public class BotController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (DamageTakenEvent == null)
             DamageTakenEvent = new UnityEvent();
+
+        m_hurtboxes = new List<Bot_Hurtbox>(GetComponentsInChildren<Bot_Hurtbox>());
+        Debug.Log(this.gameObject.name + " Hurtresponder's start function");
+        foreach (Bot_Hurtbox _hurtbox in m_hurtboxes)
+        {
+            _hurtbox.hurtResponder = this;
+        }
 
     }
 
@@ -147,5 +156,16 @@ public class BotController : MonoBehaviour
         {
             SceneHandler.LoadVictoryScene();
         }
+    }
+
+    public bool CheckHit(HitData hitData)
+    {
+        Debug.Log("Validating hit inside botcontroller");
+        return true;
+    }
+
+    public void Response(HitData hitData)
+    {
+        Debug.Log(this.gameObject + " lost " + hitData.damage + " health!");
     }
 }

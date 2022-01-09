@@ -2904,6 +2904,7 @@ MonoBehaviour:
   options:
   - {fileID: 9114244139634852574, guid: b80df119c99d20a49a7afe7942721bc5, type: 3}
   - {fileID: 7051656910441631177, guid: 8922f54146e48a54eb7533cc225050b3, type: 3}
+  - {fileID: 7078894878843184015, guid: 6e7fabb4f8f1f5a47a66f0101947f4e3, type: 3}
 --- !u!1 &1339632217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,37 +3601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a81e1bd4c27c2ac49b1fa60c6b9974c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: Hit
-    clip: {fileID: 8300000, guid: 0ed444e1281950c43bc73de52dcfeb47, type: 3}
-    volume: 0.4
-    pitch: 0.5
-    loop: 0
-    source: {fileID: 0}
-  - name: Move
-    clip: {fileID: 8300000, guid: a8a503b68c41143489922faafecc8643, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: Death
-    clip: {fileID: 8300000, guid: d5269e555c97ecc44a11461cbb280bfe, type: 3}
-    volume: 0.6
-    pitch: 0.6
-    loop: 0
-    source: {fileID: 0}
-  - name: Music_Battle
-    clip: {fileID: 8300000, guid: b39fb6d8430419044b638ef142720200, type: 3}
-    volume: 0.3
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
-  - name: Music_Menu
-    clip: {fileID: 8300000, guid: b3a20d65cdf877645a8d30173551ce67, type: 3}
-    volume: 0.3
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
 --- !u!4 &1605588760
 Transform:
   m_ObjectHideFlags: 0
@@ -3905,7 +3875,8 @@ MonoBehaviour:
   targetBot: {fileID: 721326015}
   targetSlot: {fileID: 721326017}
   slotPosition: 1
-  options: []
+  options:
+  - {fileID: 6960256867973584277, guid: 39288b684cf66d949bcecc129dcbf7cb, type: 3}
 --- !u!1 &1806078129
 GameObject:
   m_ObjectHideFlags: 0
